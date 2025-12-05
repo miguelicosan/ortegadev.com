@@ -47,34 +47,31 @@ export default function ContactForm({ lang, t }: ContactFormProps) {
         setIsSubmitting(true);
 
         try {
-            // Intentar con fetch primero (para producción)
-            const payload = {
-                name: formData.name,
-                email: formData.email,
-                type: formData.type,
-                message: formData.message,
-                lang: lang,
-                privacy: formData.privacy
-            };
+            console.log('📤 Enviando:', formData);
 
-            console.log('📤 Enviando:', payload);
-
-            const response = await fetch('/api/submit-contact', {
+            // Usar Formspree para enviar email
+            const formspreeEndpoint = 'https://formspree.io/f/xdkqdprg';
+            
+            const response = await fetch(formspreeEndpoint, {
                 method: 'POST',
                 headers: {
+                    'Accept': 'application/json',
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(payload),
-            }).catch(err => {
-                console.error('Fetch error:', err);
-                throw err;
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    type: formData.type,
+                    message: formData.message,
+                    lang: lang,
+                }),
             });
 
             console.log('Response status:', response.status);
             const data = await response.json();
             console.log('Response data:', data);
 
-            if (response.ok && data.success) {
+            if (response.ok) {
                 setSubmitStatus('success');
                 setFormData({
                     name: '',

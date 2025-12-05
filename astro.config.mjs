@@ -7,13 +7,10 @@ import react from '@astrojs/react';
 export default defineConfig({
   site: 'https://ortegadev.com',
   integrations: [react()],
+  output: 'static',
   vite: {
     ssr: {
       external: ['svgo']
     }
-  },
-  // Enable View Transitions for smoother page navigation
-  viewTransitions: {
-    fallback: 'animate'
   }
 });
