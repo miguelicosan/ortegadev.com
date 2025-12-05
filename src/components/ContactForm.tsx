@@ -47,18 +47,34 @@ export default function ContactForm({ lang, t }: ContactFormProps) {
         setIsSubmitting(true);
 
         try {
-            const response = await fetch('/api/contact', {
+            // Intentar con fetch primero (para producción)
+            const payload = {
+                name: formData.name,
+                email: formData.email,
+                type: formData.type,
+                message: formData.message,
+                lang: lang,
+                privacy: formData.privacy
+            };
+
+            console.log('📤 Enviando:', payload);
+
+            const response = await fetch('/api/submit-contact', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    ...formData,
-                    lang,
-                }),
+                body: JSON.stringify(payload),
+            }).catch(err => {
+                console.error('Fetch error:', err);
+                throw err;
             });
 
-            if (response.ok) {
+            console.log('Response status:', response.status);
+            const data = await response.json();
+            console.log('Response data:', data);
+
+            if (response.ok && data.success) {
                 setSubmitStatus('success');
                 setFormData({
                     name: '',
@@ -67,13 +83,15 @@ export default function ContactForm({ lang, t }: ContactFormProps) {
                     message: '',
                     privacy: false,
                 });
+                console.log('✅ Enviado exitosamente');
                 setTimeout(() => setSubmitStatus('idle'), 5000);
             } else {
+                console.error('Request failed:', data);
                 setSubmitStatus('error');
                 setTimeout(() => setSubmitStatus('idle'), 3000);
             }
         } catch (error) {
-            console.error('Error submitting form:', error);
+            console.error('Error completo:', error);
             setSubmitStatus('error');
             setTimeout(() => setSubmitStatus('idle'), 3000);
         } finally {
