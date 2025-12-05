@@ -56,6 +56,21 @@
             "title": "Technical Consulting",
             "description": "Scalable architectures, performance auditing, and UX/UI improvement.",
             "tech": "Cloud, Microservices, Performance"
+        },
+        "devops": {
+            "title": "DevOps & Infrastructure",
+            "description": "Containerization, orchestration, CI/CD pipelines and monitoring. Deploy with confidence.",
+            "tech": "Docker, Kubernetes, AWS, Nginx, Jenkins"
+        },
+        "backend": {
+            "title": "Scalable Backend",
+            "description": "REST and GraphQL APIs, databases, microservices, and distributed architectures.",
+            "tech": "Node.js, Python, FastAPI, PostgreSQL, MongoDB"
+        },
+        "cta": {
+            "heading": "Ready to take your project to the next level?",
+            "description": "Tell me about your idea or technical challenge. I'll provide personalized solutions tailored to your budget.",
+            "button": "Start Project"
         }
     },
     "projects": {

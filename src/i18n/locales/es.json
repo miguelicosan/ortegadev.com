@@ -56,6 +56,21 @@
             "title": "Consultoría Técnica",
             "description": "Arquitecturas escalables, auditoría de rendimiento y mejora de UX/UI.",
             "tech": "Cloud, Microservicios, Performance"
+        },
+        "devops": {
+            "title": "DevOps & Infraestructura",
+            "description": "Containerización, orquestación, CI/CD pipelines y monitoreo. Despliega con confianza.",
+            "tech": "Docker, Kubernetes, AWS, Nginx, Jenkins"
+        },
+        "backend": {
+            "title": "Backend Escalable",
+            "description": "APIs REST y GraphQL, bases de datos, microservicios y arquitecturas distribuidas.",
+            "tech": "Node.js, Python, FastAPI, PostgreSQL, MongoDB"
+        },
+        "cta": {
+            "heading": "¿Listo para llevar tu proyecto al siguiente nivel?",
+            "description": "Cuéntame sobre tu idea o desafío técnico. Ofreceré soluciones personalizadas ajustadas a tu presupuesto.",
+            "button": "Iniciar Proyecto"
         }
     },
     "projects": {

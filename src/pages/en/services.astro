@@ -28,6 +28,18 @@ const services = [
         tech: t.services.consulting.tech,
         icon: "chart",
     },
+    {
+        title: t.services.devops.title,
+        description: t.services.devops.description,
+        tech: t.services.devops.tech,
+        icon: "server",
+    },
+    {
+        title: t.services.backend.title,
+        description: t.services.backend.description,
+        tech: t.services.backend.tech,
+        icon: "database",
+    },
 ];
 ---
 
@@ -108,6 +120,53 @@ const services = [
                                         />
                                     </svg>
                                 )}
+                                {service.icon === "server" && (
+                                    <svg
+                                        width="48"
+                                        height="48"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <rect
+                                            x="2"
+                                            y="3"
+                                            width="20"
+                                            height="6"
+                                            rx="1"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                        />
+                                        <rect
+                                            x="2"
+                                            y="12"
+                                            width="20"
+                                            height="6"
+                                            rx="1"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                        />
+                                        <circle cx="6" cy="6" r="1" fill="currentColor" />
+                                        <circle cx="6" cy="15" r="1" fill="currentColor" />
+                                    </svg>
+                                )}
+                                {service.icon === "database" && (
+                                    <svg
+                                        width="48"
+                                        height="48"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <ellipse cx="12" cy="4" rx="8" ry="2" stroke="currentColor" stroke-width="2" />
+                                        <path
+                                            d="M4 4V18C4 19.1 7.6 20 12 20C16.4 20 20 19.1 20 18V4"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                        />
+                                        <ellipse cx="12" cy="18" rx="8" ry="2" stroke="currentColor" stroke-width="2" />
+                                    </svg>
+                                )}
                             </div>
                             <h3>{service.title}</h3>
                             <p>{service.description}</p>
@@ -118,6 +177,17 @@ const services = [
                     ))
                 }
             </div>
+
+            <!-- CTA Section -->
+            <section class="cta-section">
+                <div class="cta-content">
+                    <h2>{t.services.cta.heading}</h2>
+                    <p>{t.services.cta.description}</p>
+                    <a href="/en/contact" class="btn btn-primary btn-lg">
+                        {t.services.cta.button}
+                    </a>
+                </div>
+            </section>
         </div>
     </section>
 </BaseLayout>
@@ -193,6 +263,51 @@ const services = [
             span {
                 color: $color-brand-primary;
                 font-weight: $font-weight-medium;
+            }
+        }
+    }
+
+    .cta-section {
+        margin-top: $spacing-12;
+        padding: $spacing-8;
+        background: linear-gradient(135deg, rgba($color-brand-primary, 0.1) 0%, rgba($color-brand-secondary, 0.1) 100%);
+        border-radius: $radius-lg;
+        border: 1px solid rgba($color-brand-primary, 0.2);
+        text-align: center;
+
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+
+            h2 {
+                margin-bottom: $spacing-4;
+                font-size: $font-size-3xl;
+                color: var(--color-text-primary);
+
+                @media (max-width: $breakpoint-md) {
+                    font-size: $font-size-2xl;
+                }
+            }
+
+            p {
+                margin-bottom: $spacing-6;
+                font-size: $font-size-lg;
+                color: var(--color-text-secondary);
+                line-height: $line-height-relaxed;
+
+                @media (max-width: $breakpoint-md) {
+                    font-size: $font-size-base;
+                }
+            }
+
+            .btn {
+                display: inline-block;
+                padding: $spacing-4 $spacing-8;
+                font-size: $font-size-lg;
+
+                @media (max-width: $breakpoint-md) {
+                    width: 100%;
+                }
             }
         }
     }

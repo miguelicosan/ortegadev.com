@@ -277,6 +277,10 @@ const techStack = {
         justify-content: center;
         gap: $spacing-6;
         position: relative;
+
+        @media (max-width: $breakpoint-md) {
+            gap: $spacing-3;
+        }
     }
 
     .tech-categories {
@@ -292,6 +296,20 @@ const techStack = {
         position: relative;
         overflow: hidden;
         padding: 0 $spacing-4;
+
+        @media (max-width: $breakpoint-lg) {
+            height: auto;
+            gap: $spacing-4;
+            padding: 0 $spacing-2;
+            margin-bottom: $spacing-4;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: $breakpoint-md) {
+            grid-template-columns: 1fr;
+            gap: $spacing-4;
+            padding: 0 $spacing-2;
+        }
     }
 
     .tech-category {
@@ -310,6 +328,20 @@ const techStack = {
         opacity: 0;
         transform: translateX(500px) scale(0.8);
         pointer-events: none;
+
+        @media (max-width: $breakpoint-lg) {
+            position: relative;
+            width: 100%;
+            max-width: none;
+            min-height: auto;
+            padding: $spacing-4;
+            margin: 0;
+            opacity: 1 !important;
+            transform: none !important;
+            pointer-events: auto;
+            transition: all $transition-slow ease-out;
+            display: flex !important;
+        }
 
         &.prev {
             opacity: 0.6;
@@ -334,6 +366,13 @@ const techStack = {
             z-index: 5;
         }
 
+        &.revealed {
+            @media (max-width: $breakpoint-lg) {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+
         h3 {
             display: flex;
             align-items: center;
@@ -345,10 +384,20 @@ const techStack = {
             height: 32px;
             flex-shrink: 0;
 
+            @media (max-width: $breakpoint-lg) {
+                font-size: $font-size-base;
+                height: auto;
+            }
+
             svg {
                 width: 24px;
                 height: 24px;
                 flex-shrink: 0;
+
+                @media (max-width: $breakpoint-lg) {
+                    width: 20px;
+                    height: 20px;
+                }
             }
         }
     }
@@ -366,6 +415,10 @@ const techStack = {
         cursor: pointer;
         transition: all $transition-base ease-out;
         flex-shrink: 0;
+
+        @media (max-width: $breakpoint-lg) {
+            display: none;
+        }
 
         &:hover {
             border-color: $color-brand-primary;
@@ -387,6 +440,10 @@ const techStack = {
         display: flex;
         flex-wrap: wrap;
         gap: $spacing-2;
+
+        @media (max-width: $breakpoint-lg) {
+            gap: $spacing-1;
+        }
     }
 
     .chip {
@@ -400,6 +457,11 @@ const techStack = {
         border: 1px solid var(--color-logo-dev);
         border-radius: $radius-full;
         transition: all $transition-base ease-out;
+
+        @media (max-width: $breakpoint-lg) {
+            padding: $spacing-1 $spacing-2;
+            font-size: $font-size-xs;
+        }
 
         &:hover {
             background-color: var(--color-logo-dev);

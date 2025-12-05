@@ -172,22 +172,27 @@
 // Delays for staggered animations
 .delay-100 {
     animation-delay: 100ms;
+    transition-delay: 100ms;
 }
 
 .delay-200 {
     animation-delay: 200ms;
+    transition-delay: 200ms;
 }
 
 .delay-300 {
     animation-delay: 300ms;
+    transition-delay: 300ms;
 }
 
 .delay-400 {
     animation-delay: 400ms;
+    transition-delay: 400ms;
 }
 
 .delay-500 {
     animation-delay: 500ms;
+    transition-delay: 500ms;
 }
 
 // Scroll-based parallax effects
