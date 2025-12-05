@@ -203,8 +203,9 @@ const ctaButtons = [
         img {
             width: 100%;
             height: auto;
-            border-radius: $radius-xl;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
             box-shadow: $shadow-2xl;
+            animation: blob-morph 8s ease-in-out infinite;
         }
 
         &::before {
@@ -215,10 +216,47 @@ const ctaButtons = [
             right: 20px;
             bottom: 20px;
             background: $gradient-hero;
-            border-radius: $radius-xl;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
             z-index: -1;
             opacity: 0.3;
             filter: blur(40px);
+            animation: blob-morph-shadow 8s ease-in-out infinite;
+        }
+    }
+
+    @keyframes blob-morph {
+        0% {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        }
+        25% {
+            border-radius: 30% 60% 70% 40% / 40% 30% 60% 70%;
+        }
+        50% {
+            border-radius: 40% 60% 30% 70% / 70% 40% 60% 30%;
+        }
+        75% {
+            border-radius: 70% 30% 66% 33% / 33% 30% 67% 70%;
+        }
+        100% {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        }
+    }
+
+    @keyframes blob-morph-shadow {
+        0% {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        }
+        25% {
+            border-radius: 30% 60% 70% 40% / 40% 30% 60% 70%;
+        }
+        50% {
+            border-radius: 40% 60% 30% 70% / 70% 40% 60% 30%;
+        }
+        75% {
+            border-radius: 70% 30% 66% 33% / 33% 30% 67% 70%;
+        }
+        100% {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
         }
     }
 
