@@ -1,0 +1,142 @@
+{
+    "site": {
+        "title": "Miguel Ángel Ortega Ibáñez - Full Stack Developer · AI & Big Data",
+        "description": "Full Stack Developer specialized in AI, Big Data, and process automation. Building modern, scalable applications for companies across Spain and beyond."
+    },
+    "nav": {
+        "home": "Home",
+        "about": "About",
+        "services": "Services",
+        "projects": "Projects",
+        "blog": "Blog",
+        "contact": "Contact"
+    },
+    "hero": {
+        "title": "Full Stack Developer · AI & Big Data",
+        "subtitle": "I build modern, scalable and AI-powered applications for companies and individuals who want to level up their tech.",
+        "cta": {
+            "projects": "View projects",
+            "meeting": "Book a meeting",
+            "whatsapp": "WhatsApp"
+        },
+        "scrollHint": "Scroll to discover more"
+    },
+    "about": {
+        "title": "About Me",
+        "name": "Miguel Ángel Ortega Ibáñez",
+        "role": "Full Stack Developer | AI · Big Data · IoT",
+        "location": "Almería, Spain",
+        "experience": "+10 years",
+        "bio": "I'm a full stack developer passionate about modern programming, AI, and distributed systems. Currently developing ReviCar, a PWA for vehicle maintenance management with AI, and working as a programmer analyst at Minsait, where I specialize in process automation and intelligent document capture solutions.",
+        "currentWork": "Since 2018 at Minsait (AI Documentation department), I implement business process automation solutions, develop REST APIs, and perform intelligent document capture integrations for major financial institutions.",
+        "skills": "Agile methodologies (Scrum), BPMN, Camunda, Power Automate. Good level of spoken and written English."
+    },
+    "techStack": {
+        "title": "Tech Stack",
+        "frontend": "Frontend",
+        "backend": "Backend & DB",
+        "devops": "DevOps & Cloud",
+        "visualization": "Visualization & IoT",
+        "ai": "AI & Data"
+    },
+    "services": {
+        "title": "Services",
+        "subtitle": "Custom tech solutions for your business",
+        "web": {
+            "title": "Web & App Development",
+            "description": "Corporate websites, conversion-focused landing pages, and modern PWAs.",
+            "tech": "React, Astro, Svelte, Supabase"
+        },
+        "ai": {
+            "title": "AI & Automation",
+            "description": "Document automation, chatbots, text analysis, and process optimization with BPM and RPA.",
+            "tech": "OCR, NLP, Machine Learning, Camunda"
+        },
+        "consulting": {
+            "title": "Technical Consulting",
+            "description": "Scalable architectures, performance auditing, and UX/UI improvement.",
+            "tech": "Cloud, Microservices, Performance"
+        }
+    },
+    "projects": {
+        "title": "Featured Projects",
+        "viewAll": "View all projects",
+        "viewDetail": "View details",
+        "liveDemo": "Live demo",
+        "repository": "Repository"
+    },
+    "blog": {
+        "title": "Blog",
+        "readMore": "Read more",
+        "readTime": "min read",
+        "latestPosts": "Latest posts"
+    },
+    "contact": {
+        "title": "Contact",
+        "subtitle": "Have a project in mind? Let's talk",
+        "form": {
+            "name": "Name",
+            "namePlaceholder": "Your full name",
+            "email": "Email",
+            "emailPlaceholder": "your@email.com",
+            "type": "Inquiry type",
+            "typeOptions": {
+                "recruiter": "Recruiter / Company",
+                "web": "Web / app project",
+                "ai": "AI consulting",
+                "other": "Other"
+            },
+            "message": "Message",
+            "messagePlaceholder": "Tell me about your project",
+            "privacy": "I have read and accept the",
+            "privacyLink": "Privacy Policy",
+            "submit": "Send message",
+            "sending": "Sending...",
+            "success": "Message sent! I'll get back to you soon.",
+            "error": "Error sending. Please try again."
+        },
+        "info": {
+            "email": "Email",
+            "phone": "Phone",
+            "location": "Location",
+            "availability": "Available for remote projects and on-site in Almería"
+        },
+        "calendar": {
+            "title": "Book a Meeting",
+            "description": "Schedule a 30-minute video call to discuss your project",
+            "button": "Open calendar"
+        }
+    },
+    "footer": {
+        "description": "Full Stack Developer specialized in AI, Big Data, and process automation. Almería, Spain.",
+        "legal": "Legal",
+        "legalNotice": "Legal Notice",
+        "privacy": "Privacy",
+        "cookies": "Cookies",
+        "rights": "All rights reserved"
+    },
+    "cookies": {
+        "banner": {
+            "message": "We use our own and third-party cookies to improve your experience. You can accept, reject, or configure them.",
+            "accept": "Accept all",
+            "reject": "Reject",
+            "configure": "Configure"
+        },
+        "config": {
+            "title": "Cookie Settings",
+            "necessary": "Necessary",
+            "necessaryDesc": "Essential cookies for site functionality",
+            "analytics": "Analytics",
+            "analyticsDesc": "Help us understand how you use the site",
+            "marketing": "Marketing",
+            "marketingDesc": "Advertising and social media cookies",
+            "save": "Save preferences"
+        }
+    },
+    "common": {
+        "loading": "Loading...",
+        "error": "Error",
+        "close": "Close",
+        "learnMore": "Learn more"
+    }
+}

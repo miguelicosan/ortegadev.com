@@ -1,0 +1,126 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Aviso Legal | ortegadev.com";
+const description =
+    "Aviso legal del sitio web ortegadev.com. Información sobre el titular, condiciones de uso y propiedad intelectual.";
+---
+
+<BaseLayout title={title} description={description} lang="es" noindex={true}>
+    <section class="legal-page py-12">
+        <div class="container container-narrow">
+            <h1>Aviso Legal</h1>
+
+            <h2>1. Datos de Identificación</h2>
+            <p>
+                En cumplimiento de la Ley 34/2002, de 11 de julio, de Servicios
+                de la Sociedad de la Información y del Comercio Electrónico
+                (LSSI-CE), se informa de los siguientes datos:
+            </p>
+            <ul>
+                <li><strong>Titular:</strong> Miguel Ángel Ortega Ibáñez</li>
+                <li><strong>NIF:</strong> 75268388Z</li>
+                <li><strong>Domicilio:</strong> Almería, España</li>
+                <li><strong>Email:</strong> hola@ortegadev.com</li>
+                <li><strong>Teléfono:</strong> +34 621 329 386</li>
+            </ul>
+
+            <h2>2. Objeto</h2>
+            <p>
+                El presente sitio web tiene como objetivo proporcionar
+                información sobre los servicios de desarrollo web, aplicaciones
+                y consultoría tecnológica ofrecidos por Miguel Ángel Ortega
+                Ibáñez.
+            </p>
+
+            <h2>3. Condiciones de Uso</h2>
+            <p>
+                El acceso y uso de este sitio web atribuye la condición de
+                usuario y supone la aceptación plena de todas las condiciones
+                incluidas en este Aviso Legal. El usuario se compromete a hacer
+                un uso adecuado del contenido y servicios que se ofrecen.
+            </p>
+
+            <h2>4. Propiedad Intelectual e Industrial</h2>
+            <p>
+                Todos los contenidos de este sitio web (textos, imágenes,
+                marcas, gráficos, logotipos, código fuente, etc.) son propiedad
+                de Miguel Ángel Ortega Ibáñez o de terceros que han autorizado
+                su uso, y están protegidos por derechos de propiedad intelectual
+                e industrial.
+            </p>
+            <p>
+                Queda prohibida su reproducción, distribución, comunicación
+                pública o transformación sin autorización expresa.
+            </p>
+
+            <h2>5. Exclusión de Responsabilidad</h2>
+            <p>El titular no se hace responsable de:</p>
+            <ul>
+                <li>
+                    La disponibilidad continua de los contenidos y servicios
+                </li>
+                <li>Daños que pudieran derivarse del uso de los contenidos</li>
+                <li>
+                    Contenidos de sitios web de terceros enlazados desde este
+                    sitio
+                </li>
+            </ul>
+
+            <h2>6. Enlaces a Terceros</h2>
+            <p>
+                Este sitio web puede contener enlaces a webs de terceros. El
+                titular no se hace responsable del contenido de dichos sitios ni
+                de las políticas de privacidad que apliquen.
+            </p>
+
+            <h2>7. Legislación Aplicable</h2>
+            <p>
+                Las presentes condiciones se rigen por la legislación española.
+                Para cualquier controversia será competente la jurisdicción
+                correspondiente al domicilio del titular.
+            </p>
+
+            <p style="margin-top: 2rem; font-size: 0.875rem; color: #6e6e73;">
+                Última actualización: Diciembre 2025
+            </p>
+        </div>
+    </section>
+</BaseLayout>
+
+<style lang="scss">
+    @import "../../styles/tokens.scss";
+
+    .legal-page {
+        min-height: 70vh;
+
+        h1 {
+            margin-bottom: $spacing-8;
+        }
+
+        h2 {
+            margin-top: $spacing-8;
+            margin-bottom: $spacing-4;
+            font-size: $font-size-xl;
+        }
+
+        p,
+        ul {
+            margin-bottom: $spacing-4;
+            line-height: $line-height-relaxed;
+        }
+
+        ul {
+            margin-left: $spacing-6;
+
+            li {
+                list-style: disc;
+                margin-bottom: $spacing-2;
+            }
+        }
+
+        strong {
+            font-weight: $font-weight-semibold;
+        }
+    }
+</style>

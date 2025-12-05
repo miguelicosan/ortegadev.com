@@ -1,0 +1,273 @@
+@import './reset.scss';
+@import './tokens.scss';
+@import './utilities.scss';
+@import './animations.scss';
+
+// Prevent flash of unstyled content (FOUC) during theme load
+html {
+    scroll-behavior: smooth;
+    // Ensure theme attributes are applied before page renders
+    // This prevents white flash when loading with dark theme preference
+    &[data-theme="dark"] {
+        color-scheme: dark;
+    }
+    &[data-theme="light"] {
+        color-scheme: light;
+    }
+}
+
+body {
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+    line-height: $line-height-normal;
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-primary);
+}
+
+// Difuminar main cuando el menú está abierto
+main {
+    transition: filter 0.3s ease;
+
+    &.menu-open {
+        filter: blur(2px);
+        pointer-events: none;
+    }
+}
+
+// Typography
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+    margin-bottom: $spacing-4;
+}
+
+h1 {
+    font-size: $font-size-5xl;
+
+    @media (min-width: $breakpoint-md) {
+        font-size: $font-size-6xl;
+    }
+
+    @media (min-width: $breakpoint-lg) {
+        font-size: $font-size-7xl;
+    }
+}
+
+h2 {
+    font-size: $font-size-4xl;
+
+    @media (min-width: $breakpoint-md) {
+        font-size: $font-size-5xl;
+    }
+}
+
+h3 {
+    font-size: $font-size-3xl;
+
+    @media (min-width: $breakpoint-md) {
+        font-size: $font-size-4xl;
+    }
+}
+
+h4 {
+    font-size: $font-size-2xl;
+}
+
+h5 {
+    font-size: $font-size-xl;
+}
+
+h6 {
+    font-size: $font-size-lg;
+}
+
+p {
+    margin-bottom: $spacing-4;
+    color: var(--color-text-secondary);
+}
+
+// Links
+a {
+    transition: color $transition-base ease-out;
+
+    &:hover {
+        color: $color-brand-primary;
+    }
+}
+
+// Buttons
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-2;
+    padding: $spacing-3 $spacing-6;
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    border-radius: $radius-lg;
+    transition: all $transition-base ease-out;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
+
+.btn-primary {
+    background-color: $color-brand-primary;
+    color: $color-text-light;
+
+    &:hover:not(:disabled) {
+        background-color: darken($color-brand-primary, 8%);
+        transform: translateY(-2px);
+        box-shadow: $shadow-md;
+    }
+}
+
+.btn-secondary {
+    background-color: $color-bg-secondary;
+    color: $color-text-primary;
+
+    &:hover:not(:disabled) {
+        background-color: darken($color-bg-secondary, 5%);
+        transform: translateY(-2px);
+        box-shadow: $shadow-md;
+    }
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid $color-brand-primary;
+    color: $color-brand-primary;
+
+    &:hover:not(:disabled) {
+        background-color: $color-brand-primary;
+        color: $color-text-light;
+    }
+}
+
+.btn-lg {
+    padding: 1rem 1rem;
+    font-size: 1.125rem;
+}
+
+.btn-sm {
+    padding: $spacing-2 $spacing-4;
+    font-size: $font-size-sm;
+}
+
+// Cards
+.card {
+    background-color: $color-bg-primary;
+    border-radius: $radius-lg;
+    padding: $spacing-6;
+    box-shadow: $shadow-base;
+    transition: all $transition-base ease-out;
+
+    &:hover {
+        box-shadow: $shadow-lg;
+        transform: translateY(-4px);
+    }
+}
+
+// Sections
+section {
+    padding: $spacing-10 0;
+
+    @media (min-width: $breakpoint-md) {
+        padding: $spacing-12 0;
+    }
+
+    @media (min-width: $breakpoint-lg) {
+        padding: $spacing-16 0;
+    }
+}
+
+// Forms
+input,
+textarea,
+select {
+    width: 100%;
+    padding: $spacing-3 $spacing-4;
+    font-size: $font-size-base;
+    border: 2px solid lighten($color-text-secondary, 30%);
+    border-radius: $radius-base;
+    transition: border-color $transition-base ease-out;
+    background-color: $color-bg-primary;
+
+    &:focus {
+        outline: none;
+        border-color: $color-brand-primary;
+    }
+
+    &::placeholder {
+        color: lighten($color-text-secondary, 20%);
+    }
+
+    &.error {
+        border-color: $color-error;
+    }
+}
+
+label {
+    display: block;
+    margin-bottom: $spacing-2;
+    font-weight: $font-weight-medium;
+    color: $color-text-primary;
+}
+
+// Code blocks
+code {
+    font-family: $font-family-mono;
+    font-size: $font-size-sm;
+    background-color: lighten($color-bg-secondary, 2%);
+    padding: $spacing-1 $spacing-2;
+    border-radius: $radius-sm;
+}
+
+pre {
+    background-color: lighten($color-bg-secondary, 2%);
+    padding: $spacing-4;
+    border-radius: $radius-base;
+    overflow-x: auto;
+
+    code {
+        background-color: transparent;
+        padding: 0;
+    }
+}
+
+// Contact page styles
+.contact-page {
+    h2 {
+        text-align: center;
+    }
+}
+
+// Dark mode
+@media (prefers-color-scheme: dark) {
+    body {
+        color: #f5f5f7;
+        background-color: $color-bg-dark;
+    }
+
+    .card {
+        background-color: #1d1d1f;
+    }
+
+    input,
+    textarea,
+    select {
+        background-color: #1d1d1f;
+        color: #f5f5f7;
+        border-color: #424245;
+    }
+}

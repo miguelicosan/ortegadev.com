@@ -1,0 +1,8 @@
+# robots.txt for ortegadev.com
+User-agent: *
+Allow: /
+Disallow: /legal/
+Disallow: /en/legal/
+
+# Sitemap location
+Sitemap: https://ortegadev.com/sitemap.xml

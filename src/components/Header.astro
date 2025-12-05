@@ -1,0 +1,707 @@
+---
+import { getTranslations, getRoute, type Language } from "../i18n/config";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+
+interface Props {
+    lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = await getTranslations(lang);
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+    { key: "about", href: lang === "es" ? "/about" : "/en/about" },
+    { key: "services", href: lang === "es" ? "/services" : "/en/services" },
+    { key: "projects", href: lang === "es" ? "/projects" : "/en/projects" },
+    { key: "blog", href: lang === "es" ? "/blog" : "/en/blog" },
+    { key: "contact", href: lang === "es" ? "/contact" : "/en/contact" },
+];
+---
+
+<header class="header">
+    <div class="container">
+        <nav class="nav">
+            <a href={lang === "es" ? "/" : "/en"} class="logo">
+                <span class="logo-text">
+                    <span class="logo-ortega">
+                        <span class="logo-gear">
+                            <svg
+                                class="gear-icon"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path d="M11 10.27 7 3.34"></path>
+                                <path d="m11 13.73-4 6.93"></path>
+                                <path d="M12 22v-2"></path>
+                                <path d="M12 2v2"></path>
+                                <path d="M14 12h8"></path>
+                                <path d="m17 20.66-1-1.73"></path>
+                                <path d="m17 3.34-1 1.73"></path>
+                                <path d="M2 12h2"></path>
+                                <path d="m20.66 17-1.73-1"></path>
+                                <path d="m20.66 7-1.73 1"></path>
+                                <path d="m3.34 17 1.73-1"></path>
+                                <path d="m3.34 7 1.73 1"></path>
+                                <circle cx="12" cy="12" r="2"></circle>
+                                <circle cx="12" cy="12" r="8"></circle>
+                            </svg>
+                        </span>
+                        <span>rtega</span>
+                    </span>
+                    <span class="logo-dev">{"{dev}"}</span>
+                </span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <ul class="nav-links desktop-only">
+                {
+                    navItems.map((item) => (
+                        <li>
+                            <a
+                                href={item.href}
+                                class={`nav-link ${currentPath === item.href ? "active" : ""}`}
+                                aria-current={
+                                    currentPath === item.href
+                                        ? "page"
+                                        : undefined
+                                }
+                            >
+                                {t.nav[item.key]}
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+
+            <div class="nav-actions">
+                <LanguageSwitcher lang={lang} currentPath={currentPath} />
+                <button class="btn btn-primary btn-sm contact-btn">
+                    <a href={lang === "es" ? "/contact" : "/en/contact"}>
+                        {t.nav.contact}
+                    </a>
+                </button>
+                <button
+                    class="mobile-menu-btn"
+                    aria-label="Toggle menu"
+                    id="mobile-menu-btn"
+                >
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+
+        <!-- Mobile Navigation -->
+        <div class="mobile-menu" id="mobile-menu">
+            <ul class="mobile-nav-links">
+                <li>
+                    <a
+                        href={navItems[0].href}
+                        class={`mobile-nav-link ${currentPath === navItems[0].href ? "active" : ""}`}
+                    >
+                        <svg
+                            class="nav-icon"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        >
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
+                            ></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <span>{t.nav.about}</span>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href={navItems[1].href}
+                        class={`mobile-nav-link ${currentPath === navItems[1].href ? "active" : ""}`}
+                    >
+                        <svg
+                            class="nav-icon"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        >
+                            <rect
+                                x="2"
+                                y="7"
+                                width="20"
+                                height="14"
+                                rx="2"
+                                ry="2"></rect>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"
+                            ></path>
+                        </svg>
+                        <span>{t.nav.services}</span>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href={navItems[2].href}
+                        class={`mobile-nav-link ${currentPath === navItems[2].href ? "active" : ""}`}
+                    >
+                        <svg
+                            class="nav-icon"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        >
+                            <path
+                                d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"
+                            ></path>
+                        </svg>
+                        <span>{t.nav.projects}</span>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href={navItems[3].href}
+                        class={`mobile-nav-link ${currentPath === navItems[3].href ? "active" : ""}`}
+                    >
+                        <svg
+                            class="nav-icon"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        >
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                            <path
+                                d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+                            ></path>
+                        </svg>
+                        <span>{t.nav.blog}</span>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href={navItems[4].href}
+                        class={`mobile-nav-link ${currentPath === navItems[4].href ? "active" : ""}`}
+                    >
+                        <svg
+                            class="nav-icon"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        >
+                            <path
+                                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                            ></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <span>{t.nav.contact}</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<style lang="scss">
+    @import "../styles/tokens.scss";
+
+    // Prevenir scroll horizontal en mobile
+    @media (max-width: $breakpoint-md - 1) {
+        :global(body) {
+            overflow-x: hidden;
+        }
+    }
+
+    .header {
+        position: sticky;
+        top: 0;
+        z-index: $z-index-sticky;
+        background-color: var(--color-header-bg);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--color-header-border);
+        transition: all $transition-base ease-out;
+    }
+
+    html[data-theme="dark"] .header {
+        background-color: var(--color-header-bg);
+        border-bottom-color: var(--color-header-border);
+    }
+
+    .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: $spacing-4 0;
+        gap: $spacing-6;
+    }
+
+    .logo {
+        font-size: $font-size-2xl;
+        font-weight: $font-weight-bold;
+        color: $color-brand-primary;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .logo-text {
+        display: inline-flex;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .logo-ortega {
+        display: inline-flex;
+        align-items: center;
+        color: $color-brand-primary;
+        transition: color $transition-base ease-out;
+
+        .logo:hover & {
+            color: darken($color-brand-primary, 10%);
+        }
+    }
+
+    // Engranaje animado
+    .logo-gear {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        animation: gearSpin 8s ease-in-out infinite;
+        transform-origin: center;
+
+        .gear-icon {
+            width: 1.2em;
+            height: 1.2em;
+            color: $color-brand-primary;
+            filter: drop-shadow(0 0 8px rgba($color-brand-primary, 0.3));
+            transition: color 0.3s ease;
+        }
+    }
+
+    // {dev} con estilo de código
+    .logo-dev {
+        font-family: "Monaco", "Consolas", "Courier New", monospace;
+        font-size: 0.9em;
+        font-weight: $font-weight-normal;
+        color: var(--color-logo-dev);
+        animation: float 3s ease-in-out infinite;
+        display: inline-block;
+    }
+
+    html[data-theme="dark"] .logo-dev {
+        color: var(--color-logo-dev);
+    }
+
+    // Animación del engranaje: giro con escala y cambio de color
+    @keyframes gearSpin {
+        0%,
+        85% {
+            transform: rotate(0deg) scale(1);
+            color: $color-brand-primary;
+        }
+        88% {
+            transform: rotate(0deg) scale(1.15);
+            color: lighten($color-brand-primary, 10%);
+        }
+        92% {
+            transform: rotate(180deg) scale(1.15);
+            color: lighten($color-brand-primary, 10%);
+        }
+        95% {
+            transform: rotate(360deg) scale(1.15);
+            color: lighten($color-brand-primary, 10%);
+        }
+        98% {
+            transform: rotate(360deg) scale(1);
+            color: $color-brand-primary;
+        }
+        100% {
+            transform: rotate(360deg) scale(1);
+            color: $color-brand-primary;
+        }
+    }
+
+    // Animación flotante para {dev}
+    @keyframes float {
+        0%,
+        100% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-4px);
+        }
+    }
+
+    .nav-links {
+        display: none;
+        gap: $spacing-6;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        @media (min-width: $breakpoint-md) {
+            display: flex;
+        }
+    }
+
+    .nav-link {
+        font-size: $font-size-base;
+        font-weight: $font-weight-semibold;
+        color: var(--color-text-nav-link);
+        text-decoration: none;
+        padding: $spacing-2 0;
+        position: relative;
+        transition: color $transition-base ease-out;
+
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: $color-brand-primary;
+            transition: width $transition-base ease-out;
+        }
+
+        &:hover,
+        &.active {
+            color: $color-brand-primary;
+
+            &::after {
+                width: 100%;
+            }
+        }
+    }
+
+    html[data-theme="dark"] .nav-link {
+        color: var(--color-text-nav-link);
+    }
+
+    .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: $spacing-4;
+    }
+
+    .contact-btn {
+        display: none;
+
+        @media (min-width: $breakpoint-lg) {
+            display: inline-flex;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+        align-items: center;
+        padding: $spacing-2;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 1002;
+        position: relative;
+
+        @media (min-width: $breakpoint-md) {
+            display: none;
+        }
+    }
+
+    .hamburger {
+        display: block;
+        width: 28px;
+        height: 2.5px;
+        background-color: var(--color-logo-dev);
+        position: relative;
+        transition:
+            background-color 0.3s ease,
+            transform 0.3s ease;
+
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            width: 28px;
+            height: 2.5px;
+            background-color: var(--color-logo-dev);
+            transition: all 0.3s ease;
+            left: 0;
+        }
+
+        &::before {
+            top: -9px;
+        }
+
+        &::after {
+            bottom: -9px;
+        }
+    }
+
+    // Animación del botón hamburguesa cuando está abierto
+    .mobile-menu-btn.active .hamburger {
+        background-color: transparent;
+
+        &::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        &::after {
+            bottom: 0;
+            transform: rotate(-45deg);
+        }
+    }
+
+    // Overlay/Backdrop
+    .mobile-menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+        opacity: 0;
+        visibility: hidden;
+        transition:
+            opacity 0.3s ease,
+            visibility 0.3s ease;
+        z-index: 999;
+
+        @media (min-width: $breakpoint-md) {
+            display: none;
+        }
+
+        &.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    // Menú móvil deslizante
+    .mobile-menu {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 280px;
+        max-width: 85vw;
+        background-color: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        box-shadow: -4px 0 24px rgba(0, 0, 0, 0.1);
+        transform: translateX(100%);
+        transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        z-index: 1000;
+        padding: 80px 0 $spacing-6;
+        overflow-y: auto;
+        pointer-events: none;
+
+        @media (min-width: $breakpoint-md) {
+            display: none !important;
+        }
+
+        &.active {
+            transform: translateX(0);
+            pointer-events: auto;
+        }
+    }
+
+    html[data-theme="dark"] .mobile-menu {
+        background-color: rgba(18, 18, 18, 0.98);
+        box-shadow: -4px 0 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .mobile-nav-links {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-2;
+        list-style: none;
+        margin: 0;
+        padding: 0 $spacing-4;
+    }
+
+    .mobile-nav-link {
+        display: flex;
+        align-items: center;
+        gap: $spacing-3;
+        padding: $spacing-4;
+        font-size: $font-size-lg;
+        font-weight: $font-weight-medium;
+        font-family: "Monaco", "Consolas", "Courier New", monospace;
+        color: var(--color-logo-dev);
+        text-decoration: none;
+        border-radius: $radius-lg;
+        transition: all 0.2s ease;
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background-color: $color-brand-primary;
+            transform: scaleY(0);
+            transition: transform 0.2s ease;
+        }
+
+        &:hover,
+        &.active {
+            background-color: rgba($color-brand-primary, 0.08);
+            color: $color-brand-primary;
+            transform: translateX(4px);
+
+            &::before {
+                transform: scaleY(1);
+            }
+
+            .nav-icon {
+                transform: scale(1.1);
+            }
+        }
+
+        &:active {
+            transform: translateX(2px) scale(0.98);
+        }
+    }
+
+    .nav-icon {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+        transition: transform 0.2s ease;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+    .desktop-only {
+        @media (max-width: $breakpoint-md - 1) {
+            display: none !important;
+        }
+    }
+</style>
+
+<script>
+    // Mobile menu toggle with animations
+    let mobileMenuBtn = document.getElementById("mobile-menu-btn");
+    let mobileMenu = document.getElementById("mobile-menu");
+    let mobileMenuOverlay = document.getElementById("mobile-menu-overlay");
+
+    function toggleMenu() {
+        const isActive = mobileMenu?.classList.contains("active");
+        const mainElement = document.querySelector('main');
+
+        if (isActive) {
+            // Cerrar menú
+            mobileMenu?.classList.remove("active");
+            mobileMenuOverlay?.classList.remove("active");
+            mobileMenuBtn?.classList.remove("active");
+            mainElement?.classList.remove("menu-open");
+            document.body.style.overflow = "";
+        } else {
+            // Abrir menú - mostrar primero, luego animar
+            if (mobileMenu) {
+                mobileMenu.style.display = "block";
+                setTimeout(() => {
+                    mobileMenu?.classList.add("active");
+                    mobileMenuOverlay?.classList.add("active");
+                    mobileMenuBtn?.classList.add("active");
+                    mainElement?.classList.add("menu-open");
+                    document.body.style.overflow = "hidden";
+                }, 10);
+            }
+        }
+    }
+
+    // Manejar cierre de menú
+    function setupMenuCloseHandler() {
+        const handleTransitionEnd = (e: TransitionEvent) => {
+            if (e.propertyName === 'transform' && mobileMenu && !mobileMenu.classList.contains("active")) {
+                mobileMenu.style.display = "none";
+            }
+        };
+        if (mobileMenu) {
+            mobileMenu.removeEventListener('transitionend', handleTransitionEnd as EventListener);
+            mobileMenu.addEventListener('transitionend', handleTransitionEnd as EventListener);
+        }
+    }
+
+    // Inicializar eventos del menú móvil
+    function initMobileMenuEvents() {
+        // Toggle al hacer clic en el botón
+        mobileMenuBtn?.addEventListener("click", toggleMenu);
+
+        // Cerrar al hacer clic en el overlay o fuera del menú
+        mobileMenuOverlay?.addEventListener("click", toggleMenu);
+
+        // Cerrar al hacer clic fuera del menú (en cualquier parte del documento)
+        document.addEventListener("click", (e) => {
+            const target = e.target as HTMLElement;
+            if (mobileMenu?.classList.contains("active") && 
+                !mobileMenu.contains(target) && 
+                !mobileMenuBtn?.contains(target)) {
+                toggleMenu();
+            }
+        }, true);
+
+        // Cerrar al hacer clic en un enlace del menú
+        const mobileNavLinks = mobileMenu?.querySelectorAll(".mobile-nav-link");
+        mobileNavLinks?.forEach((link) => {
+            link.addEventListener("click", () => {
+                setTimeout(toggleMenu, 150);
+            });
+        });
+
+        // Configurar manejador de transición
+        setupMenuCloseHandler();
+    }
+
+    // Inicializar en primera carga
+    initMobileMenuEvents();
+
+    // Cerrar con tecla ESC
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && mobileMenu?.classList.contains("active")) {
+            toggleMenu();
+        }
+    });
+
+    // Reinicializar menu después de View Transitions
+    document.addEventListener('astro:after-swap', () => {
+        // Obtener referencias nuevas
+        mobileMenuBtn = document.getElementById("mobile-menu-btn");
+        mobileMenu = document.getElementById("mobile-menu");
+        mobileMenuOverlay = document.getElementById("mobile-menu-overlay");
+
+        // Cerrar menú si estaba abierto
+        if (mobileMenu?.classList.contains("active")) {
+            const mainElement = document.querySelector('main');
+            mobileMenu.classList.remove("active");
+            mobileMenuOverlay?.classList.remove("active");
+            mobileMenuBtn?.classList.remove("active");
+            mainElement?.classList.remove("menu-open");
+            mobileMenu.style.display = "none";
+            document.body.style.overflow = "";
+        }
+
+        // Reinicializar eventos
+        initMobileMenuEvents();
+    });
+</script>

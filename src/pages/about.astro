@@ -1,0 +1,265 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getTranslations } from "../i18n/config";
+
+const lang = "es";
+const t = await getTranslations(lang);
+
+const title = `${t.about.title} | ortegadev.com`;
+const description =
+    "Desarrollador Full Stack con más de 10 años de experiencia en IA, Big Data y automatización de procesos. Actualmente en Minsait, creando soluciones innovadoras.";
+---
+
+<BaseLayout title={title} description={description} lang={lang}>
+    <section class="about-page py-12">
+        <div class="container">
+            <h1>{t.about.title}</h1>
+
+            <div class="about-content">
+                <div class="about-intro">
+                    <h2>Miguel Ángel Ortega Ibáñez</h2>
+                    <p class="role">Freelancer | IA/Big Data | Full Stack Developer | Python & Docker</p>
+                    <p class="location">📍 Almería, España</p>
+                </div>
+
+                <div class="about-bio">
+                    <h3>👨‍💻 Quién soy</h3>
+                    <p>
+                        Apasionado por la programación moderna, la inteligencia artificial y los sistemas distribuidos. 
+                        Actualmente desarrollo <strong>ReviCar</strong>, una PWA innovadora para gestionar el mantenimiento 
+                        de vehículos, utilizando IA y tecnologías como React, Supabase y Tailwind.
+                    </p>
+                    <p>
+                        Con más de 10 años de experiencia en desarrollo Full Stack, me especializo en la automatización 
+                        de procesos a través de soluciones innovadoras que combinan IA, Big Data y arquitecturas escalables.
+                    </p>
+
+                    <h3>📌 Últimas novedades</h3>
+                    <ul class="highlights">
+                        <li>✅ Apple & Google Developer (autenticación multiplataforma)</li>
+                        <li>🚘 <strong>ReviCar</strong>: PWA moderna full stack → <a href="https://revicarapp.com" target="_blank">revicarapp.com</a></li>
+                        <li>🤖 Explorando IA aplicada a proyectos reales</li>
+                        <li>🌐 Desarrollando este portfolio con Astro + React</li>
+                    </ul>
+
+                    <h3>🛠 Tech Stack</h3>
+                    
+                    <h4>🎨 Frontend</h4>
+                    <ul>
+                        <li>HTML5, CSS3, SASS</li>
+                        <li>JavaScript (ES6+), React, Svelte, Astro</li>
+                        <li>React Native / Capacitor (desarrollo móvil)</li>
+                        <li>Tailwind CSS, SCSS, i18next (internacionalización)</li>
+                        <li>Diseño Mobile-First y Progressive Web Apps (PWA)</li>
+                    </ul>
+
+                    <h4>🧠 Backend & Base de Datos</h4>
+                    <ul>
+                        <li>Python (Flask, FastAPI)</li>
+                        <li>Node.js / TypeScript</li>
+                        <li>PostgreSQL, MongoDB, Supabase</li>
+                        <li>Redis, Elasticsearch</li>
+                        <li>Desarrollo de APIs REST y servicios escalables</li>
+                    </ul>
+
+                    <h4>⚙️ DevOps & Cloud</h4>
+                    <ul>
+                        <li>Docker, Docker Compose, Docker Swarm</li>
+                        <li>AWS (EC2, S3)</li>
+                        <li>NGINX, Shell scripting</li>
+                        <li>Apache Kafka, Apache Spark</li>
+                        <li>CI/CD con Git</li>
+                    </ul>
+
+                    <h4>📊 Visualización & IoT</h4>
+                    <ul>
+                        <li>InfluxDB, Grafana, Kibana</li>
+                        <li>Node-RED, MQTT</li>
+                        <li>Monitoreo y análisis de datos en tiempo real</li>
+                    </ul>
+
+                    <h4>🧠 IA & Data Science</h4>
+                    <ul>
+                        <li>Deep Learning (CNN, Transfer Learning)</li>
+                        <li>Análisis de sentimiento</li>
+                        <li>Procesamiento de streaming en tiempo real</li>
+                        <li>Scikit-Learn, TensorFlow</li>
+                    </ul>
+
+                    <h3>💼 Experiencia Profesional</h3>
+                    
+                    <h4>Ingeniero de Automatización de Procesos (IA Documental)</h4>
+                    <p class="company"><strong>Minsait</strong> · oct. 2018 - actualidad · 7 años 3 meses (Remoto)</p>
+                    <p>
+                        Como Analista Programador en el departamento de IA Documental, me especializo en la automatización 
+                        de procesos de negocio mediante desarrollo e implementación de soluciones innovadoras:
+                    </p>
+                    <ul>
+                        <li>🤖 Diseño e implementación de automatizaciones con tecnologías de IA</li>
+                        <li>🔗 Desarrollo de servicios y endpoints REST para integración de sistemas</li>
+                        <li>💻 Experiencia Full Stack con HTML5/CSS3/SASS, JavaScript (ES5+) y Java</li>
+                        <li>🏦 Soporte y evolución de aplicaciones empresariales (e.g., Cajamar)</li>
+                        <li>⚙️ Gestión de Procesos de Negocio (BPM) con Camunda y Power Automate</li>
+                        <li>🎯 Metodología Scrum con Rally para gestión de proyectos</li>
+                        <li>🌐 Integración de sistemas con FlexiCapture para OCR y automatización documental</li>
+                        <li>🌍 Comunicación en inglés a nivel profesional (hablado y escrito)</li>
+                    </ul>
+
+                    <h3>📚 Educación</h3>
+                    
+                    <h4>Máster en Inteligencia Artificial y Big Data</h4>
+                    <p class="company"><strong>I.E.S. Al-Ándalus</strong> · ago. 2023 – may. 2024 (600 horas)</p>
+                    <p>Programa de formación avanzada en aplicación de IA y gestión de Big Data:</p>
+                    <ul>
+                        <li>✅ Implementación de sistemas de IA para transformación empresarial</li>
+                        <li>✅ Optimización de procesos y sistemas de toma de decisiones</li>
+                        <li>✅ Desarrollo de procesos autónomos y automatización</li>
+                        <li>✅ IoT, Scikit-Learn y 28 aptitudes adicionales certificadas</li>
+                    </ul>
+
+                    <h4>Ciclo Formativo Superior: Desarrollo de Aplicaciones Informáticas</h4>
+                    <p class="company"><strong>I.E.S. Al-Ándalus</strong> · 2001 – 2003</p>
+                    <p>
+                        Formación especializada en desarrollo de aplicaciones web/multimedia, sistemas en red, 
+                        programación estructurada y diseño de servicios en entornos gráficos.
+                    </p>
+
+                    <h3>📈 Siempre Aprendiendo</h3>
+                    <p>
+                        Actualmente explorando <strong>Flutter</strong> para desarrollo móvil multiplataforma. 
+                        Me mantengo actualizado constantemente para ofrecer soluciones reales, escalables y con 
+                        impacto tangible en los proyectos.
+                    </p>
+
+                    <h3>🎯 Objetivo</h3>
+                    <p>
+                        Combinar creatividad, tecnología y estrategia para desarrollar soluciones innovadoras que 
+                        resuelvan problemas complejos. Busco colaborar en proyectos desafiantes donde pueda aportar 
+                        mi experiencia en full stack, IA y automatización de procesos.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</BaseLayout>
+
+<style lang="scss">
+    @import "../styles/tokens.scss";
+
+    .about-page {
+        min-height: 60vh;
+
+        h1 {
+            text-align: center;
+            margin-bottom: $spacing-10;
+        }
+
+        .about-intro {
+            text-align: center;
+            margin-bottom: $spacing-8;
+
+            h2 {
+                font-size: $font-size-3xl;
+                margin-bottom: $spacing-3;
+            }
+
+            .role {
+                font-size: $font-size-xl;
+                color: $color-brand-primary;
+                margin-bottom: $spacing-2;
+                font-weight: $font-weight-semibold;
+            }
+
+            .location {
+                font-size: $font-size-lg;
+                color: var(--color-text-secondary);
+            }
+        }
+
+        .about-bio {
+            max-width: 900px;
+            margin: 0 auto;
+
+            h3 {
+                margin-top: $spacing-8;
+                margin-bottom: $spacing-4;
+                font-size: $font-size-2xl;
+                border-bottom: 2px solid rgba($color-brand-primary, 0.2);
+                padding-bottom: $spacing-2;
+            }
+
+            h4 {
+                margin-top: $spacing-6;
+                margin-bottom: $spacing-3;
+                font-size: $font-size-lg;
+                color: $color-brand-primary;
+            }
+
+            p {
+                line-height: $line-height-relaxed;
+                margin-bottom: $spacing-4;
+                color: var(--color-text-primary);
+
+                a {
+                    color: $color-brand-primary;
+                    text-decoration: underline;
+                    transition: opacity 0.3s ease;
+
+                    &:hover {
+                        opacity: 0.8;
+                    }
+                }
+            }
+
+            .company {
+                font-weight: $font-weight-semibold;
+                color: var(--color-text-secondary);
+                font-size: $font-size-sm;
+                margin-bottom: $spacing-2;
+            }
+
+            ul {
+                list-style: none;
+                padding-left: 0;
+                margin-bottom: $spacing-4;
+
+                li {
+                    margin-bottom: $spacing-2;
+                    padding-left: $spacing-4;
+                    position: relative;
+                    line-height: $line-height-normal;
+                    color: var(--color-text-primary);
+
+                    &:before {
+                        content: "▸";
+                        position: absolute;
+                        left: 0;
+                        color: $color-brand-primary;
+                        font-weight: bold;
+                    }
+
+                    strong {
+                        color: $color-brand-primary;
+                    }
+
+                    a {
+                        color: $color-brand-primary;
+                        text-decoration: underline;
+                        transition: opacity 0.3s ease;
+
+                        &:hover {
+                            opacity: 0.8;
+                        }
+                    }
+                }
+            }
+
+            .highlights {
+                background-color: rgba($color-brand-primary, 0.05);
+                padding: $spacing-4;
+                border-radius: $radius-lg;
+                border-left: 4px solid $color-brand-primary;
+            }
+        }
+    }
+</style>

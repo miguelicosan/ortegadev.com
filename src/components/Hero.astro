@@ -1,0 +1,238 @@
+---
+import { getTranslations, type Language } from "../i18n/config";
+
+interface Props {
+    lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = await getTranslations(lang);
+
+const ctaButtons = [
+    {
+        text: t.hero.cta.projects,
+        href: lang === "es" ? "/projects" : "/en/projects",
+        primary: false,
+    },
+    {
+        text: t.hero.cta.whatsapp,
+        href: "https://wa.me/34621329386?text=Hola%20Miguel%2C%20he%20visto%20tu%20web%20y%20me%20gustaría%20hablar%20contigo.",
+        primary: false,
+        external: true,
+    },
+    {
+        text: t.hero.cta.meeting,
+        href: lang === "es" ? "/contact#calendar" : "/en/contact#calendar",
+        primary: true,
+    },
+];
+---
+
+<section class="hero parallax" data-parallax="hero">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title animate-fade-in-up">
+                    {t.hero.title}
+                </h1>
+                <p class="hero-subtitle animate-fade-in-up delay-100">
+                    {t.hero.subtitle}
+                </p>
+                <div class="hero-cta animate-fade-in-up delay-200">
+                    {
+                        ctaButtons.map((button, idx) => (
+                            <a
+                                href={button.href}
+                                class={`btn ${button.primary ? "btn-primary vibrate-pulse" : "btn-outline"} btn-lg ${idx === 2 ? "btn-meeting" : ""}`}
+                                target={button.external ? "_blank" : undefined}
+                                rel={button.external ? "noopener" : undefined}
+                            >
+                                {button.text}
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <div class="hero-image animate-fade-in delay-300">
+                <img
+                    src="/images/miguel-ortega.jpg"
+                    alt="Miguel Ángel Ortega Ibáñez"
+                    width="500"
+                    height="500"
+                />
+                <div class="hero-image-gradient"></div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator animate-float">
+            <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M12 5L12 19M12 19L5 12M12 19L19 12"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+            </svg>
+            <span class="sr-only">{t.hero.scrollHint}</span>
+        </div>
+    </div>
+</section>
+
+<style lang="scss">
+    @import "../styles/tokens.scss";
+
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        background: linear-gradient(
+            180deg,
+            var(--color-bg-primary) 0%,
+            var(--color-bg-secondary) 100%
+        );
+        padding: $spacing-10 0;
+        will-change: transform, opacity;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+
+    .hero-content {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: $spacing-10;
+        align-items: center;
+
+        @media (min-width: $breakpoint-lg) {
+            grid-template-columns: 1fr 1fr;
+            gap: $spacing-12;
+        }
+    }
+
+    .hero-text {
+        text-align: center;
+
+        @media (min-width: $breakpoint-lg) {
+            text-align: left;
+        }
+    }
+
+    .hero-title {
+        font-size: $font-size-4xl;
+        font-weight: $font-weight-bold;
+        line-height: $line-height-tight;
+        margin-bottom: $spacing-6;
+        background: $gradient-hero;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+
+        @media (min-width: $breakpoint-md) {
+            font-size: $font-size-5xl;
+        }
+
+        @media (min-width: $breakpoint-lg) {
+            font-size: $font-size-6xl;
+        }
+    }
+
+    .hero-subtitle {
+        font-size: $font-size-lg;
+        line-height: $line-height-relaxed;
+        color: var(--color-text-secondary);
+        margin-bottom: $spacing-8;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+
+        @media (min-width: $breakpoint-md) {
+            font-size: $font-size-xl;
+        }
+
+        @media (min-width: $breakpoint-lg) {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+
+    .hero-cta {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-4;
+        justify-content: center;
+        align-items: stretch;
+
+        @media (min-width: $breakpoint-md) {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        @media (min-width: $breakpoint-lg) {
+            justify-content: flex-start;
+        }
+
+        .btn-lg {
+            flex: 1;
+            min-width: 150px;
+
+            @media (min-width: $breakpoint-md) {
+                flex: 0 1 calc(33.333% - 10px);
+            }
+        }
+
+        .btn-meeting {
+            @media (min-width: $breakpoint-md) {
+                margin-left: auto;
+            }
+        }
+    }
+
+    .hero-image {
+        position: relative;
+        max-width: 500px;
+        margin: 0 auto;
+
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: $radius-xl;
+            box-shadow: $shadow-2xl;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: 20px;
+            bottom: 20px;
+            background: $gradient-hero;
+            border-radius: $radius-xl;
+            z-index: -1;
+            opacity: 0.3;
+            filter: blur(40px);
+        }
+    }
+
+    .scroll-indicator {
+        position: absolute;
+        bottom: $spacing-8;
+        left: 50%;
+        transform: translateX(-50%);
+        color: $color-text-secondary;
+        cursor: pointer;
+
+        svg {
+            width: 32px;
+            height: 32px;
+        }
+    }
+</style>

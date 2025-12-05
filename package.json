@@ -1,14 +1,23 @@
 {
   "name": "ortegadev.com",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "start": "astro dev",
+    "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.16.4"
+    "@astrojs/check": "^0.9.6",
+    "@astrojs/react": "^4.4.2",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "astro": "^5.1.7",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "sass": "^1.87.0",
+    "typescript": "^5.9.3"
   }
 }

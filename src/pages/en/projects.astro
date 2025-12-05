@@ -1,0 +1,216 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getTranslations } from "../../i18n/config";
+import ProjectsGrid from "../../components/ProjectsGrid";
+
+const lang = "en";
+const t = await getTranslations(lang);
+
+const title = `${t.projects.title} | ortegadev.com`;
+const description =
+    "Featured projects: ReviCar, Secret Santa Raffle, AI automation and more. Examples of my work as a Full Stack Developer.";
+
+const projects = [
+  {
+    id: "revicar",
+    title: "ReviCar",
+    description: "Intelligent vehicle management platform with predictive AI. Native iOS/Android apps + Web with Supabase.",
+    image: "/images/projects/revicar-screenshot.png",
+    tags: ["React", "TypeScript", "Supabase", "AI", "Mobile", "Capacitor"],
+    url: "https://revicarapp.com",
+    github: "https://github.com/miguelicosan/car-care-companion-app",
+    year: 2024,
+    status: "Production",
+    content: `
+      <h3>The first app with AI for predictive vehicle management</h3>
+      
+      <p><strong>ReviCar</strong> revolutionizes vehicle maintenance management through predictive AI algorithms. It calculates automatic savings, predicts future costs, and optimizes vehicle care in real-time.</p>
+
+      <h4>Key Technical Features</h4>
+      <ul>
+        <li><strong>Predictive AI</strong>: Dynamic score (0-100) based on compliance, AI accuracy, vehicle status and cost optimization</li>
+        <li><strong>Vehicle Database</strong>: 68 brands, 576 models from 1980 to 2025</li>
+        <li><strong>Native Apps</strong>: iOS and Android from same codebase with Capacitor.js</li>
+        <li><strong>Robust Authentication</strong>: OAuth social login (Google, Apple) with email verification</li>
+        <li><strong>Mobile-First Responsive</strong>: Optimized for all devices</li>
+      </ul>
+
+      <h4>Tech Stack</h4>
+      <p><strong>Frontend</strong>: React 18 + TypeScript + Vite + Tailwind CSS + shadcn/ui<br/>
+      <strong>Mobile</strong>: Capacitor.js 7.4 (iOS/Android)<br/>
+      <strong>Backend</strong>: Supabase (PostgreSQL) + Edge Functions<br/>
+      <strong>AI</strong>: Predictive algorithms + OpenAI/Gemini<br/>
+      <strong>DevOps</strong>: GitHub + Hostinger + SMTP</p>
+
+      <h4>Results</h4>
+      <ul>
+        <li>50+ React components</li>
+        <li>20+ routes/pages</li>
+        <li>~15,000 lines of code</li>
+        <li>100% TypeScript coverage</li>
+        <li>Lighthouse Score: 95+</li>
+        <li>Supports 2 languages (ES, EN)</li>
+      </ul>
+    `
+  },
+  {
+    id: "amigo-invisible",
+    title: "Secret Santa Raffle",
+    description: "Create free and secure raffles with intelligent matching. Freemium model with BuyMeACoffee.",
+    image: "/images/projects/amigo-invisible-screenshot.png",
+    tags: ["Astro", "Supabase", "TypeScript", "Edge Functions", "SEO"],
+    url: "https://amigoinvisible.online",
+    github: "https://github.com/miguelicosan/sorteoamigoinvisible.online",
+    year: 2024,
+    status: "Production",
+    content: `
+      <h3>Organize Secret Santa raffles in minutes, without complications</h3>
+      
+      <p>Modern web application to manage Secret Santa raffles safely, quickly and completely free. With freemium model, email personalization and intelligent matching algorithm that prevents self-assignments.</p>
+
+      <h4>Key Technical Features</h4>
+      <ul>
+        <li><strong>Multi-Step Wizard</strong>: Intuitive configuration in 3 steps (Setup → Personalization → Review)</li>
+        <li><strong>Derangement Algorithm</strong>: Intelligent circular matching without self-assignments</li>
+        <li><strong>Customizable Emails</strong>: Dynamic variables ($NAME, $GIFT_FOR) with responsive templates</li>
+        <li><strong>Restrictions System</strong>: Avoid specific pairs (couples, siblings, etc.)</li>
+        <li><strong>Advanced RLS</strong>: Row Level Security in PostgreSQL for guaranteed privacy</li>
+        <li><strong>SEO Optimized</strong>: Blog with 10+ articles, dynamic meta tags, sitemap</li>
+        <li><strong>GDPR Compliant</strong>: Privacy policy, cookies, auto-deletion at 90 days</li>
+      </ul>
+
+      <h4>Tech Stack</h4>
+      <p><strong>Frontend</strong>: Astro 5.16.3 + TypeScript + Vanilla CSS + Islands Architecture<br/>
+      <strong>Backend</strong>: Supabase (PostgreSQL) + Edge Functions (Deno)<br/>
+      <strong>Authentication</strong>: No registration (anonymous raffles)<br/>
+      <strong>DevOps</strong>: Vercel/Netlify + GitHub</p>
+
+      <h4>Results</h4>
+      <ul>
+        <li>5 reusable Astro components</li>
+        <li>10+ pages (home, blog, legal, premium)</li>
+        <li>3 Edge Functions in production</li>
+        <li>~2,500 lines of code</li>
+        <li>Performance: &lt;1s First Contentful Paint</li>
+        <li>100% RLS security</li>
+      </ul>
+    `
+  },
+  {
+    id: "ortegadev",
+    title: "ortegadev.com",
+    description: "This portfolio. Full Stack with Astro, smooth animations, SEO optimized and dark mode.",
+    image: "/images/projects/ortegadev-screenshot.png",
+    tags: ["Astro", "React", "TypeScript", "SCSS", "View Transitions"],
+    url: "https://ortegadev.com",
+    github: "https://github.com/miguelicosan/ortegadev.com",
+    year: 2025,
+    status: "Production",
+    content: `
+      <h3>Modern professional portfolio with animations and complete SEO</h3>
+      
+      <p><strong>ortegadev.com</strong> is a portfolio designed to impress recruiters and clients. It implements best practices in web performance, SEO, accessibility and modern UX/UI.</p>
+
+      <h4>Key Technical Features</h4>
+      <ul>
+        <li><strong>View Transitions API</strong>: Smooth navigation between pages without reloading</li>
+        <li><strong>Scroll Animations</strong>: Parallax hero, scroll-reveal with IntersectionObserver</li>
+        <li><strong>3D Tech Carousel</strong>: Interactive carousel with automatic rotation and controls</li>
+        <li><strong>Dark Mode Only</strong>: Optimized dark theme without FOUC</li>
+        <li><strong>Advanced Mobile Menu</strong>: Hamburger menu with spring animations and blur effect</li>
+        <li><strong>Contact Form</strong>: Complete validation, WhatsApp integration</li>
+        <li><strong>Professional SEO</strong>: Schema.org, hreflang, sitemap, robots.txt</li>
+        <li><strong>Complete i18n</strong>: ES/EN support with clean routes</li>
+      </ul>
+
+      <h4>Tech Stack</h4>
+      <p><strong>Framework</strong>: Astro v5 + React (interactive components)<br/>
+      <strong>Styles</strong>: SCSS with CSS variables, responsive design<br/>
+      <strong>Animations</strong>: CSS custom animations + requestAnimationFrame<br/>
+      <strong>Contact</strong>: React Hook Form + Zod validation<br/>
+      <strong>DevOps</strong>: GitHub + Automatic deployment<br/>
+      <strong>SEO</strong>: Canonical URLs, hreflang, schema.org, noindex</p>
+
+      <h4>Results</h4>
+      <ul>
+        <li>Lighthouse Score: 95+</li>
+        <li>Mobile-first responsive design</li>
+        <li>12 indexable pages + 6 legal (noindex)</li>
+        <li>Smooth animations on all browsers</li>
+        <li>0 CLS (Cumulative Layout Shift)</li>
+        <li>TTL &lt;2s on 4G connections</li>
+        <li>100% TypeScript coverage</li>
+        <li>Modular and scalable code</li>
+      </ul>
+    `
+  }
+];
+---
+
+<BaseLayout title={title} description={description} lang={lang}>
+    <section class="projects-page py-12">
+        <div class="container">
+            <div class="projects-header">
+                <h1>{t.projects.title}</h1>
+                <p class="subtitle">{t.projects.subtitle}</p>
+            </div>
+
+            <ProjectsGrid client:load projects={projects} />
+
+            <div class="projects-cta">
+                <p>Do you have a project in mind?</p>
+                <a href="/en/contact" class="btn btn-primary">
+                    {t.contact.title}
+                </a>
+            </div>
+        </div>
+    </section>
+</BaseLayout>
+
+<style lang="scss">
+    @import "../../styles/tokens.scss";
+
+    .projects-page {
+        min-height: 100vh;
+        padding-top: $spacing-12;
+        padding-bottom: $spacing-12;
+    }
+
+    .projects-header {
+        text-align: center;
+        margin-bottom: $spacing-12;
+
+        h1 {
+            font-size: $font-size-7xl;
+            margin-bottom: $spacing-4;
+            background: linear-gradient(135deg, $color-brand-primary, lighten($color-brand-primary, 20%));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: $font-size-2xl;
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    }
+
+    .projects-cta {
+        text-align: center;
+        margin-top: $spacing-12;
+        padding: $spacing-8;
+        border-top: 1px solid rgba($color-brand-primary, 0.1);
+
+        p {
+            font-size: $font-size-xl;
+            margin-bottom: $spacing-4;
+            color: var(--color-text-secondary);
+        }
+
+        .btn {
+            display: inline-block;
+        }
+    }
+</style>

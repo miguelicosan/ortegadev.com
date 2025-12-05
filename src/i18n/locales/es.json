@@ -1,0 +1,142 @@
+{
+    "site": {
+        "title": "Miguel Ángel Ortega Ibáñez - Full Stack Developer · IA & Big Data",
+        "description": "Desarrollador Full Stack especializado en IA, Big Data y automatización de procesos. Creo aplicaciones modernas y escalables para empresas en Almería y toda España."
+    },
+    "nav": {
+        "home": "Inicio",
+        "about": "Sobre mí",
+        "services": "Servicios",
+        "projects": "Proyectos",
+        "blog": "Blog",
+        "contact": "Contacto"
+    },
+    "hero": {
+        "title": "Full Stack Developer · IA & Big Data",
+        "subtitle": "Construyo aplicaciones modernas, escalables y con IA para empresas y personas que quieren dar un salto tecnológico.",
+        "cta": {
+            "projects": "Ver proyectos",
+            "meeting": "Reservar reunión",
+            "whatsapp": "WhatsApp"
+        },
+        "scrollHint": "Desliza para descubrir más"
+    },
+    "about": {
+        "title": "Sobre mí",
+        "name": "Miguel Ángel Ortega Ibáñez",
+        "role": "Full Stack Developer | AI · Big Data · IoT",
+        "location": "Almería, España",
+        "experience": "+10 años",
+        "bio": "Soy un desarrollador full stack apasionado por la programación moderna, la IA y los sistemas distribuidos. Actualmente desarrollo ReviCar, una PWA para gestionar el mantenimiento de vehículos con IA, y trabajo como analista programador en Minsait, donde me especializo en automatización de procesos y soluciones de captura inteligente de documentos.",
+        "currentWork": "Desde 2018 en Minsait (departamento de IA Documental), implemento soluciones de automatización de procesos de negocio, desarrollo APIs REST y realizo integraciones de captura inteligente de documentos para grandes entidades financieras.",
+        "skills": "Metodologías ágiles (Scrum), BPMN, Camunda, Power Automate. Buen nivel de inglés hablado y escrito."
+    },
+    "techStack": {
+        "title": "Stack Tecnológico",
+        "frontend": "Frontend",
+        "backend": "Backend & BD",
+        "devops": "DevOps & Cloud",
+        "visualization": "Visualización & IoT",
+        "ai": "IA & Data"
+    },
+    "services": {
+        "title": "Servicios",
+        "subtitle": "Soluciones tecnológicas a medida para tu negocio",
+        "web": {
+            "title": "Desarrollo Web & Apps",
+            "description": "Páginas web corporativas, landing pages orientadas a conversión y PWAs modernas.",
+            "tech": "React, Astro, Svelte, Supabase"
+        },
+        "ai": {
+            "title": "IA & Automatización",
+            "description": "Automatización documental, chatbots, análisis de texto y optimización de procesos con BPM y RPA.",
+            "tech": "OCR, NLP, Machine Learning, Camunda"
+        },
+        "consulting": {
+            "title": "Consultoría Técnica",
+            "description": "Arquitecturas escalables, auditoría de rendimiento y mejora de UX/UI.",
+            "tech": "Cloud, Microservicios, Performance"
+        }
+    },
+    "projects": {
+        "title": "Proyectos Destacados",
+        "viewAll": "Ver todos los proyectos",
+        "viewDetail": "Ver detalle",
+        "liveDemo": "Demo en vivo",
+        "repository": "Repositorio"
+    },
+    "blog": {
+        "title": "Blog",
+        "readMore": "Leer más",
+        "readTime": "min de lectura",
+        "latestPosts": "Últimas publicaciones"
+    },
+    "contact": {
+        "title": "Contacto",
+        "subtitle": "¿Tienes un proyecto en mente? Hablemos",
+        "form": {
+            "name": "Nombre",
+            "namePlaceholder": "Tu nombre completo",
+            "email": "Email",
+            "emailPlaceholder": "tu@email.com",
+            "type": "Tipo de consulta",
+            "typeOptions": {
+                "recruiter": "Recruiter / Empresa",
+                "web": "Proyecto web / app",
+                "ai": "Consultoría IA",
+                "other": "Otro"
+            },
+            "message": "Mensaje",
+            "messagePlaceholder": "Cuéntame sobre tu proyecto",
+            "privacy": "He leído y acepto la",
+            "privacyLink": "Política de Privacidad",
+            "submit": "Enviar mensaje",
+            "sending": "Enviando...",
+            "success": "¡Mensaje enviado! Te responderé pronto.",
+            "error": "Error al enviar. Inténtalo de nuevo."
+        },
+        "info": {
+            "email": "Email",
+            "phone": "Teléfono",
+            "location": "Localización",
+            "availability": "Disponible para proyectos remotos y presenciales en Almería"
+        },
+        "calendar": {
+            "title": "Reserva una reunión",
+            "description": "Agenda una videollamada de 30 minutos para hablar sobre tu proyecto",
+            "button": "Abrir calendario"
+        }
+    },
+    "footer": {
+        "description": "Desarrollador Full Stack especializado en IA, Big Data y automatización de procesos. Almería, España.",
+        "legal": "Legal",
+        "legalNotice": "Aviso Legal",
+        "privacy": "Privacidad",
+        "cookies": "Cookies",
+        "rights": "Todos los derechos reservados"
+    },
+    "cookies": {
+        "banner": {
+            "message": "Utilizamos cookies propias y de terceros para mejorar tu experiencia. Puedes aceptarlas, rechazarlas o configurarlas.",
+            "accept": "Aceptar todas",
+            "reject": "Rechazar",
+            "configure": "Configurar"
+        },
+        "config": {
+            "title": "Configuración de Cookies",
+            "necessary": "Necesarias",
+            "necessaryDesc": "Cookies esenciales para el funcionamiento del sitio",
+            "analytics": "Analíticas",
+            "analyticsDesc": "Nos ayudan a entender cómo usas el sitio",
+            "marketing": "Marketing",
+            "marketingDesc": "Cookies de publicidad y redes sociales",
+            "save": "Guardar preferencias"
+        }
+    },
+    "common": {
+        "loading": "Cargando...",
+        "error": "Error",
+        "close": "Cerrar",
+        "learnMore": "Saber más"
+    }
+}

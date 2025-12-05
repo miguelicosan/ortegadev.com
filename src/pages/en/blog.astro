@@ -1,0 +1,41 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getTranslations } from "../../i18n/config";
+
+const lang = "en";
+const t = await getTranslations(lang);
+
+const title = `${t.blog.title} | ortegadev.com`;
+const description =
+    "Articles about web development, AI, Big Data and technology. Tips and experiences from a Full Stack Developer.";
+---
+
+<BaseLayout title={title} description={description} lang={lang}>
+    <section class="blog-page py-12">
+        <div class="container">
+            <h1>{t.blog.title}</h1>
+            <p
+                class="text-center text-lg"
+                style="margin-bottom: 3rem; color: #6e6e73;"
+            >
+                Coming soon: articles about Astro, AI, web development and more.
+            </p>
+            <p class="text-center">
+                <a href="/en" class="btn btn-primary"> Back to home </a>
+            </p>
+        </div>
+    </section>
+</BaseLayout>
+
+<style lang="scss">
+    @import "../../styles/tokens.scss";
+
+    .blog-page {
+        min-height: 60vh;
+
+        h1 {
+            text-align: center;
+            margin-bottom: $spacing-6;
+        }
+    }
+</style>

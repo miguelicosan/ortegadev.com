@@ -1,0 +1,167 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+const title = "Privacy Policy | ortegadev.com";
+const description =
+    "Privacy policy for ortegadev.com in compliance with GDPR and LOPDGDD.";
+---
+
+<BaseLayout title={title} description={description} lang="en" noindex={true}>
+    <section class="legal-page py-12">
+        <div class="container container-narrow">
+            <h1>Privacy Policy</h1>
+
+            <p>
+                In accordance with Regulation (EU) 2016/679 of the European
+                Parliament and of the Council (GDPR) and Organic Law 3/2018, of
+                December 5, on the Protection of Personal Data and guarantee of
+                digital rights (LOPDGDD), the following is reported:
+            </p>
+
+            <h2>1. Data Controller</h2>
+            <ul>
+                <li><strong>Identity:</strong> Miguel Ángel Ortega Ibáñez</li>
+                <li><strong>Tax ID:</strong> 75268388Z</li>
+                <li><strong>Address:</strong> Almería, Spain</li>
+                <li><strong>Email:</strong> hola@ortegadev.com</li>
+                <li><strong>Phone:</strong> +34 621 329 386</li>
+                <li>
+                    <strong>Data Protection Officer:</strong> Miguel Ángel Ortega
+                    Ibáñez (same contact)
+                </li>
+            </ul>
+
+            <h2>2. Processing Purposes</h2>
+            <p>The personal data you provide will be processed to:</p>
+            <ul>
+                <li>Respond to inquiries sent through the contact form</li>
+                <li>Manage requested appointments and meetings</li>
+                <li>
+                    Send commercial communications (only with explicit consent)
+                </li>
+                <li>Improve navigation and user experience on the website</li>
+            </ul>
+
+            <h2>3. Legal Basis</h2>
+            <ul>
+                <li>
+                    Consent of the data subject (art. 6.1.a GDPR) for contact
+                    data processing
+                </li>
+                <li>
+                    Legitimate interest (art. 6.1.f GDPR) for statistical
+                    analysis and service improvement
+                </li>
+            </ul>
+
+            <h2>4. Recipients</h2>
+            <p>
+                Your data will not be transferred to third parties, except by
+                legal obligation. Hosting services and management tools used may
+                have access to data as data processors, always complying with
+                GDPR.
+            </p>
+
+            <h2>5. User Rights</h2>
+            <p>You have the right to:</p>
+            <ul>
+                <li>
+                    <strong>Access:</strong> Obtain confirmation about whether we
+                    are processing your data
+                </li>
+                <li>
+                    <strong>Rectification:</strong> Request correction of inaccurate
+                    data
+                </li>
+                <li><strong>Erasure:</strong> Request deletion of your data</li>
+                <li>
+                    <strong>Objection:</strong> Object to the processing of your
+                    data
+                </li>
+                <li>
+                    <strong>Restriction:</strong> Request limitation of processing
+                </li>
+                <li>
+                    <strong>Portability:</strong> Receive your data in structured
+                    format
+                </li>
+                <li>
+                    <strong>Withdraw consent:</strong> At any time, without affecting
+                    the lawfulness of prior processing
+                </li>
+            </ul>
+            <p>
+                To exercise your rights, you can send an email to <strong
+                    >hola@ortegadev.com</strong
+                >.
+            </p>
+            <p>
+                You also have the right to file a complaint with the Spanish
+                Data Protection Agency (www.aepd.es).
+            </p>
+
+            <h2>6. Data Retention</h2>
+            <p>
+                Data will be retained for the time necessary to fulfill the
+                purpose for which it was collected, and to determine possible
+                responsibilities that may arise.
+            </p>
+
+            <h2>7. International Transfers</h2>
+            <p>
+                Some external services (hosting, email tools, etc.) may be
+                located outside the European Economic Area. In these cases, it
+                is guaranteed that such services comply with adequate protection
+                mechanisms (standard contractual clauses, Privacy Shield, etc.).
+            </p>
+
+            <h2>8. Security</h2>
+            <p>
+                We adopt the necessary technical and organizational measures to
+                guarantee the security of your data and prevent its alteration,
+                loss or unauthorized access.
+            </p>
+
+            <p style="margin-top: 2rem; font-size: 0.875rem; color: #6e6e73;">
+                Last updated: December 2025
+            </p>
+        </div>
+    </section>
+</BaseLayout>
+
+<style lang="scss">
+    @import "../../../styles/tokens.scss";
+
+    .legal-page {
+        min-height: 70vh;
+
+        h1 {
+            margin-bottom: $spacing-8;
+        }
+
+        h2 {
+            margin-top: $spacing-8;
+            margin-bottom: $spacing-4;
+            font-size: $font-size-xl;
+        }
+
+        p,
+        ul {
+            margin-bottom: $spacing-4;
+            line-height: $line-height-relaxed;
+        }
+
+        ul {
+            margin-left: $spacing-6;
+
+            li {
+                list-style: disc;
+                margin-bottom: $spacing-2;
+            }
+        }
+
+        strong {
+            font-weight: $font-weight-semibold;
+        }
+    }
+</style>

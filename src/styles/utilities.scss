@@ -1,0 +1,333 @@
+@import './tokens.scss';
+
+// Layout utilities
+.container {
+    width: 100%;
+    max-width: 1315px;
+    margin: 0 auto;
+    padding: 0 $spacing-4;
+
+    @media (min-width: $breakpoint-md) {
+        padding: 0 $spacing-6;
+    }
+
+    @media (min-width: $breakpoint-lg) {
+        padding: 0 $spacing-8;
+    }
+}
+
+.container-narrow {
+    max-width: 800px;
+}
+
+.container-wide {
+    max-width: 1536px;
+}
+
+// Flexbox utilities
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.items-start {
+    align-items: flex-start;
+}
+
+.items-end {
+    align-items: flex-end;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-around {
+    justify-content: space-around;
+}
+
+.gap-2 {
+    gap: $spacing-2;
+}
+
+.gap-3 {
+    gap: $spacing-3;
+}
+
+.gap-4 {
+    gap: $spacing-4;
+}
+
+.gap-5 {
+    gap: $spacing-5;
+}
+
+.gap-6 {
+    gap: $spacing-6;
+}
+
+.gap-8 {
+    gap: $spacing-8;
+}
+
+// Grid utilities
+.grid {
+    display: grid;
+}
+
+.grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (min-width: $breakpoint-md) {
+    .md\\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .md\\:grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .md\\:grid-cols-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: $breakpoint-lg) {
+    .lg\\:grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .lg\\:grid-cols-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+// Spacing utilities
+.m-auto {
+    margin: auto;
+}
+
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.my-auto {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.mt-4 {
+    margin-top: $spacing-4;
+}
+
+.mt-6 {
+    margin-top: $spacing-6;
+}
+
+.mt-8 {
+    margin-top: $spacing-8;
+}
+
+.mt-10 {
+    margin-top: $spacing-10;
+}
+
+.mt-12 {
+    margin-top: $spacing-12;
+}
+
+.mb-4 {
+    margin-bottom: $spacing-4;
+}
+
+.mb-6 {
+    margin-bottom: $spacing-6;
+}
+
+.mb-8 {
+    margin-bottom: $spacing-8;
+}
+
+.mb-10 {
+    margin-bottom: $spacing-10;
+}
+
+.mb-12 {
+    margin-bottom: $spacing-12;
+}
+
+.py-4 {
+    padding-top: $spacing-4;
+    padding-bottom: $spacing-4;
+}
+
+.py-6 {
+    padding-top: $spacing-6;
+    padding-bottom: $spacing-6;
+}
+
+.py-8 {
+    padding-top: $spacing-8;
+    padding-bottom: $spacing-8;
+}
+
+.py-10 {
+    padding-top: $spacing-10;
+    padding-bottom: $spacing-10;
+}
+
+.py-12 {
+    padding-top: $spacing-12;
+    padding-bottom: $spacing-12;
+}
+
+.px-4 {
+    padding-left: $spacing-4;
+    padding-right: $spacing-4;
+}
+
+.px-6 {
+    padding-left: $spacing-6;
+    padding-right: $spacing-6;
+}
+
+// Typography utilities
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.font-light {
+    font-weight: $font-weight-light;
+}
+
+.font-normal {
+    font-weight: $font-weight-normal;
+}
+
+.font-medium {
+    font-weight: $font-weight-medium;
+}
+
+.font-semibold {
+    font-weight: $font-weight-semibold;
+}
+
+.font-bold {
+    font-weight: $font-weight-bold;
+}
+
+.text-sm {
+    font-size: $font-size-sm;
+}
+
+.text-base {
+    font-size: $font-size-base;
+}
+
+.text-lg {
+    font-size: $font-size-lg;
+}
+
+.text-xl {
+    font-size: $font-size-xl;
+}
+
+.text-2xl {
+    font-size: $font-size-2xl;
+}
+
+.text-3xl {
+    font-size: $font-size-3xl;
+}
+
+.text-4xl {
+    font-size: $font-size-4xl;
+}
+
+.text-5xl {
+    font-size: $font-size-5xl;
+}
+
+.text-6xl {
+    font-size: $font-size-6xl;
+}
+
+// Display utilities
+.block {
+    display: block;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.hidden {
+    display: none;
+}
+
+// Visibility utilities
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+// Responsive utilities
+@media (max-width: $breakpoint-md - 1) {
+    .md\\:hidden {
+        display: none;
+    }
+}
+
+@media (min-width: $breakpoint-md) {
+    .md\\:block {
+        display: block;
+    }
+
+    .md\\:flex {
+        display: flex;
+    }
+}

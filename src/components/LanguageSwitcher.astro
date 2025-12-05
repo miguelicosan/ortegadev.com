@@ -1,0 +1,217 @@
+---
+import { getAlternateUrl, type Language } from "../i18n/config";
+
+interface Props {
+    lang: Language;
+    currentPath: string;
+}
+
+const { lang, currentPath } = Astro.props;
+const targetLang = lang === "es" ? "en" : "es";
+const alternateUrl = getAlternateUrl(currentPath, targetLang);
+---
+
+<div class="language-switcher">
+    <button
+        id="lang-toggle"
+        class="lang-toggle"
+        aria-label={lang === "es" ? "Switch to English" : "Cambiar a Español"}
+        data-current-lang={lang}
+        data-target-url={alternateUrl}
+    >
+        <span class="lang-track">
+            <span class="lang-option" data-lang="es">ES</span>
+            <span class="lang-option" data-lang="en">EN</span>
+            <span class="lang-indicator"></span>
+        </span>
+    </button>
+</div>
+
+<style lang="scss">
+    @import "../styles/tokens.scss";
+
+    .language-switcher {
+        display: flex;
+        align-items: center;
+    }
+
+    .lang-toggle {
+        text-decoration: none;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        display: block;
+        background: none;
+        border: none;
+        padding: 0;
+        font-family: inherit;
+        transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+        &:active {
+            transform: scale(0.92);
+        }
+
+        &.animating .lang-track {
+            animation: languagePress 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    }
+
+    .lang-track {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 0;
+        background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+        border-radius: 12px;
+        padding: 3px;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease;
+        flex-direction: row;
+    }
+
+    html[data-theme="dark"] .lang-track {
+        background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+    }
+
+    .lang-option {
+        position: relative;
+        z-index: 2;
+        padding: 4px 10px;
+        font-size: $font-size-sm;
+        font-weight: $font-weight-semibold;
+        color: rgba(0, 0, 0, 0.5);
+        transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        min-width: 32px;
+        text-align: center;
+    }
+
+    html[data-theme="dark"] .lang-option {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .lang-indicator {
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: calc(50% - 3px);
+        height: calc(100% - 6px);
+        background: white;
+        border-radius: 9px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1;
+    }
+
+    html[data-theme="dark"] .lang-indicator {
+        background: #1f2937;
+    }
+
+    // Active state styling
+    [data-current-lang="es"] {
+        .lang-option[data-lang="es"] {
+            color: $color-brand-primary;
+        }
+
+        .lang-indicator {
+            transform: translateX(0);
+        }
+    }
+
+    [data-current-lang="en"] {
+        .lang-option[data-lang="en"] {
+            color: $color-brand-primary;
+        }
+
+        .lang-indicator {
+            transform: translateX(100%);
+        }
+    }
+
+    .lang-toggle:hover .lang-track {
+        background: linear-gradient(135deg, #d1d5db 0%, #9ca3af 100%);
+        box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.12);
+    }
+
+    html[data-theme="dark"] .lang-toggle:hover .lang-track {
+        background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
+        box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .lang-toggle:focus {
+        outline: none;
+    }
+
+    .lang-toggle:focus-visible .lang-track {
+        outline: 2px solid $color-brand-primary;
+        outline-offset: 2px;
+    }
+
+    @keyframes languagePress {
+        0% {
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, #d1d5db 0%, #9ca3af 100%);
+        }
+        50% {
+            box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, #c4cad3 0%, #919ba8 100%);
+        }
+        100% {
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, #d1d5db 0%, #9ca3af 100%);
+        }
+    }
+
+    html[data-theme="dark"] .lang-toggle.animating .lang-track {
+        @keyframes languagePressD {
+            0% {
+                box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+                background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
+            }
+            50% {
+                box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.4);
+                background: linear-gradient(135deg, #3d4754 0%, #2d3541 100%);
+            }
+            100% {
+                box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+                background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
+            }
+        }
+        animation: languagePressD 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+</style>
+
+<script>
+    // Language switcher with smooth animations
+    // Wrapped in function to reinitialize on page transitions
+    function initLanguageSwitcher() {
+        const langToggle = document.getElementById('lang-toggle');
+        
+        if (langToggle) {
+            langToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetUrl = langToggle.getAttribute('data-target-url');
+                const targetLang = langToggle.getAttribute('data-current-lang') === 'es' ? 'en' : 'es';
+                
+                if (targetUrl) {
+                    // Add animating class for press animation
+                    langToggle.classList.add('animating');
+                    
+                    // Temporarily change the data-current-lang to trigger the indicator animation
+                    langToggle.setAttribute('data-current-lang', targetLang);
+                    
+                    langToggle.style.pointerEvents = 'none';
+                    
+                    // Navigate after animation completes
+                    setTimeout(() => {
+                        window.location.href = targetUrl;
+                    }, 600);
+                }
+            });
+        }
+    }
+
+    // Initialize on page load
+    initLanguageSwitcher();
+
+    // Reinitialize on view transitions
+    document.addEventListener('astro:after-swap', initLanguageSwitcher);
+</script>

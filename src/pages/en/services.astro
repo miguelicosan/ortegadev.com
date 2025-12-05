@@ -1,0 +1,199 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getTranslations } from "../../i18n/config";
+
+const lang = "en";
+const t = await getTranslations(lang);
+
+const title = `${t.services.title} | ortegadev.com`;
+const description =
+    "Web and app development, AI and automation solutions, technical consulting. Professional development services in Almería.";
+
+const services = [
+    {
+        title: t.services.web.title,
+        description: t.services.web.description,
+        tech: t.services.web.tech,
+        icon: "code",
+    },
+    {
+        title: t.services.ai.title,
+        description: t.services.ai.description,
+        tech: t.services.ai.tech,
+        icon: "brain",
+    },
+    {
+        title: t.services.consulting.title,
+        description: t.services.consulting.description,
+        tech: t.services.consulting.tech,
+        icon: "chart",
+    },
+];
+---
+
+<BaseLayout title={title} description={description} lang={lang}>
+    <section class="services-page py-12">
+        <div class="container">
+            <div class="services-header">
+                <h1>{t.services.title}</h1>
+                <p class="subtitle">{t.services.subtitle}</p>
+            </div>
+
+            <div class="services-grid">
+                {
+                    services.map((service) => (
+                        <div class="service-card card">
+                            <div class="service-icon">
+                                {service.icon === "code" && (
+                                    <svg
+                                        width="48"
+                                        height="48"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                            d="M16 18L22 12L16 6M8 6L2 12L8 18"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                    </svg>
+                                )}
+                                {service.icon === "brain" && (
+                                    <svg
+                                        width="48"
+                                        height="48"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <circle
+                                            cx="12"
+                                            cy="12"
+                                            r="3"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                        />
+                                        <path
+                                            d="M12 1V4M12 20V23M4.22 4.22L6.34 6.34M17.66 17.66L19.78 19.78M1 12H4M20 12H23M4.22 19.78L6.34 17.66M17.66 6.34L19.78 4.22"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                        />
+                                    </svg>
+                                )}
+                                {service.icon === "chart" && (
+                                    <svg
+                                        width="48"
+                                        height="48"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                            d="M3 3V21H21"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                        <path
+                                            d="M18 9L13 14L9 10L3 16"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                    </svg>
+                                )}
+                            </div>
+                            <h3>{service.title}</h3>
+                            <p>{service.description}</p>
+                            <p class="tech-label">
+                                Technologies: <span>{service.tech}</span>
+                            </p>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+</BaseLayout>
+
+<style lang="scss">
+    @import "../../styles/tokens.scss";
+
+    .services-page {
+        min-height: 60vh;
+    }
+
+    .services-header {
+        text-align: center;
+        margin-bottom: $spacing-10;
+
+        h1 {
+            margin-bottom: $spacing-4;
+        }
+
+        .subtitle {
+            font-size: $font-size-xl;
+            color: $color-text-secondary;
+        }
+    }
+
+    .services-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: $spacing-6;
+
+        @media (min-width: $breakpoint-md) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (min-width: $breakpoint-lg) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    .service-card {
+        text-align: center;
+
+        .service-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto $spacing-4;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: $radius-lg;
+            color: white;
+
+            svg {
+                width: 48px;
+                height: 48px;
+            }
+        }
+
+        h3 {
+            margin-bottom: $spacing-3;
+        }
+
+        p {
+            margin-bottom: $spacing-3;
+            line-height: $line-height-relaxed;
+        }
+
+        .tech-label {
+            font-size: $font-size-sm;
+            color: $color-text-secondary;
+
+            span {
+                color: $color-brand-primary;
+                font-weight: $font-weight-medium;
+            }
+        }
+    }
+</style>

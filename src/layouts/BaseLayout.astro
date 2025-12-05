@@ -1,0 +1,330 @@
+---
+import '../styles/global.scss';
+import { getLangFromUrl } from '../i18n/config';
+import type { Language } from '../i18n/config';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CookieBanner from '../components/CookieBanner';
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: Language;
+  image?: string;
+  canonicalURL?: string;
+  noindex?: boolean;
+}
+
+const { title, description, lang: providedLang, image, canonicalURL, noindex = false } = Astro.props;
+const lang = providedLang || getLangFromUrl(Astro.url);
+
+const siteURL = new URL(Astro.url.pathname, Astro.site || 'https://ortegadev.com');
+const ogImage = image || `${siteURL.origin}/images/og-default.jpg`;
+const canonical = canonicalURL || siteURL.href;
+
+// Determine alternate language URL
+const alternateLang = lang === 'es' ? 'en' : 'es';
+const alternateURL = lang === 'es' 
+  ? `${siteURL.origin}/en${Astro.url.pathname === '/' ? '' : Astro.url.pathname}`
+  : `${siteURL.origin}${Astro.url.pathname.replace(/^\/en/, '')}`;
+
+// Schema.org structured data
+const schemaData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "name": "Miguel Ángel Ortega Ibáñez",
+      "jobTitle": "Full Stack Developer",
+      "url": "https://ortegadev.com",
+      "email": "hola@ortegadev.com",
+      "telephone": "+34621329386",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Almería",
+        "addressCountry": "ES"
+      },
+      "sameAs": [
+        "https://github.com/ortegadev",
+        "https://linkedin.com/in/ortegadev"
+      ]
+    },
+    {
+      "@type": "ProfessionalService",
+      "name": "ortegadev.com",
+      "description": description,
+      "provider": {
+        "@type": "Person",
+        "name": "Miguel Ángel Ortega Ibáñez"
+      },
+      "areaServed": "ES",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Almería",
+        "addressCountry": "ES"
+      }
+    }
+  ]
+};
+---
+
+<!DOCTYPE html>
+<html lang={lang} data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Prevent flash: Apply theme ASAP before any rendering -->
+    <script is:inline>
+      (function() {
+        try {
+          // Siempre usar tema oscuro
+          document.documentElement.setAttribute('data-theme', 'dark');
+          document.documentElement.style.colorScheme = 'dark';
+        } catch(e) {}
+      })();
+    </script>
+    
+    <!-- Critical CSS to prevent FOUC -->
+    <style is:inline>
+      html {
+        --color-bg-primary: #ffffff;
+        --color-bg-secondary: #f5f5f7;
+        --color-text-primary: #1d1d1f;
+        --color-text-secondary: #6e6e73;
+        --color-header-bg: rgba(255, 255, 255, 0.8);
+        --color-header-border: rgba(0, 0, 0, 0.05);
+        --color-text-nav-link: rgba(0, 0, 0, 0.85);
+        --color-hamburger: #1d1d1f;
+      }
+      html[data-theme="dark"] {
+        --color-bg-primary: #0a0a0a;
+        --color-bg-secondary: #1a1a1a;
+        --color-text-primary: #f5f5f5;
+        --color-text-secondary: #a1a1a6;
+        --color-header-bg: rgba(0, 0, 0, 0.8);
+        --color-header-border: rgba(255, 255, 255, 0.1);
+        --color-text-nav-link: #8c8c94;
+        --color-hamburger: #f5f5f5;
+      }
+      body {
+        background-color: var(--color-bg-primary);
+        color: var(--color-text-primary);
+      }
+    </style>
+    
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    
+    <!-- Alternate language versions -->
+    <link rel="alternate" hreflang={lang} href={canonical} />
+    <link rel="alternate" hreflang={alternateLang} href={alternateURL} />
+    <link rel="alternate" hreflang="x-default" href={`${siteURL.origin}/`} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={lang === 'es' ? 'es_ES' : 'en_US'} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonical} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImage} />
+    
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Handle theme during View Transitions -->
+    <script is:inline>
+      document.addEventListener('astro:before-swap', (e) => {
+        // Mantener tema oscuro durante transiciones
+        e.newDocument.documentElement.setAttribute('data-theme', 'dark');
+      });
+    </script>
+
+    <!-- Scroll-reveal and parallax animations -->
+    <script is:inline>
+      let scrollListener = null;
+      let techCarousel = {
+        currentIndex: 0,
+        itemLength: 0,
+        autoRotateInterval: null,
+        autoRotateDelay: 4000 // 4 segundos
+      };
+
+      function initScrollReveal() {
+        const elements = document.querySelectorAll('.scroll-reveal');
+        
+        if (!elements.length) return;
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '50px'
+        });
+        
+        elements.forEach(element => {
+          observer.observe(element);
+        });
+      }
+
+      function cleanupScrollListener() {
+        if (scrollListener) {
+          window.removeEventListener('scroll', scrollListener);
+          scrollListener = null;
+        }
+      }
+
+      function initTechCarousel() {
+        const items = document.querySelectorAll('.tech-category');
+        const prevBtn = document.querySelector('.carousel-button-prev');
+        const nextBtn = document.querySelector('.carousel-button-next');
+        
+        if (!items.length || !prevBtn || !nextBtn) return;
+
+        techCarousel.itemLength = items.length;
+        techCarousel.currentIndex = 0;
+
+        function updateCarousel() {
+          items.forEach((item, i) => {
+            item.classList.remove('prev', 'active', 'next');
+            
+            const diff = (i - techCarousel.currentIndex + techCarousel.itemLength) % techCarousel.itemLength;
+            
+            if (diff === 0) {
+              item.classList.add('active');
+            } else if (diff === 1) {
+              item.classList.add('next');
+            } else if (diff === techCarousel.itemLength - 1) {
+              item.classList.add('prev');
+            }
+          });
+        }
+
+        function autoAdvance() {
+          techCarousel.currentIndex = (techCarousel.currentIndex + 1) % techCarousel.itemLength;
+          updateCarousel();
+        }
+
+        function resetAutoRotate() {
+          if (techCarousel.autoRotateInterval) {
+            clearInterval(techCarousel.autoRotateInterval);
+          }
+          techCarousel.autoRotateInterval = setInterval(autoAdvance, techCarousel.autoRotateDelay);
+        }
+
+        prevBtn.addEventListener('click', () => {
+          techCarousel.currentIndex = (techCarousel.currentIndex - 1 + techCarousel.itemLength) % techCarousel.itemLength;
+          updateCarousel();
+          resetAutoRotate();
+        });
+
+        nextBtn.addEventListener('click', () => {
+          techCarousel.currentIndex = (techCarousel.currentIndex + 1) % techCarousel.itemLength;
+          updateCarousel();
+          resetAutoRotate();
+        });
+
+        // Inicializar
+        updateCarousel();
+        resetAutoRotate();
+      }
+
+      function initParallaxAnimations() {
+        const heroSection = document.querySelector('[data-parallax="hero"]');
+        const aboutSection = document.querySelector('#about');
+        
+        console.log('Initializing parallax. Hero:', !!heroSection, 'About:', !!aboutSection);
+        
+        if (!heroSection && !aboutSection) return;
+
+        // Clean up old listener
+        cleanupScrollListener();
+
+        scrollListener = () => {
+          // Hero parallax effect
+          if (heroSection) {
+            const heroRect = heroSection.getBoundingClientRect();
+            const scrollProgress = 1 - (heroRect.bottom / window.innerHeight);
+            
+            // Move hero up and fade out as user scrolls
+            heroSection.style.transform = `translateY(${scrollProgress * 100}px)`;
+            heroSection.style.opacity = Math.max(0, 1 - scrollProgress * 1.5);
+          }
+          
+          // About parallax effect
+          if (aboutSection) {
+            const aboutRect = aboutSection.getBoundingClientRect();
+            const scrollProgress = 1 - (aboutRect.top / window.innerHeight);
+            
+            // Subtle parallax for about section
+            if (scrollProgress > 0 && scrollProgress < 1) {
+              aboutSection.style.transform = `translateY(${-scrollProgress * 30}px)`;
+            }
+          }
+        };
+
+        window.addEventListener('scroll', scrollListener, { passive: true });
+      }
+      
+      // Initialize on page load
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          initScrollReveal();
+          initParallaxAnimations();
+          initTechCarousel();
+        });
+      } else {
+        initScrollReveal();
+        initParallaxAnimations();
+        initTechCarousel();
+      }
+      
+      // Reinitialize after View Transitions
+      document.addEventListener('astro:after-swap', () => {
+        // Clear previous interval
+        if (techCarousel.autoRotateInterval) {
+          clearInterval(techCarousel.autoRotateInterval);
+        }
+        // Reset carousel
+        techCarousel = {
+          currentIndex: 0,
+          itemLength: 0,
+          autoRotateInterval: null,
+          autoRotateDelay: 4000
+        };
+        initScrollReveal();
+        initParallaxAnimations();
+        initTechCarousel();
+      });
+    </script>
+    
+    <!-- Schema.org -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+  </head>
+  <body>
+    <Header lang={lang} />
+    <main>
+      <slot />
+    </main>
+    <Footer lang={lang} />
+    <CookieBanner client:load lang={lang} />
+  </body>
+</html>

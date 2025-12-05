@@ -1,0 +1,119 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+const title = "Legal Notice | ortegadev.com";
+const description =
+    "Legal notice for ortegadev.com website. Information about the owner, terms of use and intellectual property.";
+---
+
+<BaseLayout title={title} description={description} lang="en" noindex={true}>
+    <section class="legal-page py-12">
+        <div class="container container-narrow">
+            <h1>Legal Notice</h1>
+
+            <h2>1. Identification Data</h2>
+            <p>
+                In compliance with Law 34/2002, of July 11, on Information
+                Society Services and Electronic Commerce (LSSI-CE), the
+                following information is provided:
+            </p>
+            <ul>
+                <li><strong>Owner:</strong> Miguel Ángel Ortega Ibáñez</li>
+                <li><strong>Tax ID:</strong> 75268388Z</li>
+                <li><strong>Address:</strong> Almería, Spain</li>
+                <li><strong>Email:</strong> hola@ortegadev.com</li>
+                <li><strong>Phone:</strong> +34 621 329 386</li>
+            </ul>
+
+            <h2>2. Purpose</h2>
+            <p>
+                This website aims to provide information about web development,
+                application and technology consulting services offered by Miguel
+                Ángel Ortega Ibáñez.
+            </p>
+
+            <h2>3. Terms of Use</h2>
+            <p>
+                Access and use of this website grants the status of user and
+                implies full acceptance of all conditions included in this Legal
+                Notice. The user agrees to make proper use of the content and
+                services offered.
+            </p>
+
+            <h2>4. Intellectual and Industrial Property</h2>
+            <p>
+                All contents of this website (texts, images, brands, graphics,
+                logos, source code, etc.) are property of Miguel Ángel Ortega
+                Ibáñez or third parties who have authorized their use, and are
+                protected by intellectual and industrial property rights.
+            </p>
+            <p>
+                Reproduction, distribution, public communication or
+                transformation without express authorization is prohibited.
+            </p>
+
+            <h2>5. Limitation of Liability</h2>
+            <p>The owner is not responsible for:</p>
+            <ul>
+                <li>Continuous availability of content and services</li>
+                <li>Damages that may arise from the use of the content</li>
+                <li>Content from third-party websites linked from this site</li>
+            </ul>
+
+            <h2>6. Third-Party Links</h2>
+            <p>
+                This website may contain links to third-party websites. The
+                owner is not responsible for the content of such sites or the
+                privacy policies they apply.
+            </p>
+
+            <h2>7. Applicable Law</h2>
+            <p>
+                These conditions are governed by Spanish law. The jurisdiction
+                corresponding to the owner's domicile shall be competent for any
+                controversy.
+            </p>
+
+            <p style="margin-top: 2rem; font-size: 0.875rem; color: #6e6e73;">
+                Last updated: December 2025
+            </p>
+        </div>
+    </section>
+</BaseLayout>
+
+<style lang="scss">
+    @import "../../../styles/tokens.scss";
+
+    .legal-page {
+        min-height: 70vh;
+
+        h1 {
+            margin-bottom: $spacing-8;
+        }
+
+        h2 {
+            margin-top: $spacing-8;
+            margin-bottom: $spacing-4;
+            font-size: $font-size-xl;
+        }
+
+        p,
+        ul {
+            margin-bottom: $spacing-4;
+            line-height: $line-height-relaxed;
+        }
+
+        ul {
+            margin-left: $spacing-6;
+
+            li {
+                list-style: disc;
+                margin-bottom: $spacing-2;
+            }
+        }
+
+        strong {
+            font-weight: $font-weight-semibold;
+        }
+    }
+</style>

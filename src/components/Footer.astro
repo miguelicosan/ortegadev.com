@@ -1,0 +1,225 @@
+---
+import { getTranslations, type Language } from "../i18n/config";
+
+interface Props {
+    lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = await getTranslations(lang);
+const currentYear = new Date().getFullYear();
+
+const legalPages = [
+    {
+        key: "legalNotice",
+        href: lang === "es" ? "/legal/aviso-legal" : "/en/legal/legal-notice",
+    },
+    {
+        key: "privacy",
+        href: lang === "es" ? "/legal/privacidad" : "/en/legal/privacy",
+    },
+    {
+        key: "cookies",
+        href: lang === "es" ? "/legal/cookies" : "/en/legal/cookies",
+    },
+];
+---
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section footer-about">
+                <h3 class="footer-logo">ortegadev</h3>
+                <p class="footer-description">{t.footer.description}</p>
+                <div class="footer-contact">
+                    <p>
+                        <strong>{t.contact.info.email}:</strong>
+                        <a href="mailto:hola@ortegadev.com"
+                            >hola@ortegadev.com</a
+                        >
+                    </p>
+                    <p>
+                        <strong>{t.contact.info.phone}:</strong>
+                        <a href="tel:+34621329386">+34 621 329 386</a>
+                    </p>
+                    <p>
+                        <strong>{t.contact.info.location}:</strong> Almería, España
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>{t.nav.projects}</h4>
+                <ul class="footer-links">
+                    <li>
+                        <a href={lang === "es" ? "/projects" : "/en/projects"}
+                            >{t.projects.viewAll}</a>
+                    </li>
+                    <li>
+                        <a
+                            href="https://revicarapp.com"
+                            target="_blank"
+                            rel=" noopener">ReviCar</a>
+                    </li>
+                    <li>
+                        <a href={lang === "es" ? "/blog" : "/en/blog"}
+                            >{t.nav.blog}</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>{t.footer.legal}</h4>
+                <ul class="footer-links">
+                    {
+                        legalPages.map((page) => (
+                            <li>
+                                <a href={page.href}>{t.footer[page.key]}</a>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>{t.nav.contact}</h4>
+                <ul class="footer-links">
+                    <li>
+                        <a href={lang === "es" ? "/contact" : "/en/contact"}
+                            >{t.contact.form.submit}</a>
+                    </li>
+                    <li>
+                        <a
+                            href="https://wa.me/34621329386?text=Hola%20Miguel%2C%20he%20visto%20tu%20web%20y%20me%20gustaría%20hablar%20contigo."
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            WhatsApp
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="https://linkedin.com/in/ortegadev"
+                            target="_blank"
+                            rel="noopener">LinkedIn</a>
+                    </li>
+                    <li>
+                        <a
+                            href="https://github.com/ortegadev"
+                            target="_blank"
+                            rel="noopener">GitHub</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>
+                © {currentYear} ortegadev.com · {t.footer.rights}.
+            </p>
+        </div>
+    </div>
+</footer>
+
+<style lang="scss">
+    @import "../styles/tokens.scss";
+
+    .footer {
+        background-color: var(--color-bg-secondary);
+        color: var(--color-text-primary);
+        padding: $spacing-10 0 $spacing-6;
+        margin-top: $spacing-16;
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color $transition-base ease-out;
+
+            &:hover {
+                color: $color-brand-primary;
+            }
+        }
+    }
+
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: $spacing-8;
+        margin-bottom: $spacing-8;
+
+        @media (min-width: $breakpoint-sm) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (min-width: $breakpoint-md) {
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+        }
+    }
+
+    .footer-section {
+        h3,
+        h4 {
+            margin-bottom: $spacing-4;
+            font-size: $font-size-lg;
+            color: var(--color-text-primary);
+        }
+    }
+
+    .footer-logo {
+        font-size: $font-size-2xl;
+        font-weight: $font-weight-bold;
+        color: $color-brand-primary;
+        margin-bottom: $spacing-3;
+    }
+
+    .footer-description {
+        color: var(--color-text-secondary);
+        margin-bottom: $spacing-4;
+        line-height: $line-height-relaxed;
+    }
+
+    .footer-contact {
+        font-size: $font-size-sm;
+        color: var(--color-text-secondary);
+
+        p {
+            margin-bottom: $spacing-2;
+        }
+
+        strong {
+            font-weight: $font-weight-medium;
+            color: var(--color-text-primary);
+        }
+    }
+
+    .footer-links {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            margin-bottom: $spacing-2;
+        }
+
+        a {
+            font-size: $font-size-base;
+            color: var(--color-text-secondary);
+
+            &:hover {
+                color: $color-brand-primary;
+            }
+        }
+    }
+
+    .footer-bottom {
+        border-top: 1px solid var(--color-bg-secondary);
+        padding-top: $spacing-6;
+        text-align: center;
+
+        p {
+            font-size: $font-size-sm;
+            color: var(--color-text-secondary);
+            margin: 0;
+        }
+    }
+</style>

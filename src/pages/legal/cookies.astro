@@ -1,0 +1,196 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Política de Cookies | ortegadev.com";
+const description = "Información sobre el uso de cookies en ortegadev.com.";
+---
+
+<BaseLayout title={title} description={description} lang="es" noindex={true}>
+    <section class="legal-page py-12">
+        <div class="container container-narrow">
+            <h1>Política de Cookies</h1>
+
+            <h2>¿Qué son las cookies?</h2>
+            <p>
+                Las cookies son pequeños archivos de texto que se almacenan en
+                tu dispositivo cuando visitas un sitio web. Se utilizan para
+                mejorar la experiencia del usuario, recordar preferencias y
+                obtener información sobre cómo se utiliza el sitio.
+            </p>
+
+            <h2>Tipos de Cookies Utilizadas</h2>
+
+            <h3>1. Cookies Necesarias (Siempre Activas)</h3>
+            <p>
+                Son imprescindibles para el correcto funcionamiento del sitio
+                web.
+            </p>
+            <ul>
+                <li>
+                    <strong>cookie-consent:</strong> Almacena tu preferencia de consentimiento
+                    de cookies
+                </li>
+                <li>
+                    <strong>Idioma:</strong> Recuerda tu preferencia de idioma (ES/EN)
+                </li>
+            </ul>
+
+            <h3>2. Cookies Analíticas (Opcionales)</h3>
+            <p>
+                Nos ayudan a entender cómo los visitantes interactúan con el
+                sitio.
+            </p>
+            <ul>
+                <li>
+                    <strong>Google Analytics</strong> (si se instala en el futuro):
+                    Estadísticas de visitas, páginas vistas, tiempo de permanencia,
+                    etc.
+                </li>
+            </ul>
+
+            <h3>3. Cookies de Marketing (Opcionales)</h3>
+            <p>
+                Se utilizan para mostrar publicidad relevante y campañas de
+                marketing.
+            </p>
+            <p>
+                <em
+                    >Actualmente no se utilizan cookies de marketing en este
+                    sitio.</em>
+            </p>
+
+            <h2>Cómo Gestionar las Cookies</h2>
+
+            <h3>Desde el Sitio Web</h3>
+            <p>
+                Puedes cambiar tus preferencias de cookies en cualquier momento
+                desde nuestra <button 
+                    id="openCookieSettings" 
+                    style="background: none; border: none; color: #0071e3; cursor: pointer; text-decoration: underline; font-size: inherit; padding: 0; font: inherit;"
+                >página de configuración de cookies</button
+                >.
+            </p>
+            
+            <script is:inline>
+                function setupCookieButton() {
+                    const btn = document.getElementById('openCookieSettings');
+                    if (btn) {
+                        console.log('Cookie button found, setting up listener');
+                        btn.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            console.log('Cookie button clicked, dispatching event');
+                            const event = new CustomEvent('openCookieSettings', { bubbles: true });
+                            window.dispatchEvent(event);
+                        });
+                    } else {
+                        console.log('Cookie button not found');
+                    }
+                }
+                
+                // Setup on load
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', setupCookieButton);
+                } else {
+                    setupCookieButton();
+                }
+                
+                // Setup after View Transitions
+                document.addEventListener('astro:after-swap', setupCookieButton);
+            </script>
+
+            <h3>Desde tu Navegador</h3>
+            <p>
+                También puedes configurar o deshabilitar las cookies desde la
+                configuración de tu navegador:
+            </p>
+            <ul>
+                <li>
+                    <a
+                        href="https://support.google.com/chrome/answer/95647"
+                        target="_blank"
+                        rel="noopener">Chrome</a>
+                </li>
+                <li>
+                    <a
+                        href="https://support.mozilla.org/es/kb/habilitar-y-deshabilitar-cookies-sitios-web-rastrear-preferencias"
+                        target="_blank"
+                        rel="noopener">Firefox</a>
+                </li>
+                <li>
+                    <a
+                        href="https://support.apple.com/es-es/HT201265"
+                        target="_blank"
+                        rel="noopener">Safari</a>
+                </li>
+                <li>
+                    <a
+                        href="https://support.microsoft.com/es-es/microsoft-edge/eliminar-las-cookies-en-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09"
+                        target="_blank"
+                        rel="noopener">Edge</a>
+                </li>
+            </ul>
+
+            <h2>Más Información</h2>
+            <p>
+                Para cualquier duda sobre nuestra política de cookies, puedes
+                contactarnos en <strong>hola@ortegadev.com</strong>.
+            </p>
+
+            <p style="margin-top: 2rem; font-size: 0.875rem; color: #6e6e73;">
+                Última actualización: Diciembre 2025
+            </p>
+        </div>
+    </section>
+</BaseLayout>
+
+<style lang="scss">
+    @import "../../styles/tokens.scss";
+
+    .legal-page {
+        min-height: 70vh;
+
+        h1 {
+            margin-bottom: $spacing-8;
+        }
+
+        h2 {
+            margin-top: $spacing-8;
+            margin-bottom: $spacing-4;
+            font-size: $font-size-xl;
+        }
+
+        h3 {
+            margin-top: $spacing-6;
+            margin-bottom: $spacing-3;
+            font-size: $font-size-lg;
+        }
+
+        p,
+        ul {
+            margin-bottom: $spacing-4;
+            line-height: $line-height-relaxed;
+        }
+
+        ul {
+            margin-left: $spacing-6;
+
+            li {
+                list-style: disc;
+                margin-bottom: $spacing-2;
+            }
+        }
+
+        a {
+            color: $color-brand-primary;
+            text-decoration: underline;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+
+        strong {
+            font-weight: $font-weight-semibold;
+        }
+    }
+</style>

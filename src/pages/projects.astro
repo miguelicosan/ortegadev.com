@@ -1,0 +1,219 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getTranslations } from "../i18n/config";
+import ProjectsGrid from "../components/ProjectsGrid";
+
+const lang = "es";
+const t = await getTranslations(lang);
+
+const title = `${t.projects.title} | ortegadev.com`;
+const description =
+    "Proyectos destacados: ReviCar, Sorteo Amigo Invisible, automatización con IA y más. Ejemplos de mi trabajo como Full Stack Developer.";
+
+const projects = [
+  {
+    id: "revicar",
+    title: "ReviCar",
+    description: "Plataforma inteligente de gestión vehicular con IA predictiva. Apps nativas iOS/Android + Web con Supabase.",
+    image: "/images/projects/revicar-screenshot.png",
+    tags: ["React", "TypeScript", "Supabase", "IA", "Mobile", "Capacitor"],
+    url: "https://revicarapp.com",
+    github: "https://github.com/miguelicosan/car-care-companion-app",
+    year: 2024,
+    status: "Producción",
+    content: `
+      <h3>La primera aplicación con IA para gestión vehicular predictiva</h3>
+      
+      <p><strong>ReviCar</strong> revoluciona la gestión del mantenimiento vehicular mediante algoritmos de IA predictiva. Calcula ahorros automáticos, predice costes futuros y optimiza el cuidado de tu vehículo en tiempo real.</p>
+
+      <h4>Características Técnicas Destacadas</h4>
+      <ul>
+        <li><strong>IA Predictiva</strong>: Score dinámico (0-100) basado en cumplimiento, precisión IA, estado vehicular y optimización de costos</li>
+        <li><strong>Base de Datos Vehicular</strong>: 68 marcas, 576 modelos desde 1980 hasta 2025</li>
+        <li><strong>Apps Nativas</strong>: iOS y Android desde un mismo codebase con Capacitor.js</li>
+        <li><strong>Autenticación Robusta</strong>: OAuth social login (Google, Apple) con email verification</li>
+        <li><strong>Responsive Mobile-First</strong>: Optimizado para todos los dispositivos</li>
+      </ul>
+
+      <h4>Stack Tecnológico</h4>
+      <p><strong>Frontend</strong>: React 18 + TypeScript + Vite + Tailwind CSS + shadcn/ui<br/>
+      <strong>Mobile</strong>: Capacitor.js 7.4 (iOS/Android)<br/>
+      <strong>Backend</strong>: Supabase (PostgreSQL) + Edge Functions<br/>
+      <strong>IA</strong>: Algoritmos predictivos + OpenAI/Gemini<br/>
+      <strong>DevOps</strong>: GitHub + Hostinger + SMTP</p>
+
+      <h4>Resultados</h4>
+      <ul>
+        <li>50+ componentes React</li>
+        <li>20+ rutas/páginas</li>
+        <li>~15,000 líneas de código</li>
+        <li>100% TypeScript coverage</li>
+        <li>Lighthouse Score: 95+</li>
+        <li>Soporta 2 idiomas (ES, EN)</li>
+      </ul>
+    `
+  },
+  {
+    id: "amigo-invisible",
+    title: "Sorteo Amigo Invisible",
+    description: "Crea sorteos gratuitos y seguros con emparejamiento inteligente. Modelo freemium con BuyMeACoffee.",
+    image: "/images/projects/amigo-invisible-screenshot.png",
+    tags: ["Astro", "Supabase", "TypeScript", "Edge Functions", "SEO"],
+    url: "https://amigoinvisible.online",
+    github: "https://github.com/miguelicosan/sorteoamigoinvisible.online",
+    year: 2024,
+    status: "Producción",
+    content: `
+      <h3>Organiza sorteos de Amigo Invisible en minutos, sin complicaciones</h3>
+      
+      <p>Aplicación web moderna para gestionar sorteos de Amigo Invisible de forma segura, rápida y completamente gratuita. Con modelo freemium, personalización de emails y algoritmo inteligente de emparejamiento que evita auto-asignaciones.</p>
+
+      <h4>Características Técnicas Destacadas</h4>
+      <ul>
+        <li><strong>Wizard Multi-Paso</strong>: Configuración intuitiva en 3 pasos (Configuración → Personalización → Revisión)</li>
+        <li><strong>Algoritmo de Derangement</strong>: Emparejamiento circular inteligente sin auto-asignaciones</li>
+        <li><strong>Emails Personalizables</strong>: Variables dinámicas ($NOMBRE, $REGALO_PARA) con templates responsivos</li>
+        <li><strong>Sistema de Restricciones</strong>: Evita pares específicos (parejas, hermanos, etc.)</li>
+        <li><strong>RLS Avanzado</strong>: Row Level Security en PostgreSQL para privacidad garantizada</li>
+        <li><strong>SEO Optimizado</strong>: Blog con 10+ artículos, meta tags dinámicos, sitemap</li>
+        <li><strong>RGPD Compliant</strong>: Política de privacidad, cookies, auto-borrado a 90 días</li>
+      </ul>
+
+      <h4>Stack Tecnológico</h4>
+      <p><strong>Frontend</strong>: Astro 5.16.3 + TypeScript + Vanilla CSS + Islands Architecture<br/>
+      <strong>Backend</strong>: Supabase (PostgreSQL) + Edge Functions (Deno)<br/>
+      <strong>Autenticación</strong>: Sin registro (sorteos anónimos)<br/>
+      <strong>DevOps</strong>: Vercel/Netlify + GitHub</p>
+
+      <h4>Resultados</h4>
+      <ul>
+        <li>5 componentes Astro reutilizables</li>
+        <li>10+ páginas (home, blog, legal, premium)</li>
+        <li>3 Edge Functions en producción</li>
+        <li>~2,500 líneas de código</li>
+        <li>Performance: &lt;1s First Contentful Paint</li>
+        <li>100% seguridad RLS</li>
+      </ul>
+    `
+  },
+  {
+    id: "ortegadev",
+    title: "ortegadev.com",
+    description: "Este portafolio. Full Stack con Astro, animaciones smooth, SEO optimizado y dark mode.",
+    image: "/images/projects/ortegadev-screenshot.png",
+    tags: ["Astro", "React", "TypeScript", "SCSS", "View Transitions"],
+    url: "https://ortegadev.com",
+    github: "https://github.com/miguelicosan/ortegadev.com",
+    year: 2025,
+    status: "Producción",
+    content: `
+      <h3>Portafolio profesional moderno con animaciones y SEO completo</h3>
+      
+      <p><strong>ortegadev.com</strong> es un portafolio diseñado para impresionar a recruiters y clientes. Implementa las mejores prácticas de web performance, SEO, accesibilidad y UX/UI moderno.</p>
+
+      <h4>Características Técnicas Destacadas</h4>
+      <ul>
+        <li><strong>View Transitions API</strong>: Navegación suave entre páginas sin recargar</li>
+        <li><strong>Scroll Animations</strong>: Parallax hero, scroll-reveal con IntersectionObserver</li>
+        <li><strong>3D Tech Carousel</strong>: Carrusel interactivo con rotación automática y controles</li>
+        <li><strong>Dark Mode Único</strong>: Tema oscuro optimizado sin FOUC</li>
+        <li><strong>Mobile Menu Avanzado</strong>: Hamburger menu con animaciones spring y blur effect</li>
+        <li><strong>Formulario de Contacto</strong>: Validación completa, integración WhatsApp</li>
+        <li><strong>SEO Profesional</strong>: Schema.org, hreflang, sitemap, robots.txt</li>
+        <li><strong>i18n Completo</strong>: Soporte ES/EN con rutas limpias</li>
+      </ul>
+
+      <h4>Stack Tecnológico</h4>
+      <p><strong>Framework</strong>: Astro v5 + React (componentes interactivos)<br/>
+      <strong>Estilos</strong>: SCSS con variables CSS, responsive design<br/>
+      <strong>Animaciones</strong>: CSS custom animations + requestAnimationFrame<br/>
+      <strong>Contacto</strong>: React Hook Form + Zod validation<br/>
+      <strong>DevOps</strong>: GitHub + Deploy automático<br/>
+      <strong>SEO</strong>: Canonical URLs, hreflang, schema.org, noindex</p>
+
+      <h4>Resulta</h4>
+      <ul>
+        <li>Lighthouse Score: 95+</li>
+        <li>Mobile-first responsive design</li>
+        <li>12 páginas indexables + 6 legal (noindex)</li>
+        <li>Animaciones fluidas en todos los browsers</li>
+        <li>0 CLS (Cumulative Layout Shift)</li>
+        <li>TTL &lt;2s en conexiones 4G</li>
+        <li>100% TypeScript coverage</li>
+        <li>Código modular y escalable</li>
+      </ul>
+    `
+  }
+];
+---
+
+<BaseLayout title={title} description={description} lang={lang}>
+    <section class="projects-page py-12">
+        <div class="container">
+            <div class="projects-header">
+                <h1>{t.projects.title}</h1>
+                <p class="subtitle">{t.projects.subtitle}</p>
+            </div>
+
+            <ProjectsGrid client:load projects={projects} />
+
+            <div class="projects-cta">
+                <p>¿Tienes un proyecto en mente?</p>
+                <a
+                    href={lang === "es" ? "/contact" : "/en/contact"}
+                    class="btn btn-primary"
+                >
+                    {t.contact.title}
+                </a>
+            </div>
+        </div>
+    </section>
+</BaseLayout>
+
+<style lang="scss">
+    @import "../styles/tokens.scss";
+
+    .projects-page {
+        min-height: 100vh;
+        padding-top: $spacing-12;
+        padding-bottom: $spacing-12;
+    }
+
+    .projects-header {
+        text-align: center;
+        margin-bottom: $spacing-12;
+
+        h1 {
+            font-size: $font-size-7xl;
+            margin-bottom: $spacing-4;
+            background: linear-gradient(135deg, $color-brand-primary, lighten($color-brand-primary, 20%));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: $font-size-2xl;
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    }
+
+    .projects-cta {
+        text-align: center;
+        margin-top: $spacing-12;
+        padding: $spacing-8;
+        border-top: 1px solid rgba($color-brand-primary, 0.1);
+
+        p {
+            font-size: $font-size-xl;
+            margin-bottom: $spacing-4;
+            color: var(--color-text-secondary);
+        }
+
+        .btn {
+            display: inline-block;
+        }
+    }
+</style>
