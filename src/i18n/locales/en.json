@@ -22,14 +22,30 @@
         "scrollHint": "Scroll to discover more"
     },
     "about": {
-        "title": "About Me",
+        "title": "How I can help you...",
+        "intro": "I'm a full stack developer passionate about creating technology solutions that transform businesses. With over 10 years of experience, I've worked on complex projects requiring expertise in development, architecture, and DevOps. My goal is simple: turn your ideas into scalable, robust, and profitable products.",
+        "questions": [
+            {
+                "question": "Do you need a scalable web?",
+                "description": "Corporate websites, conversion-focused landing pages, modern PWAs. From concept to production."
+            },
+            {
+                "question": "Want to create an iOS/Android app?",
+                "description": "Native and cross-platform applications with React Native. Design, development and deployment in App Store and Google Play."
+            },
+            {
+                "question": "Looking to automate processes?",
+                "description": "Intelligent automation solutions with AI, backend integrations and DevOps. Transform your infrastructure."
+            }
+        ],
+        "cta": "Discover my solutions",
         "name": "Miguel Ángel Ortega Ibáñez",
         "role": "Full Stack Developer | AI · Big Data · IoT",
         "location": "Almería, Spain",
         "experience": "+10 years",
-        "bio": "I'm a full stack developer passionate about modern programming, AI, and distributed systems. Currently developing ReviCar, a PWA for vehicle maintenance management with AI, and working as a programmer analyst at Minsait, where I specialize in process automation and intelligent document capture solutions.",
-        "currentWork": "Since 2018 at Minsait (AI Documentation department), I implement business process automation solutions, develop REST APIs, and perform intelligent document capture integrations for major financial institutions.",
-        "skills": "Agile methodologies (Scrum), BPMN, Camunda, Power Automate. Good level of spoken and written English."
+        "bio": "Full Stack Developer specialized in building scalable solutions with AI, intelligent automation, and robust backend architectures. I create modern applications that transform business processes and generate real impact. Expert in frontend development, scalable backend, and DevOps—everything you need to take your project to the next level.",
+        "currentWork": "At Minsait since 2018, I design and implement business process automation solutions with AI documentation, scalable REST APIs, and intelligent integrations for financial entities. Specialist in workflow optimization, intelligent document capture, and distributed systems that perform under pressure.",
+        "skills": "Full Stack | Scalable Backend | DevOps & Infrastructure | Intelligent Automation | AI & Machine Learning | REST APIs | Scrum | BPMN | Camunda | Power Automate | Docker | Kubernetes | AWS. Fluent English."
     },
     "techStack": {
         "title": "Tech Stack",
@@ -123,7 +139,7 @@
         }
     },
     "footer": {
-        "description": "Full Stack Developer specialized in AI, Big Data, and process automation. Almería, Spain.",
+        "description": "Full Stack Developer specialized in AI, Big Data, and process automation.",
         "legal": "Legal",
         "legalNotice": "Legal Notice",
         "privacy": "Privacy",

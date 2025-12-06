@@ -2,6 +2,32 @@
 
 Professional Astro-based personal brand website for Miguel Ángel Ortega Ibáñez, featuring bilingual support (ES/EN), Apple-inspired design, advanced SEO, and full GDPR compliance.
 
+## 📝 Recent Updates (December 2024)
+
+### Layout & UX Improvements
+- **About Section Redesign**: 2-column desktop layout (cards left, content right) with vertical mobile stacking
+- **"Puedo ayudarte con..." Section**: New cards-based section highlighting 3 key service areas with numbered circles and hover effects
+- **Button Styling**: Optimized `.btn-lg` buttons - 80% width with center alignment on mobile, responsive desktop behavior
+- **Spacing Enhancements**: Increased gap to 5rem between elements in desktop view for better visual hierarchy
+
+### Animations & Effects
+- **Ethereal Light Effect**: Added animated background light effect in About section
+  - Tranquil floating light (600x600px) that moves organically behind cards
+  - Electric halo effect on card hover with chaotic motion for visual engagement
+- **Mobile Carousel**: Fixed TechStack animation direction (vertical bottom-to-top movement)
+- **Removed**: Scroll indicator animation from Hero section
+
+### Content & Services
+- **New Services**: Added DevOps & Infrastructure and Backend Scalable services to services page
+- **Bio Rewrite**: Enhanced about/bio sections with better SEO keywords and positioning (ES & EN)
+- **Social Integration**: Integrated Instagram profile (ortegadevcom) across contact page, footer, and email signature
+- **Email Signature**: Created professional HTML/CSS email signature with social links and emoji support for Mac Mail
+
+### Mobile Optimization
+- Fixed TechStack carousel visibility and animation transforms on mobile
+- Improved button sizing and spacing across breakpoints
+- Enhanced responsive layout for hero CTA buttons
+
 ## 🚀 Quick Start
 
 ```bash

@@ -64,24 +64,6 @@ const ctaButtons = [
                 <div class="hero-image-gradient"></div>
             </div>
         </div>
-
-        <div class="scroll-indicator animate-float">
-            <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <path
-                    d="M12 5L12 19M12 19L5 12M12 19L19 12"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"></path>
-            </svg>
-            <span class="sr-only">{t.hero.scrollHint}</span>
-        </div>
     </div>
 </section>
 
@@ -180,11 +162,15 @@ const ctaButtons = [
         }
 
         .btn-lg {
-            flex: 1;
+            flex: none;
+            width: 80%;
+            margin: 0 auto;
             min-width: 150px;
 
             @media (min-width: $breakpoint-md) {
                 flex: 0 1 calc(33.333% - 10px);
+                width: auto;
+                margin: 0;
             }
         }
 
@@ -257,20 +243,6 @@ const ctaButtons = [
         }
         100% {
             border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-        }
-    }
-
-    .scroll-indicator {
-        position: absolute;
-        bottom: $spacing-8;
-        left: 50%;
-        transform: translateX(-50%);
-        color: $color-text-secondary;
-        cursor: pointer;
-
-        svg {
-            width: 32px;
-            height: 32px;
         }
     }
 </style>

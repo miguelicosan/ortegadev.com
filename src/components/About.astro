@@ -12,68 +12,97 @@ const t = await getTranslations(lang);
 <section class="about py-12 parallax" id="about">
     <div class="container">
         <div class="about-content">
-            <div class="about-header scroll-reveal">
-                <h2>{t.about.title}</h2>
-            </div>
-
-            <div class="about-grid">
-                <div class="about-info scroll-reveal delay-100">
-                    <h3 class="about-name">{t.about.name}</h3>
-                    <p class="about-role">{t.about.role}</p>
-
-                    <div class="about-meta">
-                        <div class="meta-item">
-                            <svg
-                                width="20"
-                                height="20"
-                                viewBox="0 0 20 20"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M10 2C7 2 5 4 5 7C5 11 10 16 10 16C10 16 15 11 15 7C15 4 13 2 10 2Z"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"></path>
-                                <circle
-                                    cx="10"
-                                    cy="7"
-                                    r="2"
-                                    stroke="currentColor"
-                                    stroke-width="2"></circle>
-                            </svg>
-                            <span>{t.about.location}</span>
-                        </div>
-                        <div class="meta-item">
-                            <svg
-                                width="20"
-                                height="20"
-                                viewBox="0 0 20 20"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <circle
-                                    cx="10"
-                                    cy="10"
-                                    r="8"
-                                    stroke="currentColor"
-                                    stroke-width="2"></circle>
-                                <path
-                                    d="M10 6V10L13 12"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"></path>
-                            </svg>
-                            <span>{t.about.experience}</span>
-                        </div>
+            <div class="about-wrapper">
+                <!-- Columna Izquierda: Tarjetas -->
+                <div class="about-cards-column scroll-reveal delay-100">
+                    <div class="questions-grid">
+                        {
+                            t.about.questions.map((item: any, idx: number) => (
+                                <div class="question-card">
+                                    <div class="question-number">{idx + 1}</div>
+                                    <h3>{item.question}</h3>
+                                    <p>{item.description}</p>
+                                </div>
+                            ))
+                        }
                     </div>
                 </div>
 
-                <div class="about-description scroll-reveal delay-200">
-                    <p>{t.about.bio}</p>
-                    <p>{t.about.currentWork}</p>
-                    <p>{t.about.skills}</p>
+                <!-- Columna Derecha: Texto e intro -->
+                <div class="about-text-column scroll-reveal delay-200">
+                    <h2>{t.about.title}</h2>
+                    <p class="about-intro">{t.about.intro}</p>
+                    <a href={lang === "es" ? "/services" : "/en/services"} class="btn btn-primary btn-lg">
+                        {t.about.cta}
+                    </a>
+                </div>
+            </div>
+
+            <div class="about-divider scroll-reveal delay-300"></div>
+
+            <div class="about-full-bio scroll-reveal delay-400">
+                <div class="about-grid">
+                    <div class="about-info">
+                        <h3 class="about-name">{t.about.name}</h3>
+                        <p class="about-role">{t.about.role}</p>
+
+                        <div class="about-meta">
+                            <div class="meta-item">
+                                <svg
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 20 20"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M10 2C7 2 5 4 5 7C5 11 10 16 10 16C10 16 15 11 15 7C15 4 13 2 10 2Z"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                    <circle
+                                        cx="10"
+                                        cy="7"
+                                        r="2"
+                                        stroke="currentColor"
+                                        stroke-width="2"></circle>
+                                </svg>
+                                <span>{t.about.location}</span>
+                            </div>
+                            <div class="meta-item">
+                                <svg
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 20 20"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <circle
+                                        cx="10"
+                                        cy="10"
+                                        r="8"
+                                        stroke="currentColor"
+                                        stroke-width="2"></circle>
+                                    <path
+                                        d="M10 6V10L13 12"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"></path>
+                                </svg>
+                                <span>{t.about.experience}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-description">
+                        <p>{t.about.bio}</p>
+                        <p>{t.about.currentWork}</p>
+                        <p>{t.about.skills}</p>
+                        <a href={lang === "es" ? "/about" : "/en/about"} class="read-more">
+                            {lang === "es" ? "Leer mi currículum completo →" : "Read my full resume →"}
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -89,19 +118,181 @@ const t = await getTranslations(lang);
         transform: translateZ(0);
     }
 
-    .about-header {
-        text-align: center;
-        margin-bottom: $spacing-10;
+    .about-wrapper {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: $spacing-10;
+        margin-bottom: $spacing-12;
+
+        @media (min-width: $breakpoint-lg) {
+            grid-template-columns: 1fr 1fr;
+            gap: $spacing-16;
+            align-items: center;
+        }
+    }
+
+    .about-cards-column {
+        order: 2;
+
+        @media (min-width: $breakpoint-lg) {
+            order: 1;
+        }
+    }
+
+    .about-text-column {
+        order: 1;
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-4;
+
+        @media (min-width: $breakpoint-lg) {
+            order: 2;
+            padding-left: $spacing-6;
+            gap: 5rem;
+            justify-content: flex-start;
+        }
 
         h2 {
             font-size: $font-size-4xl;
             font-weight: $font-weight-bold;
             color: var(--color-text-primary);
+            margin-bottom: 0;
 
             @media (min-width: $breakpoint-md) {
                 font-size: $font-size-5xl;
             }
         }
+
+        .btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-top: 0;
+
+            @media (min-width: $breakpoint-lg) {
+                width: 60%;
+                margin-left: 0;
+                margin-top: 0;
+            }
+        }
+    }
+
+    .about-intro {
+        font-size: $font-size-lg;
+        line-height: $line-height-relaxed;
+        color: var(--color-text-secondary);
+        margin-bottom: 0;
+    }
+
+    .questions-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: $spacing-6;
+        position: relative;
+        
+        /* Luz base tranquila detrás */
+        &::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, rgba($color-brand-primary, 0.35), transparent 70%);
+            filter: blur(60px);
+            pointer-events: none;
+            z-index: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: ethereal-float 8s ease-in-out infinite;
+            opacity: 1;
+            transition: opacity 0.3s ease-out;
+            box-shadow: 0 0 120px rgba($color-brand-primary, 0.2);
+        }
+    }
+
+    .question-card {
+        padding: $spacing-6;
+        background-color: var(--color-bg-secondary);
+        border-radius: $radius-lg;
+        position: relative;
+        padding-top: $spacing-12;
+        transition: all $transition-base ease-out;
+        z-index: 1;
+
+        &:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba($color-brand-primary, 0.1);
+            
+            /* Mostrar halo eléctrico en hover */
+            &::after {
+                opacity: 1;
+            }
+        }
+        
+        /* Halo eléctrico que aparece en hover */
+        &::after {
+            content: '';
+            position: absolute;
+            inset: -30px;
+            border-radius: $radius-lg;
+            background: radial-gradient(circle at 30% 30%, rgba($color-brand-primary, 0.5), transparent 60%);
+            filter: blur(40px);
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease-out;
+            animation: none;
+            box-shadow: 0 0 80px rgba($color-brand-primary, 0.25);
+        }
+        
+        &:hover::after {
+            animation: electric-chaos 0.6s ease-in-out infinite;
+            opacity: 1;
+        }
+
+        .question-number {
+            position: absolute;
+            top: -$spacing-4;
+            left: $spacing-6;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, $color-brand-primary, $color-brand-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: $font-size-2xl;
+            font-weight: $font-weight-bold;
+            color: white;
+            box-shadow: 0 4px 12px rgba($color-brand-primary, 0.3);
+        }
+
+        h3 {
+            font-size: $font-size-lg;
+            font-weight: $font-weight-semibold;
+            color: var(--color-text-primary);
+            margin-bottom: $spacing-3;
+        }
+
+        p {
+            font-size: $font-size-base;
+            color: var(--color-text-secondary);
+            line-height: $line-height-normal;
+        }
+    }
+
+    .about-divider {
+        width: 60px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, $color-brand-primary, transparent);
+        margin: $spacing-12 auto;
+    }
+
+    .about-full-bio {
+        padding-top: $spacing-8;
+        border-top: 1px solid var(--color-bg-secondary);
     }
 
     .about-grid {
@@ -162,9 +353,82 @@ const t = await getTranslations(lang);
             color: var(--color-text-secondary);
             margin-bottom: $spacing-5;
 
-            &:last-child {
-                margin-bottom: 0;
+            &:last-of-type {
+                margin-bottom: $spacing-6;
             }
+        }
+
+        .read-more {
+            display: inline-block;
+            color: $color-brand-primary;
+            text-decoration: none;
+            font-weight: $font-weight-semibold;
+            transition: all $transition-base ease-out;
+
+            &:hover {
+                transform: translateX(4px);
+            }
+        }
+    }
+
+    @keyframes ethereal-float {
+        0% {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            filter: blur(50px);
+        }
+        25% {
+            top: 45%;
+            left: 48%;
+            transform: translate(-50%, -50%) scale(1.1);
+            filter: blur(50px);
+        }
+        50% {
+            top: 52%;
+            left: 52%;
+            transform: translate(-50%, -50%) scale(0.95);
+            filter: blur(50px);
+        }
+        75% {
+            top: 48%;
+            left: 49%;
+            transform: translate(-50%, -50%) scale(1.05);
+            filter: blur(50px);
+        }
+        100% {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            filter: blur(50px);
+        }
+    }
+
+    @keyframes electric-chaos {
+        0% {
+            inset: -30px;
+            filter: blur(35px);
+            opacity: 0.8;
+        }
+        25% {
+            inset: -20px -35px -35px -20px;
+            filter: blur(25px);
+            opacity: 1;
+        }
+        50% {
+            inset: -35px -20px -20px -35px;
+            filter: blur(40px);
+            opacity: 0.7;
+        }
+        75% {
+            inset: -25px -30px -28px -25px;
+            filter: blur(30px);
+            opacity: 0.9;
+        }
+        100% {
+            inset: -30px;
+            filter: blur(35px);
+            opacity: 0.8;
         }
     }
 </style>
