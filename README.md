@@ -2,6 +2,8 @@
 
 Professional Astro-based personal brand website for Miguel Ángel Ortega Ibáñez, featuring bilingual support (ES/EN), Apple-inspired design, advanced SEO, and full GDPR compliance.
 
+**[🇪🇸 Versión en Español](./README.es.md)**
+
 ## 📝 Recent Updates (December 2024)
 
 ### Layout & UX Improvements
@@ -272,7 +274,7 @@ Target scores >= 90 for:
 - Best Practices
 - SEO
 
-## � Contact Information
+## 📧 Contact Information
 
 Update contact details in:
 
@@ -281,10 +283,14 @@ Update contact details in:
 - WhatsApp button: `src/components/WhatsAppButton.astro`
 - Legal pages: `src/pages/legal/*`
 
-Current:
-- Email: hola@ortegadev.com
-- Phone: +34 621 329 386
-- Location: Almería, España
+**Current Contact:**
+- 🌐 **Website**: [ortegadev.com](https://ortegadev.com) ([English](https://ortegadev.com/en))
+- 📧 **Email**: hola@ortegadev.com
+- 📍 **Location**: Almería, España
+
+**Languages / Idiomas:**
+- 🇪🇸 Español: [ortegadev.com](https://ortegadev.com)
+- 🇬🇧 English: [ortegadev.com/en](https://ortegadev.com/en)
 
 ## 🛠 Tech Stack
 
