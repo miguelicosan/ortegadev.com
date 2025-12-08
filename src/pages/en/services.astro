@@ -7,38 +7,48 @@ const t = await getTranslations(lang);
 
 const title = `${t.services.title} | ortegadev.com`;
 const description =
-    "Web and app development, AI and automation solutions, technical consulting. Professional development services in Almería.";
+    "Web development, AI, automation, DevOps and scalable backend services. Professional tech solutions for companies.";
 
 const services = [
     {
+        id: "web",
         title: t.services.web.title,
         description: t.services.web.description,
         tech: t.services.web.tech,
         icon: "code",
+        modal: t.services.web.modal,
     },
     {
+        id: "ai",
         title: t.services.ai.title,
         description: t.services.ai.description,
         tech: t.services.ai.tech,
         icon: "brain",
+        modal: t.services.ai.modal,
     },
     {
+        id: "consulting",
         title: t.services.consulting.title,
         description: t.services.consulting.description,
         tech: t.services.consulting.tech,
         icon: "chart",
+        modal: t.services.consulting.modal,
     },
     {
+        id: "devops",
         title: t.services.devops.title,
         description: t.services.devops.description,
         tech: t.services.devops.tech,
         icon: "server",
+        modal: t.services.devops.modal,
     },
     {
+        id: "backend",
         title: t.services.backend.title,
         description: t.services.backend.description,
         tech: t.services.backend.tech,
         icon: "database",
+        modal: t.services.backend.modal,
     },
 ];
 ---
@@ -51,132 +61,148 @@ const services = [
                 <p class="subtitle">{t.services.subtitle}</p>
             </div>
 
-            <div class="services-grid">
+            <div class="services-grid scroll-reveal delay-200">
                 {
-                    services.map((service) => (
-                        <div class="service-card card">
+                    services.slice(0, 3).map((service) => (
+                        <div class="service-card card" data-service={service.id}>
                             <div class="service-icon">
                                 {service.icon === "code" && (
-                                    <svg
-                                        width="48"
-                                        height="48"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M16 18L22 12L16 6M8 6L2 12L8 18"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                        />
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16 18L22 12L16 6M8 6L2 12L8 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                 )}
                                 {service.icon === "brain" && (
-                                    <svg
-                                        width="48"
-                                        height="48"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <circle
-                                            cx="12"
-                                            cy="12"
-                                            r="3"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                        />
-                                        <path
-                                            d="M12 1V4M12 20V23M4.22 4.22L6.34 6.34M17.66 17.66L19.78 19.78M1 12H4M20 12H23M4.22 19.78L6.34 17.66M17.66 6.34L19.78 4.22"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                            stroke-linecap="round"
-                                        />
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
+                                        <path d="M12 1V4M12 20V23M4.22 4.22L6.34 6.34M17.66 17.66L19.78 19.78M1 12H4M20 12H23M4.22 19.78L6.34 17.66M17.66 6.34L19.78 4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                                     </svg>
                                 )}
                                 {service.icon === "chart" && (
-                                    <svg
-                                        width="48"
-                                        height="48"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M3 3V21H21"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                        />
-                                        <path
-                                            d="M18 9L13 14L9 10L3 16"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                        />
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3 3V21H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M18 9L13 14L9 10L3 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                 )}
                                 {service.icon === "server" && (
-                                    <svg
-                                        width="48"
-                                        height="48"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <rect
-                                            x="2"
-                                            y="3"
-                                            width="20"
-                                            height="6"
-                                            rx="1"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                        />
-                                        <rect
-                                            x="2"
-                                            y="12"
-                                            width="20"
-                                            height="6"
-                                            rx="1"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                        />
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="2" y="3" width="20" height="6" rx="1" stroke="currentColor" stroke-width="2" />
+                                        <rect x="2" y="12" width="20" height="6" rx="1" stroke="currentColor" stroke-width="2" />
                                         <circle cx="6" cy="6" r="1" fill="currentColor" />
                                         <circle cx="6" cy="15" r="1" fill="currentColor" />
                                     </svg>
                                 )}
                                 {service.icon === "database" && (
-                                    <svg
-                                        width="48"
-                                        height="48"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <ellipse cx="12" cy="4" rx="8" ry="2" stroke="currentColor" stroke-width="2" />
-                                        <path
-                                            d="M4 4V18C4 19.1 7.6 20 12 20C16.4 20 20 19.1 20 18V4"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                        />
+                                        <path d="M4 4V18C4 19.1 7.6 20 12 20C16.4 20 20 19.1 20 18V4" stroke="currentColor" stroke-width="2" />
                                         <ellipse cx="12" cy="18" rx="8" ry="2" stroke="currentColor" stroke-width="2" />
                                     </svg>
                                 )}
                             </div>
-                            <h3>{service.title}</h3>
-                            <p>{service.description}</p>
-                            <p class="tech-label">
-                                Technologies: <span>{service.tech}</span>
-                            </p>
+                            
+                            <div class="service-content">
+                                <h3>{service.title}</h3>
+                                <p class="description">{service.description}</p>
+                                <p class="tech-label">
+                                    <strong>Technologies:</strong> {service.tech}
+                                </p>
+                                <button class="btn-details" data-service={service.id}>
+                                    View more details
+                                </button>
+                            </div>
                         </div>
                     ))
                 }
             </div>
+
+            <div class="services-grid-bottom scroll-reveal delay-300">
+                {
+                    services.slice(3, 5).map((service) => (
+                        <div class="service-card card" data-service={service.id}>
+                            <div class="service-icon">
+                                {service.icon === "code" && (
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16 18L22 12L16 6M8 6L2 12L8 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                )}
+                                {service.icon === "brain" && (
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
+                                        <path d="M12 1V4M12 20V23M4.22 4.22L6.34 6.34M17.66 17.66L19.78 19.78M1 12H4M20 12H23M4.22 19.78L6.34 17.66M17.66 6.34L19.78 4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                                    </svg>
+                                )}
+                                {service.icon === "chart" && (
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3 3V21H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M18 9L13 14L9 10L3 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                )}
+                                {service.icon === "server" && (
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="2" y="3" width="20" height="6" rx="1" stroke="currentColor" stroke-width="2" />
+                                        <rect x="2" y="12" width="20" height="6" rx="1" stroke="currentColor" stroke-width="2" />
+                                        <circle cx="6" cy="6" r="1" fill="currentColor" />
+                                        <circle cx="6" cy="15" r="1" fill="currentColor" />
+                                    </svg>
+                                )}
+                                {service.icon === "database" && (
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <ellipse cx="12" cy="4" rx="8" ry="2" stroke="currentColor" stroke-width="2" />
+                                        <path d="M4 4V18C4 19.1 7.6 20 12 20C16.4 20 20 19.1 20 18V4" stroke="currentColor" stroke-width="2" />
+                                        <ellipse cx="12" cy="18" rx="8" ry="2" stroke="currentColor" stroke-width="2" />
+                                    </svg>
+                                )}
+                            </div>
+                            
+                            <div class="service-content">
+                                <h3>{service.title}</h3>
+                                <p class="description">{service.description}</p>
+                                <p class="tech-label">
+                                    <strong>Technologies:</strong> {service.tech}
+                                </p>
+                                <button class="btn-details" data-service={service.id}>
+                                    View more details
+                                </button>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+
+            <!-- Modals -->
+            {
+                services.map((service) => (
+                    <div class="service-modal" data-modal={service.id} id={`modal-${service.id}`}>
+                        <div class="modal-backdrop"></div>
+                        <div class="modal-content">
+                            <button class="modal-close" data-close={service.id}>✕</button>
+                            
+                            <div class="modal-header">
+                                <h2>{service.modal.subtitle}</h2>
+                                <p class="modal-intro">{service.modal.intro}</p>
+                            </div>
+
+                            <div class="modal-body">
+                                <h3>What you'll get:</h3>
+                                <ul class="benefits-list">
+                                    {service.modal.benefits.map((benefit: string) => (
+                                        <li>
+                                            <span class="benefit-icon">✓</span>
+                                            {benefit}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            <div class="modal-footer">
+                                <a href="/en/contact" class="btn btn-primary btn-lg">
+                                    {service.modal.cta}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                ))
+            }
 
             <!-- CTA Section -->
             <section class="cta-section">
@@ -201,15 +227,22 @@ const services = [
 
     .services-header {
         text-align: center;
-        margin-bottom: $spacing-10;
+        margin-bottom: $spacing-12;
 
         h1 {
             margin-bottom: $spacing-4;
+            font-size: $font-size-5xl;
+            background: $gradient-hero;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .subtitle {
             font-size: $font-size-xl;
             color: $color-text-secondary;
+            max-width: 600px;
+            margin: 0 auto;
         }
     }
 
@@ -217,6 +250,7 @@ const services = [
         display: grid;
         grid-template-columns: 1fr;
         gap: $spacing-6;
+        margin-bottom: $spacing-6;
 
         @media (min-width: $breakpoint-md) {
             grid-template-columns: repeat(2, 1fr);
@@ -224,11 +258,44 @@ const services = [
 
         @media (min-width: $breakpoint-lg) {
             grid-template-columns: repeat(3, 1fr);
+            justify-items: center;
+            
+            > :nth-child(-n+3) {
+                width: 380px;
+            }
+        }
+    }
+
+    .services-grid-bottom {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: $spacing-6;
+        margin-bottom: $spacing-12;
+
+        @media (min-width: $breakpoint-md) {
+            grid-template-columns: repeat(2, 1fr);
+            justify-items: center;
+        }
+
+        @media (min-width: $breakpoint-lg) {
+            grid-template-columns: repeat(2, 380px);
+            justify-content: center;
+            justify-items: center;
         }
     }
 
     .service-card {
-        text-align: center;
+        position: relative;
+        transition: all $transition-base ease-out;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        &:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba($color-brand-primary, 0.15);
+        }
 
         .service-icon {
             display: flex;
@@ -237,7 +304,7 @@ const services = [
             width: 80px;
             height: 80px;
             margin: 0 auto $spacing-4;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, $color-brand-primary, $color-brand-secondary);
             border-radius: $radius-lg;
             color: white;
 
@@ -247,22 +314,165 @@ const services = [
             }
         }
 
-        h3 {
-            margin-bottom: $spacing-3;
+        .service-content {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+
+            h3 {
+                margin-bottom: $spacing-3;
+                font-size: $font-size-lg;
+            }
+
+            .description {
+                margin-bottom: $spacing-4;
+                line-height: $line-height-relaxed;
+                color: $color-text-secondary;
+                flex: 1;
+            }
+
+            .tech-label {
+                font-size: $font-size-sm;
+                color: $color-text-secondary;
+                margin-bottom: $spacing-4;
+            }
+
+            .btn-details {
+                background: transparent;
+                border: 2px solid $color-brand-primary;
+                color: $color-brand-primary;
+                padding: $spacing-3 $spacing-4;
+                border-radius: $radius-lg;
+                font-weight: $font-weight-medium;
+                cursor: pointer;
+                transition: all $transition-base ease-out;
+                font-size: $font-size-sm;
+                align-self: flex-start;
+
+                &:hover {
+                    background: $color-brand-primary;
+                    color: white;
+                    transform: translateY(-2px);
+                }
+            }
+        }
+    }
+
+    .service-modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        animation: modal-appear 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+        &.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        p {
-            margin-bottom: $spacing-3;
-            line-height: $line-height-relaxed;
+        .modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            cursor: pointer;
         }
 
-        .tech-label {
-            font-size: $font-size-sm;
+        .modal-content {
+            position: relative;
+            background: var(--color-bg-primary);
+            border-radius: $radius-lg;
+            max-width: 700px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: $spacing-8;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+
+            @media (max-width: $breakpoint-md) {
+                padding: $spacing-6;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: $spacing-4;
+            right: $spacing-4;
+            background: transparent;
+            border: none;
+            font-size: $font-size-2xl;
+            cursor: pointer;
             color: $color-text-secondary;
+            transition: all $transition-base ease-out;
 
-            span {
+            &:hover {
+                color: $color-text-primary;
+                transform: rotate(90deg);
+            }
+        }
+
+        .modal-header {
+            margin-bottom: $spacing-8;
+
+            h2 {
+                font-size: $font-size-3xl;
+                margin-bottom: $spacing-3;
+                background: $gradient-hero;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            .modal-intro {
+                font-size: $font-size-lg;
                 color: $color-brand-primary;
                 font-weight: $font-weight-medium;
+                line-height: $line-height-relaxed;
+            }
+        }
+
+        .modal-body {
+            margin-bottom: $spacing-8;
+
+            h3 {
+                margin-bottom: $spacing-4;
+                font-size: $font-size-xl;
+            }
+
+            .benefits-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+
+                li {
+                    display: flex;
+                    gap: $spacing-3;
+                    padding: $spacing-3 0;
+                    border-bottom: 1px solid rgba($color-brand-primary, 0.1);
+                    font-size: $font-size-base;
+                    line-height: $line-height-relaxed;
+                    color: $color-text-secondary;
+
+                    &:last-child {
+                        border-bottom: none;
+                    }
+
+                    .benefit-icon {
+                        flex-shrink: 0;
+                        color: $color-brand-primary;
+                        font-weight: $font-weight-bold;
+                        font-size: $font-size-lg;
+                    }
+                }
+            }
+        }
+
+        .modal-footer {
+            text-align: center;
+
+            .btn {
+                display: inline-block;
             }
         }
     }
@@ -299,16 +509,72 @@ const services = [
                     font-size: $font-size-base;
                 }
             }
+        }
+    }
 
-            .btn {
-                display: inline-block;
-                padding: $spacing-4 $spacing-8;
-                font-size: $font-size-lg;
+    @keyframes modal-appear {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
 
-                @media (max-width: $breakpoint-md) {
-                    width: 100%;
-                }
-            }
+    .service-modal.active .modal-content {
+        animation: modal-content-appear 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes modal-content-appear {
+        from {
+            transform: scale(0.9) translateY(-20px);
+        }
+        to {
+            transform: scale(1) translateY(0);
         }
     }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll('.btn-details');
+        const modals = document.querySelectorAll('.service-modal');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const serviceId = button.getAttribute('data-service');
+                const modal = document.getElementById(`modal-${serviceId}`);
+                if (modal) {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        modals.forEach(modal => {
+            const closeBtn = modal.querySelector('.modal-close');
+            const backdrop = modal.querySelector('.modal-backdrop');
+
+            closeBtn?.addEventListener('click', () => {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+
+            backdrop?.addEventListener('click', () => {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Cerrar con ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                modals.forEach(modal => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
+        });
+    });
+</script>

@@ -6,6 +6,7 @@
 // Prevent flash of unstyled content (FOUC) during theme load
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
     // Ensure theme attributes are applied before page renders
     // This prevents white flash when loading with dark theme preference
     &[data-theme="dark"] {

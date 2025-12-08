@@ -56,36 +56,106 @@
         "ai": "AI & Data"
     },
     "services": {
-        "title": "Services",
-        "subtitle": "Custom tech solutions for your business",
+        "title": "Web & Software Development Services",
+        "subtitle": "Scalable and personalized tech solutions for businesses ready to grow digitally",
         "web": {
             "title": "Web & App Development",
-            "description": "Corporate websites, conversion-focused landing pages, and modern PWAs.",
-            "tech": "React, Astro, Svelte, Supabase"
+            "description": "Modern, responsive applications designed for conversions. From high-performance landing pages to complex PWAs.",
+            "tech": "React, Astro, Svelte, Supabase",
+            "details": "Specialized in frontend and full-stack development with modern frameworks. I build intuitive interfaces with optimized performance. Every project includes SEO, accessibility, and multi-device compatibility.",
+            "modal": {
+                "subtitle": "Web Applications That Convert",
+                "intro": "It's not just about a pretty page. It's about results.",
+                "benefits": [
+                    "Responsive design that works on all devices",
+                    "Performance optimization for better Google ranking",
+                    "Intuitive interfaces that increase conversions",
+                    "PWAs with offline capability and mobile installation",
+                    "Integration with APIs and existing systems",
+                    "Analytics and metrics to make data-driven decisions"
+                ],
+                "cta": "I want a web that sells"
+            }
         },
         "ai": {
-            "title": "AI & Automation",
-            "description": "Document automation, chatbots, text analysis, and process optimization with BPM and RPA.",
-            "tech": "OCR, NLP, Machine Learning, Camunda"
+            "title": "AI & Intelligent Automation",
+            "description": "Automate business processes with AI. Document scanning, intelligent chatbots, data analysis, and machine learning optimization.",
+            "tech": "OCR, NLP, Machine Learning, Camunda",
+            "details": "I use AI to reduce manual work and boost efficiency. Automatic document processing, text analysis, NLP-powered chatbots, and personalized recommendation systems.",
+            "modal": {
+                "subtitle": "AI That Works for You 24/7",
+                "intro": "Reduce operating costs by up to 60% by automating repetitive tasks.",
+                "benefits": [
+                    "Intelligent chatbots solving 80% of inquiries without human intervention",
+                    "Automatic OCR to process documents in seconds",
+                    "Data analysis and trend forecasting for strategic decisions",
+                    "Business process automation (BPM/RPA)",
+                    "Recommendation systems that increase sales",
+                    "Custom machine learning for your industry"
+                ],
+                "cta": "Implement AI in my business"
+            }
         },
         "consulting": {
-            "title": "Technical Consulting",
-            "description": "Scalable architectures, performance auditing, and UX/UI improvement.",
-            "tech": "Cloud, Microservices, Performance"
+            "title": "Technical Consulting & Architecture",
+            "description": "Audit and design scalable architectures. Performance improvement, code refactoring, and infrastructure optimization.",
+            "tech": "Cloud, Microservices, Performance",
+            "details": "Help companies scale technologically. I evaluate current solutions, design cloud-native architectures, implement microservices, and optimize performance to handle millions of users.",
+            "modal": {
+                "subtitle": "Architecture That Grows With You",
+                "intro": "Slow code, expensive infrastructure, collapsing servers. We fix everything.",
+                "benefits": [
+                    "Complete audit of your current tech stack",
+                    "Design of scalable and maintainable architectures",
+                    "Cloud migration with zero downtime",
+                    "Cost optimization (up to 50% less on infrastructure)",
+                    "Performance improvement (2-3x faster)",
+                    "Preparation for exponential growth"
+                ],
+                "cta": "Analyze my architecture"
+            }
         },
         "devops": {
-            "title": "DevOps & Infrastructure",
-            "description": "Containerization, orchestration, CI/CD pipelines and monitoring. Deploy with confidence.",
-            "tech": "Docker, Kubernetes, AWS, Nginx, Jenkins"
+            "title": "DevOps & Cloud Infrastructure",
+            "description": "CI/CD pipelines, Docker/Kubernetes containerization, monitoring and automated deployment. Robust infrastructure on AWS, GCP or Azure.",
+            "tech": "Docker, Kubernetes, AWS, Nginx, Jenkins",
+            "details": "Complete modern infrastructure setup. I automate deployments, configure container orchestration, real-time monitoring, and auto-scaling for high-demand applications.",
+            "modal": {
+                "subtitle": "Deploy with Confidence, Scale Without Limits",
+                "intro": "Forget manual deployments. Automate everything and focus on growing.",
+                "benefits": [
+                    "CI/CD pipelines that deploy in minutes, not hours",
+                    "Docker containerization for total consistency",
+                    "Kubernetes orchestration for high availability",
+                    "24/7 monitoring with automatic alerts",
+                    "Automatic scaling on demand",
+                    "Infrastructure as Code (IaC) reproducible and versioned"
+                ],
+                "cta": "Modernize my infrastructure"
+            }
         },
         "backend": {
-            "title": "Scalable Backend",
-            "description": "REST and GraphQL APIs, databases, microservices, and distributed architectures.",
-            "tech": "Node.js, Python, FastAPI, PostgreSQL, MongoDB"
+            "title": "Scalable Backend & APIs",
+            "description": "REST and GraphQL API development, databases, microservices. Distributed systems ready for millions of users.",
+            "tech": "Node.js, Python, FastAPI, PostgreSQL, MongoDB",
+            "details": "Specialized in robust and scalable backends. I design efficient APIs, implement optimized databases, distributed caching systems, and architecture patterns for maximum performance.",
+            "modal": {
+                "subtitle": "Backend That Handles Millions of Users",
+                "intro": "Fast APIs, optimized databases, zero downtime. That's what we deliver.",
+                "benefits": [
+                    "High-performance REST and GraphQL APIs",
+                    "Optimized databases (SQL and NoSQL)",
+                    "Distributed cache for millisecond responses",
+                    "Enterprise authentication and authorization",
+                    "Third-party integrations (Stripe, SendGrid, etc.)",
+                    "Secure payment and transaction systems"
+                ],
+                "cta": "Build my backend"
+            }
         },
         "cta": {
             "heading": "Ready to take your project to the next level?",
-            "description": "Tell me about your idea or technical challenge. I'll provide personalized solutions tailored to your budget.",
+            "description": "Tell me about your idea or technical challenge. I'll provide personalized solutions tailored to your budget and timeline.",
             "button": "Start Project"
         }
     },

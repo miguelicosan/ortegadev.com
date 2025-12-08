@@ -23,7 +23,7 @@
     },
     "about": {
         "title": "Puedo ayudarte con...",
-        "intro": "Soy un desarrollador full stack apasionado por crear soluciones tecnológicas que transforman negociaos. Con más de 10 años de experiencia, he trabajado en proyectos complejos que requieren expertise en desarrollo, arquitectura y DevOps. Mi objetivo es simple: convertir tus ideas en productos escalables, robustos y rentables.",
+        "intro": "Soy un desarrollador full stack apasionado por crear soluciones tecnológicas que transforman negocios. Con más de 10 años de experiencia, he trabajado en proyectos complejos que requieren experiencia en desarrollo, arquitectura y DevOps. Mi objetivo es simple: convertir tus ideas en productos escalables, robustos y rentables.",
         "questions": [
             {
                 "question": "¿Necesitas una web escalable?",
@@ -56,36 +56,106 @@
         "ai": "IA & Data"
     },
     "services": {
-        "title": "Servicios",
-        "subtitle": "Soluciones tecnológicas a medida para tu negocio",
+        "title": "Servicios de Desarrollo Web & Software",
+        "subtitle": "Soluciones tecnológicas escalables y personalizadas para empresas que quieren crecer digitalmente",
         "web": {
             "title": "Desarrollo Web & Apps",
-            "description": "Páginas web corporativas, landing pages orientadas a conversión y PWAs modernas.",
-            "tech": "React, Astro, Svelte, Supabase"
+            "description": "Creo aplicaciones web modernas, responsive y orientadas a conversión. Desde landing pages de alto rendimiento hasta PWAs complejas.",
+            "tech": "React, Astro, Svelte, Supabase",
+            "details": "Especializado en desarrollo frontend y full-stack con frameworks modernos. Construyo interfaces intuitivas y rendimiento optimizado. Cada proyecto incluye SEO, accesibilidad y compatible con todos los dispositivos.",
+            "modal": {
+                "subtitle": "Aplicaciones Web que Convierten",
+                "intro": "No se trata solo de una página bonita. Se trata de resultados.",
+                "benefits": [
+                    "Diseño responsive que funciona en todos los dispositivos",
+                    "Optimización de rendimiento para mejor ranking en Google",
+                    "Interfaces intuitivas que aumentan conversiones",
+                    "PWAs con capacidad offline y instalación en móvil",
+                    "Integración con APIs y sistemas existentes",
+                    "Análisis y métricas para tomar decisiones basadas en datos"
+                ],
+                "cta": "Quiero una web que venda"
+            }
         },
         "ai": {
-            "title": "IA & Automatización",
-            "description": "Automatización documental, chatbots, análisis de texto y optimización de procesos con BPM y RPA.",
-            "tech": "OCR, NLP, Machine Learning, Camunda"
+            "title": "IA & Automatización Inteligente",
+            "description": "Automatizo procesos empresariales con IA. OCR, chatbots inteligentes, análisis de datos y optimización con machine learning.",
+            "tech": "OCR, NLP, Machine Learning, Camunda",
+            "details": "Utilizo IA para reducir manual work y aumentar eficiencia. Procesos de documentación automática, análisis de texto, chatbots con NLP y sistemas de recomendación personalizados.",
+            "modal": {
+                "subtitle": "IA que Trabaja para Ti 24/7",
+                "intro": "Reduce costos operativos hasta un 60% automatizando tareas repetitivas.",
+                "benefits": [
+                    "Chatbots inteligentes que resuelven el 80% de consultas sin intervención humana",
+                    "OCR automático para procesar documentos en segundos",
+                    "Análisis de datos y tendencias para decisiones estratégicas",
+                    "Automatización de procesos empresariales (BPM/RPA)",
+                    "Sistemas de recomendación que aumentan ventas",
+                    "Machine Learning personalizado para tu industria"
+                ],
+                "cta": "Implementar IA en mi negocio"
+            }
         },
         "consulting": {
-            "title": "Consultoría Técnica",
-            "description": "Arquitecturas escalables, auditoría de rendimiento y mejora de UX/UI.",
-            "tech": "Cloud, Microservicios, Performance"
+            "title": "Consultoría Técnica & Arquitectura",
+            "description": "Auditoría y diseño de arquitecturas escalables. Mejora de rendimiento, refactoring de código y optimización de infraestructura.",
+            "tech": "Cloud, Microservicios, Performance",
+            "details": "Ayudo a empresas a escalar tecnológicamente. Evalúo soluciones actuales, diseño arquitecturas cloud-native, implemento microservicios y optimizo performance para manejar millones de usuarios.",
+            "modal": {
+                "subtitle": "Arquitectura que Crece Contigo",
+                "intro": "Tu código lento, tu infraestructura cara, tus servidores colapsando. Solucionamos todo.",
+                "benefits": [
+                    "Auditoría completa de tu stack tecnológico actual",
+                    "Diseño de arquitecturas escalables y mantenibles",
+                    "Migración a cloud sin downtime",
+                    "Optimización de costos (hasta 50% menos en infraestructura)",
+                    "Mejora de performance (2-3x más rápido)",
+                    "Preparación para crecimiento exponencial"
+                ],
+                "cta": "Analizar mi arquitectura"
+            }
         },
         "devops": {
-            "title": "DevOps & Infraestructura",
-            "description": "Containerización, orquestación, CI/CD pipelines y monitoreo. Despliega con confianza.",
-            "tech": "Docker, Kubernetes, AWS, Nginx, Jenkins"
+            "title": "DevOps & Infraestructura Cloud",
+            "description": "Pipelines CI/CD, containerización con Docker/Kubernetes, monitoreo y deployment automatizado. Infraestructura robusta en AWS, GCP o Azure.",
+            "tech": "Docker, Kubernetes, AWS, Nginx, Jenkins",
+            "details": "Configuración completa de infraestructura moderna. Automatizo deploys, configuro orquestación de contenedores, monitoreo en tiempo real y escalado automático para aplicaciones de alta demanda.",
+            "modal": {
+                "subtitle": "Deploy con Confianza, Escala sin Límites",
+                "intro": "Olvídate de los despliegues manuales. Automatiza todo y enfócate en crecer.",
+                "benefits": [
+                    "CI/CD pipelines que despliegan en minutos, no horas",
+                    "Containerización con Docker para consistencia total",
+                    "Orquestación con Kubernetes para alta disponibilidad",
+                    "Monitoreo 24/7 con alertas automáticas",
+                    "Escalado automático bajo demanda",
+                    "Infraestructura como código (IaC) reproducible y versionada"
+                ],
+                "cta": "Modernizar mi infraestructura"
+            }
         },
         "backend": {
-            "title": "Backend Escalable",
-            "description": "APIs REST y GraphQL, bases de datos, microservicios y arquitecturas distribuidas.",
-            "tech": "Node.js, Python, FastAPI, PostgreSQL, MongoDB"
+            "title": "Backend Escalable & APIs",
+            "description": "Desarrollo de APIs REST y GraphQL, bases de datos, microservicios. Sistemas distribuidos preparados para millones de usuarios.",
+            "tech": "Node.js, Python, FastAPI, PostgreSQL, MongoDB",
+            "details": "Especializado en backend robusto y escalable. Diseño APIs eficientes, implemento bases de datos optimizadas, sistemas de caché distribuido y patrones de arquitectura para máximo rendimiento.",
+            "modal": {
+                "subtitle": "Backend que Aguanta Millones de Usuarios",
+                "intro": "APIs rápidas, bases de datos optimizadas, cero downtime. Eso es lo que entregamos.",
+                "benefits": [
+                    "APIs REST y GraphQL de alto rendimiento",
+                    "Bases de datos optimizadas (SQL y NoSQL)",
+                    "Caché distribuido para respuestas en milisegundos",
+                    "Autenticación y autorización empresarial",
+                    "Integración con terceros (Stripe, SendGrid, etc.)",
+                    "Sistemas de pago y transacciones seguras"
+                ],
+                "cta": "Construir mi backend"
+            }
         },
         "cta": {
             "heading": "¿Listo para llevar tu proyecto al siguiente nivel?",
-            "description": "Cuéntame sobre tu idea o desafío técnico. Ofreceré soluciones personalizadas ajustadas a tu presupuesto.",
+            "description": "Cuéntame sobre tu idea o desafío técnico. Ofreceré soluciones personalizadas ajustadas a tu presupuesto y timeline.",
             "button": "Iniciar Proyecto"
         }
     },
