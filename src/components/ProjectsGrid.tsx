@@ -12,6 +12,7 @@ interface Project {
   year: number;
   status: string;
   content?: string;
+  detailPage?: string;
 }
 
 interface ProjectsGridProps {
@@ -19,11 +20,12 @@ interface ProjectsGridProps {
 }
 
 export default function ProjectsGrid({ projects }: ProjectsGridProps) {
-  const [expandedId, setExpandedId] = useState<string | null>(null);
-  const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [hoveredId, setHoveredId] = React.useState<string | null>(null);
 
-  const handleCardClick = (id: string) => {
-    setExpandedId(expandedId === id ? null : id);
+  const handleCardClick = (detailPage?: string) => {
+    if (detailPage) {
+      window.location.href = detailPage;
+    }
   };
 
   return (
@@ -35,7 +37,8 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
             className={`project-card ${hoveredId === project.id ? 'hovered' : ''}`}
             onMouseEnter={() => setHoveredId(project.id)}
             onMouseLeave={() => setHoveredId(null)}
-            onClick={() => handleCardClick(project.id)}
+            onClick={() => handleCardClick(project.detailPage)}
+            style={{ cursor: project.detailPage ? 'pointer' : 'default' }}
           >
             {/* Card Front */}
             <div className="card-front">
@@ -47,7 +50,7 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
                 />
                 <div className="card-overlay">
                   <span className="view-more">
-                    {expandedId === project.id ? '✕ Cerrar' : '+ Ver Detalle'}
+                    {project.detailPage ? '+ Ver Detalle' : ''}
                   </span>
                 </div>
               </div>
@@ -102,85 +105,6 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
           </div>
         ))}
       </div>
-
-      {/* Expanded Modal */}
-      {expandedId && (
-        <div
-          className="project-modal-overlay"
-          onClick={() => setExpandedId(null)}
-        >
-          <div
-            className="project-modal"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className="modal-close"
-              onClick={() => setExpandedId(null)}
-            >
-              ✕
-            </button>
-
-            {projects
-              .filter((p) => p.id === expandedId)
-              .map((project) => (
-                <div key={project.id} className="modal-content">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="modal-image"
-                  />
-
-                  <div className="modal-details">
-                    <div className="modal-header">
-                      <h2>{project.title}</h2>
-                      <p className="modal-description">{project.description}</p>
-                    </div>
-
-                    <div className="modal-body">
-                      {project.content && (
-                        <div
-                          className="modal-text"
-                          dangerouslySetInnerHTML={{ __html: project.content }}
-                        />
-                      )}
-                    </div>
-
-                    <div className="modal-tags">
-                      {project.tags.map((tag) => (
-                        <span key={tag} className="tag large">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    <div className="modal-actions">
-                      {project.url && (
-                        <a
-                          href={project.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="btn btn-primary"
-                        >
-                          Visitar Proyecto
-                        </a>
-                      )}
-                      {project.github && (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="btn btn-secondary"
-                        >
-                          Ver Código
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))}
-          </div>
-        </div>
-      )}
     </>
   );
 }

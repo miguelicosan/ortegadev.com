@@ -1,0 +1,69 @@
+---
+import ProjectLayout from "../../../layouts/ProjectLayout.astro";
+
+const lang = "en";
+
+const title = "Secret Santa Raffle - Online Drawing | ortegadev.com";
+const description =
+  "Responsive web application for Secret Santa raffles. Intuitive interface, mobile-first and no registration required.";
+
+const projectData = {
+  title: "Secret Santa Online",
+  subtitle: "The easiest way to organize your holiday raffle",
+  status: "development" as const,
+  date: "2025",
+  role: "Full Stack Developer",
+  type: "personal" as const,
+  liveUrl: "https://amigoinvisible.online",
+  repoUrl: "https://github.com/miguelicosan/amigo-invisible",
+  stack: ["Astro", "React", "TypeScript", "Tailwind"],
+  description:
+    "A modern web application designed to simplify organizing the traditional Secret Santa raffle. Forget about paper slips and repeated drawings; this tool manages participants, restrictions, and notifications automatically and securely. Ideal for groups of friends, families, or companies looking for a smooth and frictionless user experience.",
+  highlights: [
+    "Automatic raffle without repetitions",
+    "Restriction management between participants",
+    "Personalized email notifications",
+    "100% responsive and accessible design",
+  ],
+  staticMobileImage: true,
+  features: [
+    {
+      title: "Smart Raffle",
+      description:
+        "Algorithm that guarantees no one gifts themselves and respects defined exclusions.",
+      icon: "🎲",
+    },
+    {
+      title: "Total Privacy",
+      description:
+        "Data is processed locally or ephemerally. We don't store unnecessary email lists.",
+      icon: "🔒",
+    },
+    {
+      title: "User Experience",
+      description:
+        "Clean and intuitive interface, guiding the user step by step without complications.",
+      icon: "✨",
+    },
+  ],
+  images: {
+    hero: "/images/projects/amigo-invisible/cabecera-mockup-amigo-invisible.png",
+    mobile:
+      "/images/projects/amigo-invisible/sorteo-amigo-invisible-vista-mobile.png",
+    gallery: [
+      {
+        src: "/images/projects/amigo-invisible/sorteo-amigo-invisible-vista-tablet.png",
+        alt: "User interface on Tablet - Raffle View",
+        caption: "Control panel adapted for tablet devices",
+      },
+    ],
+  },
+};
+---
+
+<ProjectLayout
+  title={title}
+  description={description}
+  lang={lang}
+  project={projectData}
+/>

@@ -6,6 +6,17 @@ Professional Astro-based personal brand website for Miguel Ángel Ortega Ibáñe
 
 ## 📝 Recent Updates (December 2024)
 
+### Project Pages & Design System Consolidation
+- **Project Detail Pages**: Created 6 dedicated project pages (3 ES + 3 EN) with ProjectLayout template
+- **Design System**: Consolidated button styling to global CSS classes (.btn, .btn-primary, .btn-secondary)
+- **Amigo Invisible Template**: Established as standard template for future project pages with:
+  - Hero section with animated background
+  - Tech stack visualization
+  - Feature highlights with animated icons
+  - Project gallery
+  - Metrics and CTA section
+  - Related projects carousel
+
 ### Layout & UX Improvements
 - **About Section Redesign**: 2-column desktop layout (cards left, content right) with vertical mobile stacking
 - **"Puedo ayudarte con..." Section**: New cards-based section highlighting 3 key service areas with numbered circles and hover effects

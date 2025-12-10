@@ -1,0 +1,1460 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import { type Language } from "../i18n/config";
+
+interface Props {
+    title: string;
+    description: string;
+    lang?: Language;
+    project: {
+        title: string;
+        subtitle: string;
+        status: "development" | "production";
+        date: string;
+        role: string;
+        type: "personal" | "professional";
+        liveUrl?: string;
+        repoUrl?: string;
+        stack: string[];
+        description: string;
+        highlights: string[];
+        staticMobileImage?: boolean;
+        features: {
+            title: string;
+            description: string;
+            icon: string;
+        }[];
+        metrics?: {
+            label: string;
+            value: string;
+            icon: string;
+        }[];
+        images: {
+            hero: string; // Desktop + Tablet mockup
+            mobile: string; // Mobile mockup
+            gallery: {
+                src: string;
+                alt: string;
+                caption?: string;
+            }[];
+        };
+    };
+}
+
+const { title, description, lang, project } = Astro.props;
+
+// Generate breadcrumb schema
+const currentPath = Astro.url.pathname;
+const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": lang === 'es' ? "Inicio" : "Home",
+            "item": `${Astro.site}${lang === 'en' ? '/en' : ''}`
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": lang === 'es' ? "Proyectos" : "Projects",
+            "item": `${Astro.site}${currentPath.split('/').slice(0, -1).join('/') || (lang === 'en' ? '/en/projects' : '/projects')}`
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": project.title,
+            "item": `${Astro.site}${currentPath}`
+        }
+    ]
+};
+
+// Generate software application schema
+const appSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": project.title,
+    "description": description,
+    "url": project.liveUrl || `${Astro.site}${currentPath}`,
+    "applicationCategory": "WebApplication",
+    "author": {
+        "@type": "Person",
+        "name": "Miguel Ángel Ortega Ibáñez",
+        "url": "https://ortegadev.com"
+    },
+    "image": `${Astro.site}${project.images.hero}`,
+    "operatingSystem": "Web",
+    "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+    },
+    "datePublished": new Date().toISOString().split('T')[0],
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "bestRating": "5",
+        "worstRating": "1",
+        "ratingCount": "1"
+    }
+};
+
+---
+
+<BaseLayout
+    title={title}
+    description={description}
+    lang={lang}
+    image={project.images.hero}
+>
+    <article class="project-showcase">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-header">
+                    <div class="meta-badge-container">
+                        <span class={`status-badge ${project.status}`}
+                            >{
+                                project.status === "production"
+                                    ? (lang === 'es' ? "En Producción" : "In Production")
+                                    : (lang === 'es' ? "En Desarrollo" : "In Development")
+                            }</span
+                        >
+                        <span class="date-badge">{project.date}</span>
+                    </div>
+                    <h1>{project.title}</h1>
+                    <p class="subtitle">{project.subtitle}</p>
+                </div>
+
+                <div class="hero-image-container">
+                    <img
+                        src={project.images.hero}
+                        alt={`${project.title} Desktop & Tablet Mockup`}
+                        class="hero-mockup"
+                        loading="eager"
+                    />
+                </div>
+
+                <div class="project-quick-stats">
+                    <div class="stat-item">
+                        <span class="label">{lang === 'es' ? 'Rol' : 'Role'}</span>
+                        <span class="value">{project.role}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="label">{lang === 'es' ? 'Tipo' : 'Type'}</span>
+                        <span class="value"
+                            >{
+                                project.type === "personal"
+                                    ? (lang === 'es' ? "Personal" : "Personal")
+                                    : (lang === 'es' ? "Profesional" : "Professional")
+                            }</span
+                        >
+                    </div>
+                    <div class="stat-item">
+                        <span class="label">Stack</span>
+                        <div class="stack-list" data-stack-container>
+                            {project.stack.slice(0, 3).map((tech) => (
+                                <span class="tech-tag">{tech}</span>
+                            ))}
+                            {project.stack.length > 3 && (
+                                <button 
+                                    class="tech-tag more-tag" 
+                                    data-expand-stack 
+                                    aria-label="Expand stack"
+                                    data-stack-index={project.stack.length > 3 ? 'true' : 'false'}
+                                >
+                                    +{project.stack.length - 3}
+                                </button>
+                            )}
+                            {project.stack.length > 3 && (
+                                <div class="stack-expanded" data-stack-expanded role="tooltip" aria-hidden="true">
+                                    {project.stack.map((tech) => (
+                                        <span class="tech-tag">{tech}</span>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Description & Mobile Showcase -->
+        <section class="details-section">
+            <div class="container">
+                <div class="details-grid">
+                    <div class="mobile-showcase">
+                        <div class="mobile-frame">
+                            <img
+                                src={project.images.mobile}
+                                alt={`${project.title} Mobile View`}
+                                class={project.staticMobileImage ? "mockup-static" : ""}
+                            />
+                        </div>
+                    </div>
+
+                    <div class="content-col">
+                        <h2>{lang === 'es' ? 'Sobre el Proyecto' : 'About the Project'}</h2>
+                        <p class="main-description">{project.description}</p>
+
+                        <div class="features-list">
+                            <h3>{lang === 'es' ? 'Funcionalidades Clave' : 'Key Features'}</h3>
+                            <ul>
+                                {
+                                    project.highlights.map((item) => (
+                                        <li>
+                                            <span class="check-icon">✓</span>
+                                            {item}
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
+
+                        <div class="compliance-box">
+                            <h3>{lang === 'es' ? '🛡️ Privacidad y Seguridad' : '🛡️ Privacy & Security'}</h3>
+                            <p>{lang === 'es' ? 'Este proyecto cumple con:' : 'This project complies with:'}</p>
+                            <div class="badges">
+                                <span class="badge">GDPR Compliant</span>
+                                <span class="badge">SSL Secure</span>
+                                <span class="badge">{lang === 'es' ? 'Datos Encriptados' : 'Data Encrypted'}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery & Custom Web Section (2 Columns) -->
+        <section class="gallery-split-section">
+            <div class="container">
+                <div class="split-grid">
+                    <div class="info-col">
+                        <h2>{lang === 'es' ? 'Aplicaciones a Medida' : 'Custom Applications'}</h2>
+                        <div class="custom-web-benefits">
+                            <p class="lead">
+                                {lang === 'es' ? 'Soluciones fullstack que crecen con tu negocio. Desde MVP hasta escala empresarial.' : 'Fullstack solutions that grow with your business. From MVP to enterprise scale.'}
+                            </p>
+                            <ul class="benefits-list">
+                                <li>
+                                    <span class="icon">🚀</span>
+                                    <div>
+                                        <strong>{lang === 'es' ? 'Rendimiento Extremo' : 'Extreme Performance'}</strong>
+                                        <p>
+                                            {lang === 'es' ? 'Vite 5 + React 18 + TypeScript. Lighthouse 95+. Sub-100ms en cargas. Core Web Vitals perfectos.' : 'Vite 5 + React 18 + TypeScript. Lighthouse 95+. Sub-100ms load times. Perfect Core Web Vitals.'}
+                                        </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="icon">📱</span>
+                                    <div>
+                                        <strong>{lang === 'es' ? 'Multiplataforma Nativo' : 'Native Multiplatform'}</strong>
+                                        <p>
+                                            {lang === 'es' ? 'Capacitor.js genera apps reales para iOS y Android directamente desde React. Cero código duplicado.' : 'Capacitor.js generates real apps for iOS and Android directly from React. Zero code duplication.'}
+                                        </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="icon">🔒</span>
+                                    <div>
+                                        <strong>{lang === 'es' ? 'Backend Empresarial' : 'Enterprise Backend'}</strong>
+                                        <p>
+                                            {lang === 'es' ? 'Supabase + PostgreSQL + RLS + OAuth. Seguridad a nivel enterprise sin complejidad.' : 'Supabase + PostgreSQL + RLS + OAuth. Enterprise-level security without complexity.'}
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="gallery-col">
+                        <div class="tablet-mockup-frame">
+                            <div class="gallery-scroll-container">
+                                {
+                                    project.images.gallery.map((img) => (
+                                        <figure class="gallery-slide">
+                                            <img
+                                                src={img.src}
+                                                alt={img.alt}
+                                                loading="lazy"
+                                            />
+                                            {img.caption && <figcaption>{img.caption}</figcaption>}
+                                        </figure>
+                                    ))
+                                }
+                            </div>
+                        </div>
+
+                        <!-- Project Buttons Moved Here -->
+                        <div class="project-links-gallery">
+                            {
+                                project.liveUrl && (
+                                    <a
+                                        href={project.liveUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="btn btn-primary"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="20"
+                                            height="20"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        >
+                                            <>
+                                                <circle
+                                                    cx="12"
+                                                    cy="12"
+                                                    r="10"
+                                                />
+                                                <line
+                                                    x1="2"
+                                                    y1="12"
+                                                    x2="22"
+                                                    y2="12"
+                                                />
+                                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                                            </>
+                                        </svg>
+                                        {lang === 'es' ? 'Visitar proyecto' : 'Visit Project'}
+                                    </a>
+                                )
+                            }
+                            {
+                                project.repoUrl && (
+                                    <a
+                                        href={project.repoUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="btn btn-outline"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="20"
+                                            height="20"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        >
+                                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C3.62.65 2.47 1 2.47 1a5.07 5.07 0 0 0-.08 3.77A5.44 5.44 0 0 0 2 12.27c0 5.51 3.33 6.73 6.44 7.08A3.37 3.37 0 0 0 9 18.13V22" />
+                                        </svg>
+                                        {lang === 'es' ? 'Repositorio github' : 'GitHub Repository'}
+                                    </a>
+                                )
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced CTA & Links -->
+        <section class="action-section">
+            <div class="container">
+                <div class="cta-card">
+                    <h2>{lang === 'es' ? '¿Listo para empezar tu proyecto?' : 'Ready to Start Your Project?'}</h2>
+                    <p class="cta-subtitle">
+                        {lang === 'es' ? 'Llevemos tu idea al siguiente nivel con un desarrollo profesional.' : 'Let\'s take your idea to the next level with professional development.'}
+                    </p>
+
+                    <div class="direct-contact">
+                        <div class="contact-methods">
+                            <a href={lang === 'es' ? '/contact' : '/en/contact'} class="btn btn-primary">
+                                <span class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                </span>
+                                {lang === 'es' ? 'Hablemos' : 'Let\'s Talk'}
+                            </a>
+                            <a
+                                href="https://wa.me/34621329386"
+                                target="_blank"
+                                class="btn btn-secondary"
+                            >
+                                <span class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                                </span> WhatsApp
+                            </a>
+                            <a
+                                href="mailto:hola@ortegadev.com"
+                                class="btn btn-secondary"
+                            >
+                                <span class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                                </span> hola@ortegadev.com
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </article>
+
+    <!-- JSON-LD Schema for BreadcrumbList -->
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    
+    <!-- JSON-LD Schema for SoftwareApplication -->
+    <script type="application/ld+json" set:html={JSON.stringify(appSchema)} />
+
+    <script>
+        // Stack expand/collapse handler with click functionality
+        if (typeof window !== 'undefined') {
+            document.addEventListener('DOMContentLoaded', () => {
+                const expandButtons = document.querySelectorAll('[data-expand-stack]');
+                const expandedStacks = document.querySelectorAll('[data-stack-expanded]');
+
+                const closeAllStacks = () => {
+                    expandedStacks.forEach(stack => {
+                        stack.classList.remove('active');
+                    });
+                    expandButtons.forEach(button => {
+                        button.classList.remove('active');
+                    });
+                };
+
+                const positionStack = (button, stack) => {
+                    const rect = button.getBoundingClientRect();
+                    // Get stack dimensions while it's visible but scaled to 0
+                    const stackWidth = stack.offsetWidth;
+                    const stackHeight = stack.offsetHeight;
+                    
+                    // Position so bottom-right corner of stack aligns with bottom-right of button
+                    const top = rect.bottom - stackHeight;
+                    const left = rect.right - stackWidth;
+                    
+                    stack.style.top = Math.max(10, top) + 'px';
+                    stack.style.left = Math.max(10, left) + 'px';
+                };
+
+                expandButtons.forEach((button, index) => {
+                    const stack = expandedStacks[index];
+                    if (!stack) return;
+
+                    // Click handler for button
+                    button.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const isActive = stack.classList.contains('active');
+                        
+                        // Close all other stacks
+                        closeAllStacks();
+                        
+                        // Toggle current stack
+                        if (!isActive) {
+                            stack.classList.add('active');
+                            button.classList.add('active');
+                            // Position after being visible
+                            requestAnimationFrame(() => {
+                                positionStack(button, stack);
+                            });
+                        }
+                    });
+
+                    // Click handler for stack panel (prevent closing when clicking inside)
+                    stack.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                    });
+                });
+
+                // Close all stacks when clicking outside
+                document.addEventListener('click', () => {
+                    closeAllStacks();
+                });
+
+                // Close stacks on scroll (mouse wheel or touch)
+                document.addEventListener('wheel', () => {
+                    closeAllStacks();
+                }, { passive: true });
+
+                document.addEventListener('touchmove', () => {
+                    closeAllStacks();
+                }, { passive: true });
+
+                // Reposition on window resize
+                window.addEventListener('resize', () => {
+                    expandedStacks.forEach((stack, index) => {
+                        if (stack.classList.contains('active')) {
+                            const button = expandButtons[index];
+                            if (button) {
+                                requestAnimationFrame(() => {
+                                    positionStack(button, stack);
+                                });
+                            }
+                        }
+                    });
+                });
+            });
+        }
+    </script>
+</BaseLayout>
+
+<style lang="scss">
+    @import "../styles/tokens.scss";
+
+    .project-showcase {
+        --hero-bg: radial-gradient(
+            circle at center,
+            rgba($color-brand-primary, 0.1) 0%,
+            transparent 70%
+        );
+    }
+
+    .hero-section {
+        padding: $spacing-12 0 $spacing-8;
+        background: var(--hero-bg);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+
+        .hero-header {
+            margin-bottom: $spacing-8;
+
+            h1 {
+                font-size: $font-size-5xl;
+                margin: $spacing-4 0 $spacing-2;
+
+                @media (max-width: $breakpoint-md) {
+                    font-size: $font-size-3xl;
+                }
+            }
+
+            .subtitle {
+                font-size: $font-size-xl;
+                color: var(--color-text-secondary);
+                font-weight: $font-weight-light;
+            }
+        }
+
+        .meta-badge-container {
+            display: flex;
+            gap: $spacing-3;
+            justify-content: center;
+            align-items: center;
+            font-size: $font-size-sm;
+            font-weight: $font-weight-semibold;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+
+            .status-badge {
+                padding: $spacing-1 $spacing-3;
+                border-radius: $radius-full;
+
+                &.production {
+                    background: rgba($color-success, 0.1);
+                    color: $color-success;
+                    border: 1px solid rgba($color-success, 0.2);
+                }
+                &.development {
+                    background: rgba($color-warning, 0.1);
+                    color: $color-warning;
+                    border: 1px solid rgba($color-warning, 0.2);
+                }
+            }
+
+            .date-badge {
+                color: var(--color-text-secondary);
+            }
+        }
+
+        .hero-image-container {
+            margin: $spacing-8 auto;
+            max-width: 1000px;
+            position: relative;
+            z-index: 10;
+
+            /* Animated Organic Background */
+            &::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 120%;
+                height: 120%;
+                background: radial-gradient(circle, rgba($color-brand-primary, 0.4) 0%, rgba($color-brand-secondary, 0.2) 40%, transparent 70%);
+                filter: blur(60px);
+                z-index: -1;
+                animation: organic-wave-bg 8s ease-in-out infinite;
+                pointer-events: none;
+            }
+
+            img {
+                width: 100%;
+                height: auto;
+                border-radius: $radius-xl;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+                transform: perspective(1000px) rotateX(2deg);
+                transition: transform 0.5s ease;
+
+                &:hover {
+                    transform: perspective(1000px) rotateX(0deg) scale(1.02);
+                }
+            }
+        }
+
+        .project-quick-stats {
+            display: flex;
+            justify-content: space-between;
+            gap: $spacing-8;
+            margin-top: $spacing-8;
+            padding-top: $spacing-8;
+            border-top: 1px solid var(--color-header-border);
+
+            .stat-item {
+                text-align: left;
+
+                .label {
+                    display: block;
+                    font-size: $font-size-xs;
+                    text-transform: uppercase;
+                    color: var(--color-text-secondary);
+                    margin-bottom: $spacing-1;
+                }
+
+                .value {
+                    font-size: $font-size-lg;
+                    font-weight: $font-weight-semibold;
+                }
+
+                &:nth-child(1) {
+                    flex: 1 1 auto;
+                }
+
+                &:nth-child(2) {
+                    flex: 0 1 auto;
+                    min-width: 100px;
+                }
+
+                &:nth-child(3) {
+                    flex: 1 1 auto;
+                }
+
+                .stack-list {
+                    display: flex;
+                    gap: $spacing-2;
+                    flex-wrap: wrap;
+                    align-content: flex-start;
+                    position: relative;
+
+                    .tech-tag {
+                        background: var(--color-bg-secondary);
+                        padding: 2px 8px;
+                        border-radius: $radius-sm;
+                        font-size: $font-size-xs;
+                        cursor: default;
+                        border: none;
+                        font-family: inherit;
+                        color: inherit;
+
+                        &.more-tag {
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                            position: relative;
+                            animation: tech-pulse-blink 6s ease-in-out infinite;
+                            border: 1px solid var(--color-header-border);
+
+                            &:hover {
+                                background: var(--color-bg-secondary);
+                            }
+
+                            &.active {
+                                animation: none;
+                            }
+                        }
+                    }
+
+                    .stack-expanded {
+                        position: fixed;
+                        bottom: auto;
+                        right: auto;
+                        top: auto;
+                        left: auto;
+                        background: var(--color-bg-secondary);
+                        border: 1px solid var(--color-header-border);
+                        border-radius: $radius-sm;
+                        padding: $spacing-3;
+                        gap: $spacing-3;
+                        flex-wrap: wrap;
+                        z-index: 50;
+                        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+                        flex-direction: row;
+                        align-items: flex-start;
+                        align-content: flex-start;
+                        width: max-content;
+                        min-width: 200px;
+                        max-width: 90vw;
+                        opacity: 0;
+                        visibility: hidden;
+                        transform: scale(0) translateX(20px);
+                        transform-origin: bottom right;
+                        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+                        pointer-events: none;
+
+                        .tech-tag {
+                            animation: tech-item-fade-in 0.2s ease-out backwards;
+                            border: 1px solid var(--color-header-border);
+                            padding: 4px 12px;
+                            margin: 5px;
+                        }
+
+                        @for $i from 1 through 20 {
+                            .tech-tag:nth-child(#{$i}) {
+                                animation-delay: calc(0.05s * #{$i});
+                            }
+                        }
+
+                        &.active {
+                            opacity: 1;
+                            visibility: visible;
+                            transform: scale(1) translateX(0);
+                            pointer-events: auto;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .details-section {
+        padding: 3rem 0; /* Reduced spacing */
+        background: var(--color-bg-secondary);
+
+        .details-grid {
+            display: flex; /* Changed from grid to flex for better ordering control */
+            flex-direction: row;
+            gap: $spacing-12;
+            align-items: center;
+
+            @media (max-width: $breakpoint-md) {
+                flex-direction: column-reverse; /* Content on top, Image on bottom */
+                gap: $spacing-8;
+            }
+        }
+
+        .mobile-showcase {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+
+            .mobile-frame {
+                width: 300px;
+                border-radius: 40px;
+                border: 8px solid #333;
+                overflow: hidden;
+                /* Updated Shadow */
+                box-shadow:
+                    0 20px 40px rgba(0, 0, 0, 0.3),
+                    /* Deep shadow */ 0 50px 100px -20px
+                        rgba($color-brand-primary, 0.4); /* Colored projection */
+                background: #000;
+                position: relative; /* Ensure we can position the camera */
+                transform: translateY(0);
+
+                /* Notch/Camera for Mobile */
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 15px; /* Adjust spacing from top */
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 80px; /* Width of the dynamic island/notch */
+                    height: 20px;
+                    background: #1a1a1a;
+                    border-radius: 12px;
+                    z-index: 20;
+                    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.8);
+                }
+
+                &::after {
+                    /* Lens reflection */
+                    content: "";
+                    position: absolute;
+                    top: 20px;
+                    left: calc(50% + 25px); /* Offset slightly from center */
+                    width: 8px;
+                    height: 8px;
+                    background: #2a2a2a;
+                    border-radius: 50%;
+                    z-index: 21;
+                    box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.1);
+                }
+
+                img {
+                    width: 100%;
+                    display: block;
+                }
+            }
+        }
+
+        .content-col {
+            flex: 1;
+            /* ... rest of content-col ... */
+
+            h2 {
+                font-size: $font-size-3xl;
+                margin-bottom: $spacing-4;
+            }
+
+            .main-description {
+                font-size: $font-size-lg;
+                line-height: $line-height-relaxed;
+                color: var(--color-text-secondary);
+                margin-bottom: $spacing-8;
+            }
+
+            .features-list {
+                h3 {
+                    font-size: $font-size-xl;
+                    margin-bottom: $spacing-4;
+                }
+
+                ul {
+                    list-style: none;
+                    padding: 0;
+                    display: grid;
+                    gap: $spacing-3;
+
+                    li {
+                        display: flex;
+                        align-items: flex-start;
+                        gap: $spacing-3;
+
+                        .check-icon {
+                            color: $color-success;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+
+            .compliance-box {
+                margin-top: $spacing-8;
+                padding: $spacing-6;
+                background: var(--color-bg-primary);
+                border-radius: $radius-lg;
+                border: 1px solid var(--color-header-border);
+
+                h3 {
+                    font-size: $font-size-lg;
+                    margin-bottom: $spacing-2;
+                }
+
+                .badges {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: $spacing-2;
+                    margin-top: $spacing-3;
+
+                    .badge {
+                        font-size: $font-size-xs;
+                        padding: $spacing-1 $spacing-3;
+                        background: rgba($color-brand-primary, 0.1);
+                        color: $color-brand-primary;
+                        border-radius: $radius-full;
+                        font-weight: $font-weight-semibold;
+                    }
+                }
+            }
+        }
+    }
+
+    .gallery-split-section {
+        padding: $spacing-16 0;
+
+        .split-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: $spacing-12;
+            align-items: center;
+
+            @media (max-width: $breakpoint-lg) {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .info-col {
+            h2 {
+                font-size: $font-size-3xl;
+                margin-bottom: $spacing-6;
+
+                @media (max-width: $breakpoint-md) {
+                    font-size: $font-size-2xl;
+                }
+            }
+
+            .lead {
+                font-size: $font-size-xl;
+                color: $color-brand-primary;
+                margin-bottom: $spacing-8;
+                font-weight: $font-weight-light;
+            }
+
+            .benefits-list {
+                list-style: none;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                gap: $spacing-6;
+
+                li {
+                    display: flex;
+                    gap: $spacing-4;
+
+                    .icon {
+                        font-size: $font-size-4xl;
+                        width: 60px;
+                        height: 60px;
+                        min-width: 60px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; /* Initial Organic Shape */
+                        flex-shrink: 0;
+                        position: relative;
+                        filter: drop-shadow(0 4px 12px rgba($color-brand-primary, 0.1));
+
+                        /* Animated background container */
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            inset: -8px;
+                            background: linear-gradient(135deg, rgba($color-brand-primary, 0.15) 0%, rgba($color-brand-secondary, 0.1) 100%);
+                            border-radius: inherit;
+                            animation: icon-morph-1 6s ease-in-out infinite;
+                            z-index: -1;
+                        }
+                    }
+
+                    &:nth-child(1) .icon::before {
+                        animation: icon-morph-1 6s ease-in-out infinite;
+                    }
+
+                    &:nth-child(2) .icon::before {
+                        animation: icon-morph-2 7s ease-in-out infinite;
+                        animation-delay: 0.5s;
+                    }
+
+                    &:nth-child(3) .icon::before {
+                        animation: icon-morph-3 5.5s ease-in-out infinite;
+                        animation-delay: 1s;
+                    }
+
+                    &:nth-child(4) .icon::before {
+                        animation: icon-morph-4 6.5s ease-in-out infinite;
+                        animation-delay: 0.3s;
+                    }
+
+                    &:nth-child(5) .icon::before {
+                        animation: icon-morph-5 7.5s ease-in-out infinite;
+                        animation-delay: 0.8s;
+                    }
+
+                    &:nth-child(6) .icon::before {
+                        animation: icon-morph-6 6.2s ease-in-out infinite;
+                        animation-delay: 0.2s;
+                    }
+
+                    strong {
+                        display: block;
+                        font-size: $font-size-lg;
+                        margin-bottom: $spacing-1;
+                    }
+
+                    p {
+                        color: var(--color-text-secondary);
+                        font-size: $font-size-sm;
+                        margin: 0;
+                    }
+                }
+            }
+        }
+
+        .gallery-col {
+            display: flex;
+            flex-direction: column;
+            gap: $spacing-6;
+            flex: 1.2;
+
+            .tablet-mockup-frame {
+                border: 18px solid #333; /* Wider bezel */
+                border-radius: 24px;
+                background: #000;
+                /* Add a subtle glow/highlight to define the edge against black bg */
+                box-shadow:
+                    0 0 0 1px rgba(255, 255, 255, 0.1),
+                    /* Outline */ 0 30px 60px rgba(0, 0, 0, 0.5);
+                overflow: visible;
+                position: relative;
+                
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+                
+                /* Camera for Tablet */
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: -15px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 12px;
+                    height: 12px;
+                    background: #1a1a1a;
+                    border-radius: 50%;
+                    z-index: 20;
+                }
+
+                /* Camera lens reflection */
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: -13px;
+                    left: calc(50% - 4px);
+                    width: 8px;
+                    height: 8px;
+                    background: #2a2a2a;
+                    border-radius: 50%;
+                    z-index: 21;
+                    box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.1);
+                }
+
+            }
+
+            .project-links-gallery {
+                display: flex;
+                gap: $spacing-4;
+                justify-content: center;
+                width: 100%;
+                flex-wrap: wrap;
+
+                .btn {
+                    flex: 1;
+                    min-width: 180px;
+                    white-space: nowrap;
+                    overflow: hidden;
+
+                    @media (max-width: $breakpoint-md) {
+                        flex: 0 1 100%;
+                        max-width: 300px;
+                    }
+                }
+            }
+        }
+    }
+
+    .action-section {
+        padding: 3rem 0;
+        background: var(--color-bg-primary); 
+
+        .cta-card {
+            /* Subtle Gradient (like /services) */
+            background: linear-gradient(135deg, rgba($color-brand-primary, 0.1) 0%, rgba($color-brand-secondary, 0.1) 100%);
+            padding: $spacing-10;
+            border-radius: $radius-xl;
+            border: 1px solid rgba($color-brand-primary, 0.2);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05); /* Softer shadow */
+            color: var(--color-text-primary); /* Reset text color */
+
+            h2 {
+                font-size: $font-size-3xl;
+                margin-bottom: $spacing-4;
+                color: var(--color-text-primary); /* Use theme color */
+            }
+
+            .cta-subtitle {
+                font-size: $font-size-lg;
+                color: var(--color-text-secondary);
+                margin-bottom: $spacing-8;
+            }
+
+            .direct-contact {
+                border-top: 1px solid var(--color-header-border); /* Restore theme border */
+                padding-top: $spacing-8;
+
+                h3 {
+                     display: none; 
+                }
+
+                .contact-methods {
+                    display: flex;
+                    justify-content: center;
+                    gap: $spacing-4;
+                    flex-wrap: wrap;
+
+                    .btn {
+                        min-width: 160px;
+
+                        .icon {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 18px;
+                            height: 18px;
+                            flex-shrink: 0;
+                        }
+
+                        &.btn-secondary .icon svg {
+                            opacity: 0.6;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .other-projects-section {
+        padding: $spacing-12 0;
+        border-top: 1px solid var(--color-header-border);
+
+        h3 {
+            text-align: center;
+            margin-bottom: $spacing-8;
+            color: var(--color-text-secondary);
+            font-size: $font-size-xl;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .projects-carousel {
+            display: flex;
+            gap: $spacing-6;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            .project-card-mini {
+                display: block;
+                width: 300px;
+                text-decoration: none;
+                background: var(--color-bg-primary);
+                border-radius: $radius-lg;
+                overflow: hidden;
+                border: 1px solid var(--color-header-border);
+                transition: all 0.3s ease;
+
+                &:hover {
+                    transform: translateY(-4px);
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                }
+
+                img {
+                    width: 100%;
+                    height: 160px;
+                    object-fit: cover;
+                }
+
+                .mini-content {
+                    padding: $spacing-4;
+
+                    h4 {
+                        font-size: $font-size-lg;
+                        color: var(--color-text-primary);
+                        margin: 0 0 $spacing-1;
+                    }
+
+                    p {
+                        font-size: $font-size-sm;
+                        color: var(--color-text-secondary);
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    /* Organic Animations */
+    @keyframes icon-morph-1 {
+        0% {
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+        25% {
+            border-radius: 40% 60% 60% 40% / 45% 35% 65% 55%;
+        }
+        50% {
+            border-radius: 50% 50% 50% 50% / 50% 40% 60% 50%;
+        }
+        75% {
+            border-radius: 60% 40% 40% 60% / 35% 55% 45% 65%;
+        }
+        100% {
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+    }
+
+    @keyframes icon-morph-2 {
+        0% {
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+        }
+        25% {
+            border-radius: 60% 40% 40% 60% / 30% 50% 50% 70%;
+        }
+        50% {
+            border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%;
+        }
+        75% {
+            border-radius: 70% 30% 30% 70% / 40% 60% 40% 60%;
+        }
+        100% {
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+        }
+    }
+
+    @keyframes icon-morph-3 {
+        0% {
+            border-radius: 60% 40% 40% 60% / 30% 60% 40% 70%;
+        }
+        25% {
+            border-radius: 35% 65% 65% 35% / 55% 45% 55% 45%;
+        }
+        50% {
+            border-radius: 70% 30% 30% 70% / 30% 70% 30% 70%;
+        }
+        75% {
+            border-radius: 45% 55% 55% 45% / 65% 35% 65% 35%;
+        }
+        100% {
+            border-radius: 60% 40% 40% 60% / 30% 60% 40% 70%;
+        }
+    }
+
+    @keyframes icon-morph-4 {
+        0% {
+            border-radius: 70% 30% 30% 70% / 40% 60% 40% 60%;
+        }
+        25% {
+            border-radius: 50% 50% 50% 50% / 65% 35% 65% 35%;
+        }
+        50% {
+            border-radius: 30% 70% 70% 30% / 45% 55% 45% 55%;
+        }
+        75% {
+            border-radius: 60% 40% 40% 60% / 60% 40% 60% 40%;
+        }
+        100% {
+            border-radius: 70% 30% 30% 70% / 40% 60% 40% 60%;
+        }
+    }
+
+    @keyframes icon-morph-5 {
+        0% {
+            border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%;
+        }
+        25% {
+            border-radius: 70% 30% 30% 70% / 50% 50% 50% 50%;
+        }
+        50% {
+            border-radius: 50% 50% 50% 50% / 30% 70% 30% 70%;
+        }
+        75% {
+            border-radius: 30% 70% 70% 30% / 70% 30% 70% 30%;
+        }
+        100% {
+            border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%;
+        }
+    }
+
+    @keyframes icon-morph-6 {
+        0% {
+            border-radius: 30% 70% 70% 30% / 60% 40% 60% 40%;
+        }
+        25% {
+            border-radius: 60% 40% 40% 60% / 50% 50% 50% 50%;
+        }
+        50% {
+            border-radius: 70% 30% 30% 70% / 35% 65% 35% 65%;
+        }
+        75% {
+            border-radius: 40% 60% 60% 40% / 70% 30% 70% 30%;
+        }
+        100% {
+            border-radius: 30% 70% 70% 30% / 60% 40% 60% 40%;
+        }
+    }
+
+    @keyframes viscous-morph {
+        0% {
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            transform: translateY(0px) scale(1);
+        }
+        25% {
+            border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
+            transform: translateY(-2px) scale(1.05);
+        }
+        50% {
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            transform: translateY(0px) scale(1);
+        }
+        75% {
+            border-radius: 60% 40% 40% 60% / 30% 60% 40% 70%;
+            transform: translateY(-1px) scale(1.03);
+        }
+        100% {
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            transform: translateY(0px) scale(1);
+        }
+    }
+
+    @keyframes pulse-glow {
+        0% {
+            filter: blur(60px);
+            opacity: 0.8;
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            filter: blur(60px);
+            opacity: 0.8;
+        }
+    }
+
+    @keyframes float-mobile {
+        0%, 100% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-8px);
+        }
+    }
+
+    @keyframes organic-wave-bg {
+        0% {
+            filter: blur(60px);
+            opacity: 0.6;
+        }
+        50% {
+            filter: blur(50px);
+            opacity: 0.8;
+        }
+        100% {
+            filter: blur(60px);
+            opacity: 0.6;
+        }
+    }
+
+    /* Gallery figure and figcaption styles */
+    figure.gallery-slide {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        figcaption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: $spacing-3;
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            background: rgba(0, 0, 0, 0.85);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            opacity: 0;
+            transition: opacity 300ms ease;
+            pointer-events: none;
+            backdrop-filter: blur(4px);
+        }
+        
+        &:hover figcaption {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    }
+
+    @keyframes tech-pulse-blink {
+        0% {
+            color: var(--color-text-primary);
+            background: var(--color-bg-secondary);
+            box-shadow: none;
+        }
+        20% {
+            color: var(--color-text-primary);
+            background: var(--color-bg-secondary);
+            box-shadow: none;
+        }
+        22% {
+            color: #000;
+            background: white;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+        }
+        28% {
+            color: #000;
+            background: white;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+        }
+        30% {
+            color: var(--color-text-primary);
+            background: var(--color-bg-secondary);
+            box-shadow: none;
+        }
+        32% {
+            color: #000;
+            background: white;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+        }
+        38% {
+            color: #000;
+            background: white;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+        }
+        40% {
+            color: var(--color-text-primary);
+            background: var(--color-bg-secondary);
+            box-shadow: none;
+        }
+        100% {
+            color: var(--color-text-primary);
+            background: var(--color-bg-secondary);
+            box-shadow: none;
+        }
+    }
+
+    @keyframes stack-expand-overlay {
+        from {
+            opacity: 0;
+            transform: scale(0.85) translate(15px, -15px);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1) translate(0, 0);
+        }
+    }
+
+    @keyframes tech-item-fade-in {
+        from {
+            opacity: 0;
+            transform: scale(0.8) translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+    }
+
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+</style>

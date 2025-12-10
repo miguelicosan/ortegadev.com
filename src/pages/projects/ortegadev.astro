@@ -1,0 +1,98 @@
+---
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
+
+const lang = "es";
+
+const title = "ortegadev.com - Portfolio Web | ortegadev.com";
+const description =
+  "Cartera de diseñador web full stack. Aplicación responsiva con soporte multiidioma, animaciones suaves y optimización SEO. Desarrollado con Astro y React.";
+
+const projectData = {
+  title: "ortegadev.com",
+  subtitle: "Portfolio Web Personal",
+  status: "production" as const,
+  date: "2024",
+  role: "Full Stack Developer & Designer",
+  type: "personal" as const,
+  liveUrl: "https://ortegadev.com",
+  repoUrl: "https://github.com/miguelicosan/ortegadev.com",
+  stack: ["Astro", "React", "TypeScript", "SCSS", "Tailwind CSS"],
+  description:
+    "Cartera web personal del desarrollador full stack Miguel Ortega. Diseño responsivo, soporte para dos idiomas (ES/EN), animaciones suaves y optimización completa para SEO. Construido con tecnologías modernas y mejores prácticas para rendimiento y accesibilidad.",
+  highlights: [
+    "Diseño responsive Mobile-First",
+    "Soporte de dos idiomas (ES/EN)",
+    "Animaciones suaves y modernas",
+    "Optimizado para SEO",
+    "Deployed en FTP con automatización",
+    "Sistema de diseño consistente",
+  ],
+  staticMobileImage: false,
+  features: [
+    {
+      title: "Arquitectura con Islands",
+      description:
+        "Componentes React interactivos solo donde se necesita. Astro genera HTML estático para máximo rendimiento.",
+      icon: "🏝️",
+    },
+    {
+      title: "Multiidioma Nativo",
+      description:
+        "Sistema i18n personalizado con rutas específicas por idioma. Soporte perfecto para ES e EN sin duplicaciones.",
+      icon: "🌐",
+    },
+    {
+      title: "Animaciones CSS",
+      description:
+        "Transiciones suaves, fade-ins y hover effects. Mejora la experiencia del usuario sin afectar el rendimiento.",
+      icon: "✨",
+    },
+    {
+      title: "Sistema de Diseño",
+      description:
+        "Tokens SCSS centralizados. Colores, espaciado, tipografía y radios consistentes en toda la aplicación.",
+      icon: "🎨",
+    },
+    {
+      title: "Optimizado para SEO",
+      description:
+        "Meta tags dinámicos, sitemap, sitemap.xml y optimizaciones técnicas. Posicionamiento en buscadores.",
+      icon: "📊",
+    },
+    {
+      title: "Deploy Automatizado",
+      description:
+        "Script bash personalizado que construye el proyecto y lo sube vía FTP. Un comando para todo: npm run build:ftp",
+      icon: "🚀",
+    },
+  ],
+  images: {
+    hero: "/images/projects/ortegadev/ortegadev-hero.png",
+    mobile: "/images/projects/ortegadev/ortegadev-mobile.png",
+    gallery: [
+      {
+        src: "/images/projects/ortegadev/ortegadev-home.png",
+        alt: "Página de Inicio - Sección Hero del Portfolio",
+        caption: "Página de inicio con hero y presentación personal",
+      },
+      {
+        src: "/images/projects/ortegadev/ortegadev-projects.png",
+        alt: "Vista de Grilla de Proyectos",
+        caption: "Galería de proyectos con filtrado y detalles",
+      },
+      {
+        src: "/images/projects/ortegadev/ortegadev-mobile-view.png",
+        alt: "Diseño Responsivo en Mobile",
+        caption: "Diseño perfectamente responsivo en dispositivos móviles",
+      },
+    ],
+  },
+};
+---
+
+<ProjectLayout
+  title={title}
+  description={description}
+  lang={lang}
+  project={projectData}
+/>

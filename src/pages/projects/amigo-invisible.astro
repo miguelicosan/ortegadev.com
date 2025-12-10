@@ -1,0 +1,71 @@
+---
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
+import { getTranslations } from "../../i18n/config";
+
+const lang = "es";
+const t = await getTranslations(lang);
+
+const title = "Amigo Invisible - Sorteo Online | ortegadev.com";
+const description =
+  "Aplicación web responsiva para hacer sorteos de Amigo Invisible. Interfaz intuitiva, móvil-first y sin necesidad de registro.";
+
+const projectData = {
+  title: "Amigo Invisible Online",
+  subtitle: "La forma más fácil de organizar tu sorteo navideño",
+  status: "development" as const,
+  date: "2025",
+  role: "Full Stack Developer",
+  type: "personal" as const,
+  liveUrl: "https://amigoinvisible.ortegadev.com",
+  repoUrl: "https://github.com/miguelortegadev/amigo-invisible",
+  stack: ["Astro", "React", "TypeScript", "Tailwind"],
+  description:
+    "Una aplicación web moderna diseñada para simplificar la organización del tradicional sorteo de Amigo Invisible. Olvídate de los papelitos y los sorteos repetidos; esta herramienta gestiona participantes, restricciones y notificaciones de forma automática y segura. Ideal para grupos de amigos, familias o empresas que buscan una experiencia de usuario fluida y sin fricción.",
+  highlights: [
+    "Sorteo automático sin repeticiones",
+    "Gestión de restricciones entre participantes",
+    "Notificaciones por email personalizadas",
+    "Diseño 100% responsive y accesible",
+  ],
+  staticMobileImage: true,
+  features: [
+    {
+      title: "Sorteo Inteligente",
+      description:
+        "Algoritmo que garantiza que nadie se regale a sí mismo y respeta las exclusiones definidas.",
+      icon: "🎲",
+    },
+    {
+      title: "Privacidad Total",
+      description:
+        "Los datos se procesan localmente o de forma efímera. No almacenamos listas de correos innecesariamente.",
+      icon: "🔒",
+    },
+    {
+      title: "Experiencia de Usuario",
+      description:
+        "Interfaz limpia e intuitiva, guiando al usuario paso a paso sin complicaciones.",
+      icon: "✨",
+    },
+  ],
+  images: {
+    hero: "/images/projects/amigo-invisible/cabecera-mockup-amigo-invisible.png",
+    mobile:
+      "/images/projects/amigo-invisible/sorteo-amigo-invisible-vista-mobile.png",
+    gallery: [
+      {
+        src: "/images/projects/amigo-invisible/sorteo-amigo-invisible-vista-tablet.png",
+        alt: "Interfaz de usuario en Tablet - Vista del Sorteo",
+        caption: "Panel de control adaptado a dispositivos tablet",
+      },
+    ],
+  },
+};
+---
+
+<ProjectLayout
+  title={title}
+  description={description}
+  lang={lang}
+  project={projectData}
+/>

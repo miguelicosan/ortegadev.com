@@ -111,10 +111,11 @@ a {
     font-size: $font-size-base;
     font-weight: $font-weight-medium;
     border-radius: $radius-lg;
-    transition: all $transition-base ease-out;
+    transition: all $transition-base;
     cursor: pointer;
     border: none;
     text-decoration: none;
+    will-change: transform;
 
     &:disabled {
         opacity: 0.5;
@@ -128,6 +129,7 @@ a {
 
     &:hover:not(:disabled) {
         background-color: darken($color-brand-primary, 8%);
+        color: #000;
         transform: translateY(-2px);
         box-shadow: $shadow-md;
     }

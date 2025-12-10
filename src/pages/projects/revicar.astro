@@ -1,0 +1,72 @@
+---
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
+
+const lang = "es";
+
+const title = "Revicar - App de Historial Vehicular | ortegadev.com";
+const description =
+  "Aplicación PWA responsive para gestionar el historial de tu vehículo. Sincronización en tiempo real, sin necesidad de registro. Control total de mantenimiento y gastos.";
+
+const projectData = {
+  title: "ReviCar",
+  subtitle: "Gestión Inteligente de Mantenimiento con IA",
+  status: "production" as const,
+  date: "2025",
+  role: "Full Stack Developer",
+  type: "personal" as const,
+  liveUrl: "https://revicarapp.com",
+  repoUrl: "https://github.com/miguelicosan/revicar",
+  stack: ["React 18", "TypeScript", "Tailwind", "Vite 5", "Supabase", "PostgreSQL", "Capacitor", "Node.js"],
+  description:
+    "ReviCar es una solución fullstack moderna para gestión integral de mantenimiento vehicular. Combina IA predictiva, base de datos vehicular completa (68 marcas, 576 modelos) y automatización inteligente para optimizar costos y prolongar la vida útil de tu vehículo. Disponible como PWA, iOS y Android.",
+  highlights: [
+    "Score IA predictivo con algoritmo multi-factor",
+    "Notificaciones inteligentes personalizadas",
+    "Base de datos vehicular completa (1980-2025)",
+    "Apps nativas iOS/Android + Web responsive",
+    "Predicciones de mantenimientos con IA",
+    "Gestión de múltiples vehículos",
+    "Sistema FREEMIUM flexible",
+    "API disponible próximamente",
+  ],
+  staticMobileImage: true,
+  features: [
+    {
+      title: "Rendimiento Extremo",
+      description:
+        "Vite 5 + React 18 + TypeScript. Lighthouse 95+. Sub-100ms en cargas. Core Web Vitals perfectos.",
+      icon: "🚀",
+    },
+    {
+      title: "Multiplataforma Nativo",
+      description:
+        "Capacitor.js genera apps reales para iOS y Android directamente desde React. Cero código duplicado.",
+      icon: "📱",
+    },
+    {
+      title: "Backend Empresarial",
+      description:
+        "Supabase + PostgreSQL + RLS + OAuth. Seguridad a nivel enterprise sin complejidad.",
+      icon: "🔒",
+    },
+  ],
+  images: {
+    hero: "/images/projects/revicar/cabecera-mockup-revicar.png",
+    mobile: "/images/projects/revicar/revicar-vista-mobile.png",
+    gallery: [
+      {
+        src: "/images/projects/revicar/revicar-vista-tablet.png",
+        alt: "Interfaz de usuario en Tablet - Vista del Dashboard",
+        caption: "Panel de control con resumen de gastos y estadísticas del vehículo",
+      },
+    ],
+  },
+};
+---
+
+<ProjectLayout
+  title={title}
+  description={description}
+  lang={lang}
+  project={projectData}
+/>

@@ -1,0 +1,98 @@
+---
+import ProjectLayout from "../../../layouts/ProjectLayout.astro";
+
+const lang = "en";
+
+const title = "ortegadev.com - Full Stack Designer Portfolio | ortegadev.com";
+const description =
+  "Full stack web designer portfolio. Responsive application with multilingual support, smooth animations and SEO optimization. Developed with Astro and React.";
+
+const projectData = {
+  title: "ortegadev.com",
+  subtitle: "Personal Web Portfolio",
+  status: "production" as const,
+  date: "2024",
+  role: "Full Stack Developer & Designer",
+  type: "personal" as const,
+  liveUrl: "https://ortegadev.com",
+  repoUrl: "https://github.com/miguelicosan/ortegadev.com",
+  stack: ["Astro", "React", "TypeScript", "SCSS", "Tailwind CSS"],
+  description:
+    "Full stack web developer Miguel Ortega's personal portfolio. Responsive design, support for two languages (ES/EN), smooth animations and complete SEO optimization. Built with modern technologies and best practices for performance and accessibility.",
+  highlights: [
+    "Mobile-First responsive design",
+    "Support for two languages (ES/EN)",
+    "Smooth and modern animations",
+    "SEO optimized",
+    "Deployed on FTP with automation",
+    "Consistent design system",
+  ],
+  staticMobileImage: false,
+  features: [
+    {
+      title: "Island Architecture",
+      description:
+        "Interactive React components only where needed. Astro generates static HTML for maximum performance.",
+      icon: "🏝️",
+    },
+    {
+      title: "Native Multilingual",
+      description:
+        "Custom i18n system with language-specific routes. Perfect support for ES and EN without duplications.",
+      icon: "🌐",
+    },
+    {
+      title: "CSS Animations",
+      description:
+        "Smooth transitions, fade-ins and hover effects. Improves user experience without affecting performance.",
+      icon: "✨",
+    },
+    {
+      title: "Design System",
+      description:
+        "Centralized SCSS tokens. Consistent colors, spacing, typography and radii throughout the application.",
+      icon: "🎨",
+    },
+    {
+      title: "SEO Optimized",
+      description:
+        "Dynamic meta tags, sitemap, sitemap.xml and technical optimizations. Search engine positioning.",
+      icon: "📊",
+    },
+    {
+      title: "Automated Deployment",
+      description:
+        "Custom bash script that builds the project and uploads it via FTP. One command for everything: npm run build:ftp",
+      icon: "🚀",
+    },
+  ],
+  images: {
+    hero: "/images/projects/ortegadev/ortegadev-hero.png",
+    mobile: "/images/projects/ortegadev/ortegadev-mobile.png",
+    gallery: [
+      {
+        src: "/images/projects/ortegadev/ortegadev-home.png",
+        alt: "Homepage - Portfolio Hero Section",
+        caption: "Home page with portfolio hero and introduction",
+      },
+      {
+        src: "/images/projects/ortegadev/ortegadev-projects.png",
+        alt: "Projects Grid View",
+        caption: "Projects showcase with filtering and details",
+      },
+      {
+        src: "/images/projects/ortegadev/ortegadev-mobile-view.png",
+        alt: "Mobile Responsive Design",
+        caption: "Perfect responsive design on mobile devices",
+      },
+    ],
+  },
+};
+---
+
+<ProjectLayout
+  title={title}
+  description={description}
+  lang={lang}
+  project={projectData}
+/>

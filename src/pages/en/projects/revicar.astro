@@ -1,0 +1,72 @@
+---
+import ProjectLayout from "../../../layouts/ProjectLayout.astro";
+
+const lang = "en";
+
+const title = "Revicar - Vehicle History & Maintenance App | ortegadev.com";
+const description =
+  "Responsive PWA application to manage your vehicle's complete history. Real-time synchronization, no registration required. Full control of maintenance and expenses.";
+
+const projectData = {
+  title: "ReviCar",
+  subtitle: "Intelligent Vehicle Maintenance Management with AI",
+  status: "production" as const,
+  date: "2025",
+  role: "Full Stack Developer",
+  type: "personal" as const,
+  liveUrl: "https://revicarapp.com",
+  repoUrl: "https://github.com/miguelicosan/revicar",
+  stack: ["React 18", "TypeScript", "Tailwind", "Vite 5", "Supabase", "PostgreSQL", "Capacitor", "Node.js"],
+  description:
+    "ReviCar is a modern fullstack solution for comprehensive vehicle maintenance management. Combines predictive AI, complete vehicle database (68 brands, 576 models) and intelligent automation to optimize costs and extend your vehicle's lifespan. Available as PWA, iOS and Android.",
+  highlights: [
+    "Predictive AI score with multi-factor algorithm",
+    "Smart personalized notifications",
+    "Complete vehicle database (1980-2025)",
+    "Native iOS/Android apps + Responsive web",
+    "AI-powered maintenance predictions",
+    "Multi-vehicle management",
+    "Flexible FREEMIUM system",
+    "API coming soon",
+  ],
+  staticMobileImage: true,
+  features: [
+    {
+      title: "Extreme Performance",
+      description:
+        "Vite 5 + React 18 + TypeScript. Lighthouse 95+. Sub-100ms load times. Perfect Core Web Vitals.",
+      icon: "🚀",
+    },
+    {
+      title: "Native Multiplatform",
+      description:
+        "Capacitor.js generates real apps for iOS and Android directly from React. Zero code duplication.",
+      icon: "📱",
+    },
+    {
+      title: "Enterprise Backend",
+      description:
+        "Supabase + PostgreSQL + RLS + OAuth. Enterprise-level security without complexity.",
+      icon: "🔒",
+    },
+  ],
+  images: {
+    hero: "/images/projects/revicar/cabecera-mockup-revicar.png",
+    mobile: "/images/projects/revicar/revicar-vista-mobile.png",
+    gallery: [
+      {
+        src: "/images/projects/revicar/revicar-vista-tablet.png",
+        alt: "Dashboard - Vehicle Expense Overview",
+        caption: "Dashboard with expense summary and vehicle statistics",
+      },
+    ],
+  },
+};
+---
+
+<ProjectLayout
+  title={title}
+  description={description}
+  lang={lang}
+  project={projectData}
+/>
