@@ -206,8 +206,13 @@
 }
 
 .py-12 {
-    padding-top: $spacing-12;
+    padding-top: 3rem;
     padding-bottom: $spacing-12;
+
+    @media (min-width: $breakpoint-md) and (max-width: 1199px) {
+        padding-top: 2rem;
+        padding-bottom: $spacing-8;
+    }
 }
 
 .px-4 {

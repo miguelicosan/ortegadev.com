@@ -20,32 +20,36 @@ const projectData = {
   repoUrl: "https://github.com/miguelortegadev/amigo-invisible",
   stack: ["Astro", "React", "TypeScript", "Tailwind"],
   description:
-    "Una aplicación web moderna diseñada para simplificar la organización del tradicional sorteo de Amigo Invisible. Olvídate de los papelitos y los sorteos repetidos; esta herramienta gestiona participantes, restricciones y notificaciones de forma automática y segura. Ideal para grupos de amigos, familias o empresas que buscan una experiencia de usuario fluida y sin fricción.",
+    "Aplicación web moderna para organizar sorteos de Amigo Invisible con algoritmo de derangement circular que evita auto-asignaciones. Wizard multi-paso intuitivo, emails personalizables con variables dinámicas y sistema de restricciones. Backend Supabase con RLS, Edge Functions y RGPD compliant con auto-borrado a 90 días.",
   highlights: [
-    "Sorteo automático sin repeticiones",
-    "Gestión de restricciones entre participantes",
-    "Notificaciones por email personalizadas",
-    "Diseño 100% responsive y accesible",
+    "Algoritmo de Derangement: Emparejamiento circular sin auto-asignaciones",
+    "Wizard Multi-Paso: 3 pasos (Configuración → Personalización → Revisión)",
+    "Emails Personalizables: Variables dinámicas ($NOMBRE, $REGALO_PARA)",
+    "Sistema de Restricciones: Evita pares específicos (parejas, hermanos)",
+    "RLS Avanzado: Row Level Security en PostgreSQL",
+    "SEO Optimizado: Blog con 10+ artículos y sitemap",
   ],
   staticMobileImage: true,
+  customTitle: "Web a Medida",
+  customLead: "Crea sorteos gratuitos y seguros con emparejamiento inteligente. Wizard multi-paso, emails personalizables y modelo freemium integrado.",
   features: [
     {
-      title: "Sorteo Inteligente",
+      title: "Algoritmo Inteligente",
       description:
-        "Algoritmo que garantiza que nadie se regale a sí mismo y respeta las exclusiones definidas.",
-      icon: "🎲",
+        "Derangement circular que garantiza emparejamiento sin auto-asignaciones. Sistema de restricciones para evitar pares específicos.",
+      icon: "🧠",
+    },
+    {
+      title: "Emails Personalizables",
+      description:
+        "Variables dinámicas ($NOMBRE, $REGALO_PARA) con templates responsivos. Envío automático con Edge Functions.",
+      icon: "📧",
     },
     {
       title: "Privacidad Total",
       description:
-        "Los datos se procesan localmente o de forma efímera. No almacenamos listas de correos innecesariamente.",
+        "Row Level Security (RLS) en PostgreSQL. RGPD compliant con auto-borrado a 90 días. Sin necesidad de registro.",
       icon: "🔒",
-    },
-    {
-      title: "Experiencia de Usuario",
-      description:
-        "Interfaz limpia e intuitiva, guiando al usuario paso a paso sin complicaciones.",
-      icon: "✨",
     },
   ],
   images: {

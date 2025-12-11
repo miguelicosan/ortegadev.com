@@ -16,7 +16,7 @@ const ctaButtons = [
     },
     {
         text: t.hero.cta.whatsapp,
-        href: "https://wa.me/34621329386?text=Hola%20Miguel%2C%20he%20visto%20tu%20web%20y%20me%20gustaría%20hablar%20contigo.",
+        href: "https://wa.me/message/3O565QQ2YC35O1",
         primary: false,
         external: true,
     },
@@ -47,7 +47,14 @@ const ctaButtons = [
                                 target={button.external ? "_blank" : undefined}
                                 rel={button.external ? "noopener" : undefined}
                             >
-                                {button.text}
+                                {idx === 2 ? (
+                                    <>
+                                        <span class="desktop-meeting-text">{button.text}</span>
+                                        <span class="tablet-meeting-text">{lang === "es" ? "Reservar cita" : "Book appointment"}</span>
+                                    </>
+                                ) : (
+                                    button.text
+                                )}
                             </a>
                         ))
                     }
@@ -225,6 +232,22 @@ const ctaButtons = [
         }
         100% {
             border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        }
+    }
+
+    .desktop-meeting-text {
+        display: none;
+
+        @media (max-width: $breakpoint-md - 1px), (min-width: 1200px) {
+            display: inline;
+        }
+    }
+
+    .tablet-meeting-text {
+        display: none;
+
+        @media (min-width: $breakpoint-md) and (max-width: 1199px) {
+            display: inline;
         }
     }
 

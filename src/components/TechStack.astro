@@ -260,12 +260,20 @@ const techStack = {
         text-align: center;
         margin-bottom: $spacing-10;
 
+        @media (min-width: $breakpoint-md) and (max-width: 1199px) {
+            margin-bottom: $spacing-6;
+        }
+
         h2 {
             font-size: $font-size-4xl;
             font-weight: $font-weight-bold;
             color: var(--color-text-primary);
 
-            @media (min-width: $breakpoint-md) {
+            @media (min-width: $breakpoint-md) and (max-width: 1199px) {
+                font-size: $font-size-3xl;
+            }
+
+            @media (min-width: 1200px) {
                 font-size: $font-size-5xl;
             }
         }
@@ -296,6 +304,14 @@ const techStack = {
         position: relative;
         overflow: hidden;
         padding: 0 $spacing-4;
+
+        @media (min-width: $breakpoint-md) and (max-width: 1199px) {
+            height: auto;
+            grid-template-columns: repeat(2, 1fr);
+            gap: $spacing-4;
+            padding: 0 $spacing-3;
+            margin-bottom: $spacing-4;
+        }
 
         @media (max-width: $breakpoint-lg) {
             height: auto;

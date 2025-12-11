@@ -82,7 +82,7 @@ const description =
                             </p>
                             <p style="margin-top: 0.75rem;">
                                 <a
-                                    href="https://wa.me/34621329386?text=Hi%20Miguel%2C%20I%20saw%20your%20website%20and%20I%20would%20like%20to%20talk%20to%20you."
+                                    href="https://wa.me/message/3O565QQ2YC35O1"
                                     class="btn btn-outline btn-sm"
                                     target="_blank"
                                     rel="noopener"
@@ -217,19 +217,36 @@ const description =
 
     .contact-page {
         min-height: 70vh;
+
+        @media (max-width: $breakpoint-sm) {
+            padding-top: 3rem;
+        }
     }
 
     .contact-header {
         text-align: center;
         margin-bottom: $spacing-10;
 
+        @media (min-width: $breakpoint-md) and (max-width: 1199px) {
+            margin-bottom: $spacing-6;
+        }
+
         h1 {
             margin-bottom: $spacing-4;
+
+            @media (min-width: $breakpoint-md) and (max-width: 1199px) {
+                font-size: $font-size-4xl;
+                margin-bottom: 0;
+            }
         }
 
         .subtitle {
             font-size: $font-size-xl;
             color: $color-text-secondary;
+
+            @media (min-width: $breakpoint-md) and (max-width: 1199px) {
+                font-size: $font-size-lg;
+            }
         }
     }
 
@@ -237,6 +254,10 @@ const description =
         display: grid;
         grid-template-columns: 1fr;
         gap: $spacing-10;
+
+        @media (min-width: $breakpoint-md) and (max-width: 1199px) {
+            gap: $spacing-6;
+        }
 
         @media (min-width: $breakpoint-lg) {
             grid-template-columns: 1fr 1fr;
@@ -246,6 +267,10 @@ const description =
     .contact-info {
         h2 {
             margin-bottom: $spacing-6;
+
+            @media (min-width: $breakpoint-md) and (max-width: 1199px) {
+                margin-bottom: 1rem;
+            }
         }
     }
 
@@ -256,6 +281,11 @@ const description =
         padding: $spacing-5;
         background-color: $color-bg-secondary;
         border-radius: $radius-lg;
+
+        @media (min-width: $breakpoint-md) and (max-width: 1199px) {
+            margin-bottom: 1rem;
+            padding: 1rem 2rem 1rem 2rem;
+        }
 
         @media (prefers-color-scheme: dark) {
             background-color: #1d1d1f;
@@ -290,6 +320,10 @@ const description =
     .contact-form-container {
         h2 {
             margin-bottom: $spacing-6;
+
+            @media (min-width: $breakpoint-md) and (max-width: 1199px) {
+                margin-bottom: 1rem;
+            }
         }
     }
 </style>

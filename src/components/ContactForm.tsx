@@ -16,6 +16,7 @@ export default function ContactForm({ lang, t }: ContactFormProps) {
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+    const [isSelectOpen, setIsSelectOpen] = useState(false);
 
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -98,6 +99,20 @@ export default function ContactForm({ lang, t }: ContactFormProps) {
 
     const form = t.contact.form;
 
+    const typeOptions = [
+        { value: 'recruiter', label: form.typeOptions.recruiter },
+        { value: 'web', label: form.typeOptions.web },
+        { value: 'ai', label: form.typeOptions.ai },
+        { value: 'other', label: form.typeOptions.other },
+    ];
+
+    const handleSelectOption = (value: string) => {
+        setFormData((prev) => ({ ...prev, type: value }));
+        setIsSelectOpen(false);
+    };
+
+    const selectedOption = typeOptions.find(opt => opt.value === formData.type);
+
     return (
         <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-group">
@@ -128,17 +143,44 @@ export default function ContactForm({ lang, t }: ContactFormProps) {
 
             <div className="form-group">
                 <label htmlFor="type">{form.type}</label>
-                <select
-                    id="type"
-                    name="type"
-                    value={formData.type}
-                    onChange={handleChange}
-                >
-                    <option value="recruiter">{form.typeOptions.recruiter}</option>
-                    <option value="web">{form.typeOptions.web}</option>
-                    <option value="ai">{form.typeOptions.ai}</option>
-                    <option value="other">{form.typeOptions.other}</option>
-                </select>
+                <div className="custom-select">
+                    <button
+                        type="button"
+                        className="select-trigger"
+                        onClick={() => setIsSelectOpen(!isSelectOpen)}
+                        onBlur={() => setTimeout(() => setIsSelectOpen(false), 200)}
+                    >
+                        <span>{selectedOption?.label}</span>
+                        <svg 
+                            width="16" 
+                            height="16" 
+                            viewBox="0 0 16 16" 
+                            fill="currentColor"
+                            style={{ transform: isSelectOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s' }}
+                        >
+                            <path d="M8 11L3 6h10z"/>
+                        </svg>
+                    </button>
+                    {isSelectOpen && (
+                        <div className="select-options">
+                            {typeOptions.map((option) => (
+                                <button
+                                    key={option.value}
+                                    type="button"
+                                    className={`select-option ${formData.type === option.value ? 'selected' : ''}`}
+                                    onClick={() => handleSelectOption(option.value)}
+                                >
+                                    {option.label}
+                                    {formData.type === option.value && (
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                            <path d="M13.5 3.5L6 11l-3.5-3.5L1 9l5 5 9-9-1.5-1.5z"/>
+                                        </svg>
+                                    )}
+                                </button>
+                            ))}
+                        </div>
+                    )}
+                </div>
             </div>
 
             <div className="form-group">

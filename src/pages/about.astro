@@ -44,47 +44,70 @@ const description =
 
                     <h3>🛠 Tech Stack</h3>
                     
-                    <h4>🎨 Frontend</h4>
-                    <ul>
-                        <li>HTML5, CSS3, SASS</li>
-                        <li>JavaScript (ES6+), React, Svelte, Astro</li>
-                        <li>React Native / Capacitor (desarrollo móvil)</li>
-                        <li>Tailwind CSS, SCSS, i18next (internacionalización)</li>
-                        <li>Diseño Mobile-First y Progressive Web Apps (PWA)</li>
-                    </ul>
+                    <div class="tech-stack-grid">
+                        <div class="tech-card">
+                            <h4>⚛️ Frontend</h4>
+                            <ul>
+                                <li>HTML5, CSS3, SASS</li>
+                                <li>JavaScript (ES6+), React, Svelte, Astro</li>
+                                <li>React Native / Capacitor (desarrollo móvil)</li>
+                                <li>Tailwind CSS, SCSS, i18next (internacionalización)</li>
+                                <li>Diseño Mobile-First y Progressive Web Apps (PWA)</li>
+                            </ul>
+                        </div>
 
-                    <h4>🧠 Backend & Base de Datos</h4>
-                    <ul>
-                        <li>Python (Flask, FastAPI)</li>
-                        <li>Node.js / TypeScript</li>
-                        <li>PostgreSQL, MongoDB, Supabase</li>
-                        <li>Redis, Elasticsearch</li>
-                        <li>Desarrollo de APIs REST y servicios escalables</li>
-                    </ul>
+                        <div class="tech-card">
+                            <h4>🧠 Backend & Base de Datos</h4>
+                            <ul>
+                                <li>Python (Flask, FastAPI)</li>
+                                <li>Node.js / TypeScript</li>
+                                <li>PostgreSQL, MongoDB, Supabase</li>
+                                <li>Redis, Elasticsearch</li>
+                                <li>Desarrollo de APIs REST y servicios escalables</li>
+                            </ul>
+                        </div>
 
-                    <h4>⚙️ DevOps & Cloud</h4>
-                    <ul>
-                        <li>Docker, Docker Compose, Docker Swarm</li>
-                        <li>AWS (EC2, S3)</li>
-                        <li>NGINX, Shell scripting</li>
-                        <li>Apache Kafka, Apache Spark</li>
-                        <li>CI/CD con Git</li>
-                    </ul>
+                        <div class="tech-card">
+                            <h4>⚙️ DevOps & Cloud</h4>
+                            <ul>
+                                <li>Docker, Docker Compose, Docker Swarm</li>
+                                <li>AWS (EC2, S3)</li>
+                                <li>NGINX, Shell scripting</li>
+                                <li>Apache Kafka, Apache Spark</li>
+                                <li>CI/CD con Git</li>
+                            </ul>
+                        </div>
 
-                    <h4>📊 Visualización & IoT</h4>
-                    <ul>
-                        <li>InfluxDB, Grafana, Kibana</li>
-                        <li>Node-RED, MQTT</li>
-                        <li>Monitoreo y análisis de datos en tiempo real</li>
-                    </ul>
+                        <div class="tech-card">
+                            <h4>📊 Visualización & IoT</h4>
+                            <ul>
+                                <li>InfluxDB, Grafana, Kibana</li>
+                                <li>Node-RED, MQTT</li>
+                                <li>Monitoreo y análisis de datos en tiempo real</li>
+                            </ul>
+                        </div>
 
-                    <h4>🧠 IA & Data Science</h4>
-                    <ul>
-                        <li>Deep Learning (CNN, Transfer Learning)</li>
-                        <li>Análisis de sentimiento</li>
-                        <li>Procesamiento de streaming en tiempo real</li>
-                        <li>Scikit-Learn, TensorFlow</li>
-                    </ul>
+                        <div class="tech-card">
+                            <h4>🧠 IA & Data Science</h4>
+                            <ul>
+                                <li>Deep Learning (CNN, Transfer Learning)</li>
+                                <li>Análisis de sentimiento</li>
+                                <li>Procesamiento de streaming en tiempo real</li>
+                                <li>Scikit-Learn, TensorFlow</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-card">
+                            <h4>🎨 Diseño & UX/UI</h4>
+                            <ul>
+                                <li>Figma, Adobe XD</li>
+                                <li>Prototipado y wireframing</li>
+                                <li>Design Systems y componentes reutilizables</li>
+                                <li>Accesibilidad web (WCAG)</li>
+                                <li>Animaciones y micro-interacciones</li>
+                            </ul>
+                        </div>
+                    </div>
 
                     <h3>💼 Experiencia Profesional</h3>
                     
@@ -151,16 +174,30 @@ const description =
 
         h1 {
             text-align: center;
-            margin-bottom: $spacing-10;
+            margin-bottom: $spacing-8;
+
+            @media (min-width: $breakpoint-md) and (max-width: 1199px) {
+                font-size: 2.25rem;
+                margin-bottom: $spacing-6;
+            }
         }
 
         .about-intro {
             text-align: center;
             margin-bottom: $spacing-8;
 
+            @media (min-width: $breakpoint-md) and (max-width: 1199px) {
+                margin-bottom: $spacing-4;
+            }
+
             h2 {
                 font-size: $font-size-3xl;
                 margin-bottom: $spacing-3;
+
+                @media (min-width: $breakpoint-md) and (max-width: 1199px) {
+                    font-size: $font-size-2xl;
+                    margin-bottom: $spacing-2;
+                }
             }
 
             .role {
@@ -168,11 +205,19 @@ const description =
                 color: $color-brand-primary;
                 margin-bottom: $spacing-2;
                 font-weight: $font-weight-semibold;
+
+                @media (min-width: $breakpoint-md) and (max-width: 1199px) {
+                    font-size: $font-size-lg;
+                }
             }
 
             .location {
                 font-size: $font-size-lg;
                 color: var(--color-text-secondary);
+
+                @media (min-width: $breakpoint-md) and (max-width: 1199px) {
+                    font-size: $font-size-base;
+                }
             }
         }
 
@@ -186,6 +231,12 @@ const description =
                 font-size: $font-size-2xl;
                 border-bottom: 2px solid rgba($color-brand-primary, 0.2);
                 padding-bottom: $spacing-2;
+
+                @media (min-width: $breakpoint-md) and (max-width: 1199px) {
+                    margin-top: $spacing-4;
+                    margin-bottom: $spacing-3;
+                    font-size: $font-size-xl;
+                }
             }
 
             h4 {
@@ -193,6 +244,12 @@ const description =
                 margin-bottom: $spacing-3;
                 font-size: $font-size-lg;
                 color: $color-brand-primary;
+
+                @media (min-width: $breakpoint-md) and (max-width: 1199px) {
+                    margin-top: $spacing-3;
+                    margin-bottom: $spacing-2;
+                    font-size: $font-size-base;
+                }
             }
 
             p {
@@ -259,6 +316,69 @@ const description =
                 padding: $spacing-4;
                 border-radius: $radius-lg;
                 border-left: 4px solid $color-brand-primary;
+            }
+
+            .tech-stack-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: $spacing-4;
+                margin-top: $spacing-6;
+
+                @media (min-width: $breakpoint-md) {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+
+                @media (min-width: $breakpoint-lg) {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+
+            .tech-card {
+                background: rgba($color-brand-primary, 0.05);
+                border: 1px solid rgba($color-brand-primary, 0.15);
+                border-radius: $radius-lg;
+                padding: $spacing-4;
+                transition: all $transition-base ease-out;
+
+                @media (min-width: $breakpoint-md) and (max-width: 1199px) {
+                    padding: $spacing-3;
+                }
+
+                &:hover {
+                    background: rgba($color-brand-primary, 0.08);
+                    border-color: rgba($color-brand-primary, 0.25);
+                    transform: translateY(-2px);
+                }
+
+                h4 {
+                    margin-top: 0;
+                    margin-bottom: $spacing-3;
+                    font-size: $font-size-lg;
+                    color: $color-brand-primary;
+
+                    @media (min-width: $breakpoint-md) and (max-width: 1199px) {
+                        font-size: $font-size-base;
+                        margin-bottom: $spacing-2;
+                    }
+                }
+
+                ul {
+                    margin-bottom: 0;
+
+                    li {
+                        font-size: $font-size-sm;
+                        margin-bottom: $spacing-2;
+
+                        @media (min-width: $breakpoint-md) and (max-width: 1199px) {
+                            font-size: $font-size-xs;
+                            margin-bottom: $spacing-1;
+                        }
+
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                    }
+                }
             }
         }
     }

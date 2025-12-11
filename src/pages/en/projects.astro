@@ -15,7 +15,7 @@ const projects = [
     id: "revicar",
     title: "ReviCar",
     description: "Intelligent vehicle management platform with predictive AI. Native iOS/Android apps + Web with Supabase.",
-    image: "/images/projects/revicar/revicar-screenshot.png",
+    image: "/images/projects/revicar/revicar-vista-escritorio.png",
     tags: ["React", "TypeScript", "Supabase", "AI", "Mobile", "Capacitor"],
     url: "https://revicarapp.com",
     github: "https://github.com/miguelicosan/car-care-companion-app",
@@ -151,19 +151,24 @@ const projects = [
 ---
 
 <BaseLayout title={title} description={description} lang={lang}>
-    <section class="projects-page py-12">
+    <section class="projects-page">
         <div class="container">
             <div class="projects-header">
                 <h1>{t.projects.title}</h1>
-                <p class="subtitle">{t.projects.subtitle}</p>
+                <p class="subtitle">Explore the projects I've worked on and discover the solutions I create.</p>
             </div>
 
             <ProjectsGrid client:load projects={projects} />
 
-            <div class="projects-cta">
-                <p>Do you have a project in mind?</p>
-                <a href="/en/contact" class="btn btn-primary">
-                    {t.contact.title}
+            <div class="cta-card">
+                <h2>Every project is an opportunity to create something extraordinary</h2>
+                <p class="cta-subtitle">I have experience transforming ideas into tech solutions that generate real business impact.</p>
+                <a href="/en/contact" class="btn btn-primary btn-lg btn-text" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <span class="desktop-text">Let's discuss your next project</span>
+                    <span class="mobile-text">Let's talk</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                 </a>
             </div>
         </div>
@@ -175,7 +180,6 @@ const projects = [
 
     .projects-page {
         min-height: 100vh;
-        padding-top: $spacing-12;
         padding-bottom: $spacing-12;
     }
 
@@ -183,37 +187,114 @@ const projects = [
         text-align: center;
         margin-bottom: $spacing-12;
 
+        @media (min-width: $breakpoint-md) and (max-width: 1199px) {
+            margin-bottom: $spacing-8;
+        }
+
         h1 {
-            font-size: $font-size-7xl;
             margin-bottom: $spacing-4;
-            background: linear-gradient(135deg, $color-brand-primary, lighten($color-brand-primary, 20%));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+
+            @media (min-width: $breakpoint-md) and (max-width: 1199px) {
+                font-size: 2.25rem;
+                margin-bottom: $spacing-3;
+            }
+
+            @media (max-width: $breakpoint-sm) {
+                font-size: 2.25rem;
+            }
         }
 
         .subtitle {
-            font-size: $font-size-2xl;
+            font-size: $font-size-lg;
             color: var(--color-text-secondary);
-            max-width: 600px;
+            width: 100%;
             margin: 0 auto;
+            line-height: $line-height-relaxed;
+
+            @media (min-width: $breakpoint-md) and (max-width: 1199px) {
+                font-size: $font-size-base;
+            }
         }
     }
 
-    .projects-cta {
+    .cta-card {
+        background: linear-gradient(135deg, rgba($color-brand-primary, 0.1) 0%, rgba($color-brand-secondary, 0.1) 100%);
+        padding: $spacing-10;
+        border-radius: $radius-xl;
+        border: 1px solid rgba($color-brand-primary, 0.2);
         text-align: center;
-        margin-top: $spacing-12;
-        padding: $spacing-8;
-        border-top: 1px solid rgba($color-brand-primary, 0.1);
+        max-width: 800px;
+        margin: $spacing-12 auto 0;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        color: var(--color-text-primary);
 
-        p {
-            font-size: $font-size-xl;
+        @media (min-width: $breakpoint-md) and (max-width: 1199px) {
+            padding: $spacing-6;
+            margin: $spacing-8 auto 0;
+        }
+
+        @media (max-width: $breakpoint-sm) {
+            padding: 2rem;
+        }
+
+        h2 {
+            font-size: $font-size-3xl;
             margin-bottom: $spacing-4;
+            color: var(--color-text-primary);
+
+            @media (max-width: $breakpoint-md) {
+                font-size: $font-size-2xl;
+            }
+
+            @media (max-width: $breakpoint-sm) {
+                font-size: $font-size-xl;
+            }
+        }
+
+        .cta-subtitle {
+            font-size: $font-size-lg;
             color: var(--color-text-secondary);
+            margin-bottom: $spacing-8;
+
+            @media (max-width: $breakpoint-md) {
+                font-size: $font-size-base;
+            }
+
+            @media (max-width: $breakpoint-sm) {
+                font-size: $font-size-sm;
+            }
         }
 
         .btn {
             display: inline-block;
+
+            @media (max-width: $breakpoint-sm) {
+                display: block;
+                width: 100%;
+                padding: $spacing-3 $spacing-4;
+            }
+
+            .desktop-text {
+                display: inline;
+
+                @media (max-width: $breakpoint-sm) {
+                    display: none;
+                }
+            }
+
+            .mobile-text {
+                display: none;
+
+                @media (max-width: $breakpoint-sm) {
+                    display: inline;
+                }
+            }
+        }
+
+            @media (max-width: $breakpoint-sm) {
+                padding: $spacing-4 $spacing-6;
+                font-size: $font-size-base;
+            }
         }
     }
 </style>

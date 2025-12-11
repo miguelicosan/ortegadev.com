@@ -18,32 +18,36 @@ const projectData = {
   repoUrl: "https://github.com/miguelicosan/amigo-invisible",
   stack: ["Astro", "React", "TypeScript", "Tailwind"],
   description:
-    "A modern web application designed to simplify organizing the traditional Secret Santa raffle. Forget about paper slips and repeated drawings; this tool manages participants, restrictions, and notifications automatically and securely. Ideal for groups of friends, families, or companies looking for a smooth and frictionless user experience.",
+    "Modern web application for organizing Secret Santa raffles with circular derangement algorithm that avoids self-assignments. Intuitive multi-step wizard, customizable emails with dynamic variables and restriction system. Supabase backend with RLS, Edge Functions and GDPR compliant with 90-day auto-delete.",
   highlights: [
-    "Automatic raffle without repetitions",
-    "Restriction management between participants",
-    "Personalized email notifications",
-    "100% responsive and accessible design",
+    "Derangement Algorithm: Circular matching without self-assignments",
+    "Multi-Step Wizard: 3 steps (Setup → Customization → Review)",
+    "Customizable Emails: Dynamic variables ($NAME, $GIFT_FOR)",
+    "Restriction System: Avoids specific pairs (couples, siblings)",
+    "Advanced RLS: Row Level Security in PostgreSQL",
+    "SEO Optimized: Blog with 10+ articles and sitemap",
   ],
   staticMobileImage: true,
+  customTitle: "Custom Web",
+  customLead: "Create free and secure draws with intelligent matching. Multi-step wizard, customizable emails and integrated freemium model.",
   features: [
     {
-      title: "Smart Raffle",
+      title: "Smart Algorithm",
       description:
-        "Algorithm that guarantees no one gifts themselves and respects defined exclusions.",
-      icon: "🎲",
+        "Circular derangement ensuring matching without self-assignments. Restriction system to avoid specific pairs.",
+      icon: "🧠",
+    },
+    {
+      title: "Customizable Emails",
+      description:
+        "Dynamic variables ($NAME, $GIFT_FOR) with responsive templates. Automatic sending with Edge Functions.",
+      icon: "📧",
     },
     {
       title: "Total Privacy",
       description:
-        "Data is processed locally or ephemerally. We don't store unnecessary email lists.",
+        "Row Level Security (RLS) in PostgreSQL. GDPR compliant with 90-day auto-delete. No registration required.",
       icon: "🔒",
-    },
-    {
-      title: "User Experience",
-      description:
-        "Clean and intuitive interface, guiding the user step by step without complications.",
-      icon: "✨",
     },
   ],
   images: {

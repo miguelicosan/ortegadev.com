@@ -231,39 +231,24 @@ const appSchema = {
             <div class="container">
                 <div class="split-grid">
                     <div class="info-col">
-                        <h2>{lang === 'es' ? 'Aplicaciones a Medida' : 'Custom Applications'}</h2>
+                        <h2>{project.customTitle || (project.title === 'ortegadev.com' ? (lang === 'es' ? 'Portfolio a Medida' : 'Custom Portfolio') : (lang === 'es' ? 'Aplicaciones a Medida' : 'Custom Applications'))}</h2>
                         <div class="custom-web-benefits">
                             <p class="lead">
-                                {lang === 'es' ? 'Soluciones fullstack que crecen con tu negocio. Desde MVP hasta escala empresarial.' : 'Fullstack solutions that grow with your business. From MVP to enterprise scale.'}
+                                {project.customLead || (project.title === 'ortegadev.com' 
+                                    ? (lang === 'es' ? 'Portfolio moderno y optimizado que destaca tu trabajo. Diseño único y experiencia de usuario excepcional.' : 'Modern and optimized portfolio that showcases your work. Unique design and exceptional user experience.')
+                                    : (lang === 'es' ? 'Soluciones fullstack que crecen con tu negocio. Desde MVP hasta escala empresarial.' : 'Fullstack solutions that grow with your business. From MVP to enterprise scale.')
+                                )}
                             </p>
                             <ul class="benefits-list">
-                                <li>
-                                    <span class="icon">🚀</span>
-                                    <div>
-                                        <strong>{lang === 'es' ? 'Rendimiento Extremo' : 'Extreme Performance'}</strong>
-                                        <p>
-                                            {lang === 'es' ? 'Vite 5 + React 18 + TypeScript. Lighthouse 95+. Sub-100ms en cargas. Core Web Vitals perfectos.' : 'Vite 5 + React 18 + TypeScript. Lighthouse 95+. Sub-100ms load times. Perfect Core Web Vitals.'}
-                                        </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <span class="icon">📱</span>
-                                    <div>
-                                        <strong>{lang === 'es' ? 'Multiplataforma Nativo' : 'Native Multiplatform'}</strong>
-                                        <p>
-                                            {lang === 'es' ? 'Capacitor.js genera apps reales para iOS y Android directamente desde React. Cero código duplicado.' : 'Capacitor.js generates real apps for iOS and Android directly from React. Zero code duplication.'}
-                                        </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <span class="icon">🔒</span>
-                                    <div>
-                                        <strong>{lang === 'es' ? 'Backend Empresarial' : 'Enterprise Backend'}</strong>
-                                        <p>
-                                            {lang === 'es' ? 'Supabase + PostgreSQL + RLS + OAuth. Seguridad a nivel enterprise sin complejidad.' : 'Supabase + PostgreSQL + RLS + OAuth. Enterprise-level security without complexity.'}
-                                        </p>
-                                    </div>
-                                </li>
+                                {project.features && project.features.map((feature) => (
+                                    <li>
+                                        <span class="icon">{feature.icon}</span>
+                                        <div>
+                                            <strong>{feature.title}</strong>
+                                            <p>{feature.description}</p>
+                                        </div>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                     </div>
@@ -375,7 +360,7 @@ const appSchema = {
                                 {lang === 'es' ? 'Hablemos' : 'Let\'s Talk'}
                             </a>
                             <a
-                                href="https://wa.me/34621329386"
+                                href="https://wa.me/message/3O565QQ2YC35O1"
                                 target="_blank"
                                 class="btn btn-secondary"
                             >
@@ -420,18 +405,43 @@ const appSchema = {
                     });
                 };
 
-                const positionStack = (button, stack) => {
+                const positionStack = (button: HTMLElement, stack: HTMLElement) => {
                     const rect = button.getBoundingClientRect();
                     // Get stack dimensions while it's visible but scaled to 0
                     const stackWidth = stack.offsetWidth;
                     const stackHeight = stack.offsetHeight;
                     
                     // Position so bottom-right corner of stack aligns with bottom-right of button
-                    const top = rect.bottom - stackHeight;
-                    const left = rect.right - stackWidth;
+                    let top = rect.bottom - stackHeight;
+                    let left = rect.right - stackWidth;
                     
-                    stack.style.top = Math.max(10, top) + 'px';
-                    stack.style.left = Math.max(10, left) + 'px';
+                    // Prevent overflow on edges with padding
+                    const padding = 20;
+                    const viewportWidth = window.innerWidth;
+                    const viewportHeight = window.innerHeight;
+                    
+                    // Adjust if too far to the left
+                    if (left < padding) {
+                        left = padding;
+                    }
+                    
+                    // Adjust if too far to the right
+                    if (left + stackWidth > viewportWidth - padding) {
+                        left = viewportWidth - stackWidth - padding;
+                    }
+                    
+                    // Adjust if too high
+                    if (top < padding) {
+                        top = padding;
+                    }
+                    
+                    // Adjust if too low
+                    if (top + stackHeight > viewportHeight - padding) {
+                        top = viewportHeight - stackHeight - padding;
+                    }
+                    
+                    stack.style.top = Math.max(padding, top) + 'px';
+                    stack.style.left = Math.max(padding, left) + 'px';
                 };
 
                 expandButtons.forEach((button, index) => {
@@ -452,7 +462,7 @@ const appSchema = {
                             button.classList.add('active');
                             // Position after being visible
                             requestAnimationFrame(() => {
-                                positionStack(button, stack);
+                                positionStack(button as HTMLElement, stack as HTMLElement);
                             });
                         }
                     });
@@ -484,7 +494,7 @@ const appSchema = {
                             const button = expandButtons[index];
                             if (button) {
                                 requestAnimationFrame(() => {
-                                    positionStack(button, stack);
+                                    positionStack(button as HTMLElement, stack as HTMLElement);
                                 });
                             }
                         }
@@ -513,12 +523,21 @@ const appSchema = {
         position: relative;
         overflow: hidden;
 
+        @media (max-width: $breakpoint-sm) {
+            padding: 4rem 0 3rem;
+        }
+
         .hero-header {
             margin-bottom: $spacing-8;
 
             h1 {
                 font-size: $font-size-5xl;
                 margin: $spacing-4 0 $spacing-2;
+                background: $gradient-hero;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                color: transparent;
 
                 @media (max-width: $breakpoint-md) {
                     font-size: $font-size-3xl;
@@ -527,8 +546,12 @@ const appSchema = {
 
             .subtitle {
                 font-size: $font-size-xl;
-                color: var(--color-text-secondary);
                 font-weight: $font-weight-light;
+                background: $gradient-hero;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                color: transparent;
             }
         }
 
@@ -621,6 +644,14 @@ const appSchema = {
                 .value {
                     font-size: $font-size-lg;
                     font-weight: $font-weight-semibold;
+
+                    @media (min-width: $breakpoint-lg) {
+                        background: $gradient-hero;
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        background-clip: text;
+                        font-weight: $font-weight-bold;
+                    }
                 }
 
                 &:nth-child(1) {
@@ -718,6 +749,37 @@ const appSchema = {
                         }
                     }
                 }
+            }
+        }
+    }
+
+    @media (max-width: $breakpoint-md) {
+        .stack-expanded {
+            max-width: 85vw !important;
+            padding: $spacing-2 !important;
+            gap: $spacing-2 !important;
+
+            .tech-tag {
+                padding: 3px 8px !important;
+                margin: 3px !important;
+                font-size: $font-size-xs;
+            }
+        }
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        .stack-expanded {
+            flex-direction: column !important;
+            max-width: 90vw !important;
+            width: 90vw !important;
+            padding: $spacing-3 !important;
+            gap: $spacing-2 !important;
+
+            .tech-tag {
+                width: 100% !important;
+                padding: 8px 12px !important;
+                margin: 2px 0 !important;
+                text-align: center;
             }
         }
     }
@@ -983,9 +1045,9 @@ const appSchema = {
             flex: 1.2;
 
             .tablet-mockup-frame {
-                border: 18px solid #333; /* Wider bezel */
-                border-radius: 24px;
-                background: #000;
+                border: 14px solid #333; /* Wider bezel */
+                border-radius: 12px;
+                background: #333;
                 /* Add a subtle glow/highlight to define the edge against black bg */
                 box-shadow:
                     0 0 0 1px rgba(255, 255, 255, 0.1),
@@ -1003,11 +1065,11 @@ const appSchema = {
                 &::before {
                     content: "";
                     position: absolute;
-                    top: -15px;
+                    top: -11px;
                     left: 50%;
                     transform: translateX(-50%);
-                    width: 12px;
-                    height: 12px;
+                    width: 10px;
+                    height: 10px;
                     background: #1a1a1a;
                     border-radius: 50%;
                     z-index: 20;
@@ -1017,16 +1079,72 @@ const appSchema = {
                 &::after {
                     content: "";
                     position: absolute;
-                    top: -13px;
-                    left: calc(50% - 4px);
-                    width: 8px;
-                    height: 8px;
+                    top: -9px;
+                    left: calc(50% - 3px);
+                    width: 6px;
+                    height: 6px;
                     background: #2a2a2a;
                     border-radius: 50%;
                     z-index: 21;
                     box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.1);
                 }
 
+                .gallery-scroll-container {
+                    position: relative;
+                    width: 100%;
+                    aspect-ratio: 4 / 3;
+                    overflow: hidden;
+                    border-radius: 6px;
+                    background: #000;
+                }
+
+                .gallery-slide {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    opacity: 0;
+                    transform: translateX(100%);
+                    transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+                    margin: 0;
+
+                    &.active {
+                        opacity: 1;
+                        transform: translateX(0);
+                        z-index: 2;
+                    }
+
+                    &.prev {
+                        opacity: 0;
+                        transform: translateX(-100%);
+                        z-index: 1;
+                    }
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        display: block;
+                    }
+
+                    figcaption {
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+                        color: white;
+                        padding: $spacing-4;
+                        opacity: 0;
+                        transition: opacity 0.3s ease-in-out;
+                        font-size: $font-size-sm;
+                    }
+
+                    &:hover figcaption {
+                        opacity: 1;
+                    }
+                }
             }
 
             .project-links-gallery {
@@ -1067,6 +1185,10 @@ const appSchema = {
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05); /* Softer shadow */
             color: var(--color-text-primary); /* Reset text color */
 
+            @media (max-width: $breakpoint-sm) {
+                padding: 2rem;
+            }
+
             h2 {
                 font-size: $font-size-3xl;
                 margin-bottom: $spacing-4;
@@ -1093,8 +1215,16 @@ const appSchema = {
                     gap: $spacing-4;
                     flex-wrap: wrap;
 
+                    @media (max-width: $breakpoint-sm) {
+                        flex-direction: column;
+                    }
+
                     .btn {
                         min-width: 160px;
+
+                        @media (max-width: $breakpoint-sm) {
+                            width: 100%;
+                        }
 
                         .icon {
                             display: flex;
@@ -1458,3 +1588,46 @@ const appSchema = {
         }
     }
 </style>
+
+<script>
+    // Gallery carousel auto-scroll
+    function initGalleryCarousel() {
+        const container = document.querySelector('.gallery-scroll-container');
+        if (!container) return;
+
+        const slides = Array.from(container.querySelectorAll('.gallery-slide'));
+        if (slides.length === 0) return;
+
+        let currentIndex = 0;
+
+        // Initialize first slide
+        slides[currentIndex].classList.add('active');
+
+        // Only enable carousel if there's more than one slide
+        if (slides.length <= 1) return;
+
+        function nextSlide() {
+            const prevIndex = currentIndex;
+            currentIndex = (currentIndex + 1) % slides.length;
+
+            // Remove all classes
+            slides.forEach(slide => {
+                slide.classList.remove('active', 'prev');
+            });
+
+            // Add classes for animation
+            slides[prevIndex].classList.add('prev');
+            slides[currentIndex].classList.add('active');
+        }
+
+        // Auto advance every 3 seconds
+        setInterval(nextSlide, 3000);
+    }
+
+    // Initialize on page load
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initGalleryCarousel);
+    } else {
+        initGalleryCarousel();
+    }
+</script>

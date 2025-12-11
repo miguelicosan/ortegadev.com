@@ -6,6 +6,22 @@ Professional Astro-based personal brand website for Miguel Ángel Ortega Ibáñe
 
 ## 📝 Recent Updates (December 2024)
 
+### Tablet Optimization & Design System (Dec 11, 2024)
+- **Tablet Breakpoint Extension**: Extended tablet range to 768px-1199px to optimize for iPad Air landscape (1180px)
+- **Typography System**: Unified h1 sizing at 2.25rem across all pages (projects, blog, about, services) for tablet
+- **Contact Page Compact Layout**: Reduced spacing for tablet (h1: margin-bottom 0, h2: 1rem, contact-item: 1rem margin/padding)
+- **Form Optimization**: Reduced gap in contact form and form-group to 1rem/0 respectively for tablet
+- **Custom Select Component**: Replaced native select with custom dropdown for better UX and positioning
+- **Tech Stack Cards**: Converted about page tech stack from list to 2-column visual card grid (6 categories)
+- **Project-Specific Features**: Each project now has customizable title, lead text, and feature highlights
+- **Tablet Mockup Frame**: Updated border (14px), border-radius (12px), camera adjustments, and inner radius (6px)
+- **Figcaption Hover**: Restored gallery image captions with smooth opacity transition on hover
+
+### Project Content Updates
+- **ortegadev.com**: New features - Portfolio-specific characteristics (Astro, i18n, animations & mockups, design system, SEO, reactive forms)
+- **ReviCar**: Custom lead text highlighting AI predictive features and complete vehicle database
+- **Amigo Invisible**: Comprehensive technical description with derangement algorithm, wizard multi-step, RLS, Edge Functions, and GDPR compliance
+
 ### Project Pages & Design System Consolidation
 - **Project Detail Pages**: Created 6 dedicated project pages (3 ES + 3 EN) with ProjectLayout template
 - **Design System**: Consolidated button styling to global CSS classes (.btn, .btn-primary, .btn-secondary)

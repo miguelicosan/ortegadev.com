@@ -49,12 +49,16 @@ h6 {
 
 h1 {
     font-size: $font-size-5xl;
+    background: $gradient-hero;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 
-    @media (min-width: $breakpoint-md) {
-        font-size: $font-size-6xl;
+    @media (min-width: $breakpoint-md) and (max-width: 1199px) {
+        font-size: $font-size-5xl;
     }
 
-    @media (min-width: $breakpoint-lg) {
+    @media (min-width: 1200px) {
         font-size: $font-size-7xl;
     }
 }
@@ -62,7 +66,11 @@ h1 {
 h2 {
     font-size: $font-size-4xl;
 
-    @media (min-width: $breakpoint-md) {
+    @media (min-width: $breakpoint-md) and (max-width: 1199px) {
+        font-size: $font-size-3xl;
+    }
+
+    @media (min-width: 1200px) {
         font-size: $font-size-5xl;
     }
 }
@@ -85,6 +93,25 @@ h5 {
 
 h6 {
     font-size: $font-size-lg;
+}
+
+// Role/Byline styling (used in hero and project subtitles)
+.role-description {
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+    background: $gradient-hero;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    @media (min-width: $breakpoint-md) {
+        font-size: $font-size-5xl;
+    }
+
+    @media (min-width: $breakpoint-lg) {
+        font-size: $font-size-6xl;
+    }
 }
 
 p {
@@ -126,6 +153,7 @@ a {
 .btn-primary {
     background-color: $color-brand-primary;
     color: $color-text-light;
+    border: 2px solid $color-brand-primary;
 
     &:hover:not(:disabled) {
         background-color: darken($color-brand-primary, 8%);
@@ -170,6 +198,10 @@ a {
 .btn-sm {
     padding: $spacing-2 $spacing-4;
     font-size: $font-size-sm;
+
+    &:not(.btn-outline) {
+        border: 0;
+    }
 }
 
 // Cards
