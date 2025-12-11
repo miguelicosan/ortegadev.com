@@ -228,6 +228,12 @@ const navItems = [
         backdrop-filter: blur(10px);
         border-bottom: 1px solid var(--color-header-border);
         transition: all $transition-base ease-out;
+
+        @media (max-width: 767px) {
+            position: fixed;
+            width: 100%;
+            left: 0;
+        }
     }
 
     html[data-theme="dark"] .header {

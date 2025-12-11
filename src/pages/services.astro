@@ -50,6 +50,14 @@ const services = [
         icon: "database",
         modal: t.services.backend.modal,
     },
+    {
+        id: "uxui",
+        title: t.services.uxui.title,
+        description: t.services.uxui.description,
+        tech: t.services.uxui.tech,
+        icon: "palette",
+        modal: t.services.uxui.modal,
+    },
 ];
 
 // ItemList Schema for services
@@ -84,7 +92,7 @@ const servicesSchema = {
 
             <div class="services-grid scroll-reveal delay-200">
                 {
-                    services.slice(0, 3).map((service) => (
+                    services.map((service) => (
                         <div class="service-card card" data-service={service.id}>
                             <div class="service-icon">
                                 {service.icon === "code" && (
@@ -119,58 +127,13 @@ const servicesSchema = {
                                         <ellipse cx="12" cy="18" rx="8" ry="2" stroke="currentColor" stroke-width="2" />
                                     </svg>
                                 )}
-                            </div>
-                            
-                            <div class="service-content">
-                                <h3>{service.title}</h3>
-                                <p class="description">{service.description}</p>
-                                <p class="tech-label">
-                                    <strong>Tecnologías:</strong> {service.tech}
-                                </p>
-                                <button class="btn-details" data-service={service.id}>
-                                    Ver más detalles
-                                </button>
-                            </div>
-                        </div>
-                    ))
-                }
-            </div>
-
-            <div class="services-grid-bottom scroll-reveal delay-300">
-                {
-                    services.slice(3, 5).map((service) => (
-                        <div class="service-card card" data-service={service.id}>
-                            <div class="service-icon">
-                                {service.icon === "code" && (
+                                {service.icon === "palette" && (
                                     <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M16 18L22 12L16 6M8 6L2 12L8 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                )}
-                                {service.icon === "brain" && (
-                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
-                                        <path d="M12 1V4M12 20V23M4.22 4.22L6.34 6.34M17.66 17.66L19.78 19.78M1 12H4M20 12H23M4.22 19.78L6.34 17.66M17.66 6.34L19.78 4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                                    </svg>
-                                )}
-                                {service.icon === "chart" && (
-                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M3 3V21H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M18 9L13 14L9 10L3 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                )}
-                                {service.icon === "server" && (
-                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <rect x="2" y="3" width="20" height="6" rx="1" stroke="currentColor" stroke-width="2" />
-                                        <rect x="2" y="12" width="20" height="6" rx="1" stroke="currentColor" stroke-width="2" />
-                                        <circle cx="6" cy="6" r="1" fill="currentColor" />
-                                        <circle cx="6" cy="15" r="1" fill="currentColor" />
-                                    </svg>
-                                )}
-                                {service.icon === "database" && (
-                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <ellipse cx="12" cy="4" rx="8" ry="2" stroke="currentColor" stroke-width="2" />
-                                        <path d="M4 4V18C4 19.1 7.6 20 12 20C16.4 20 20 19.1 20 18V4" stroke="currentColor" stroke-width="2" />
-                                        <ellipse cx="12" cy="18" rx="8" ry="2" stroke="currentColor" stroke-width="2" />
+                                        <path d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10c1.38 0 2.5-1.12 2.5-2.5 0-.61-.23-1.21-.64-1.67-.08-.09-.13-.21-.13-.33 0-.28.22-.5.5-.5H16c3.31 0 6-2.69 6-6 0-4.96-4.49-9-10-9z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        <circle cx="7" cy="10" r="1.5" fill="currentColor" />
+                                        <circle cx="10" cy="7" r="1.5" fill="currentColor" />
+                                        <circle cx="14" cy="7" r="1.5" fill="currentColor" />
+                                        <circle cx="17" cy="10" r="1.5" fill="currentColor" />
                                     </svg>
                                 )}
                             </div>
@@ -282,57 +245,44 @@ const servicesSchema = {
         display: grid;
         grid-template-columns: 1fr;
         gap: $spacing-6;
-        margin-bottom: $spacing-6;
+        margin-bottom: $spacing-12;
 
-        @media (min-width: $breakpoint-md) and (max-width: 1199px) {
-            grid-template-columns: repeat(3, 1fr);
-            gap: $spacing-4;
-            margin-bottom: $spacing-4;
-
-            > :nth-child(-n+3) {
-                max-width: 350px;
+        @media (min-width: 768px) and (max-width: 1023px) {
+            grid-template-columns: repeat(2, 1fr);
+            gap: $spacing-5;
+            margin-bottom: $spacing-8;
+            justify-items: center;
+            
+            > * {
+                max-width: 400px;
             }
+        }
+
+        @media (min-width: 1024px) and (max-width: 1199px) {
+            grid-template-columns: repeat(3, 1fr);
+            gap: $spacing-5;
+            margin-bottom: $spacing-8;
+            justify-items: center;
         }
 
         @media (min-width: $breakpoint-md) {
             grid-template-columns: repeat(2, 1fr);
         }
 
-        @media (min-width: $breakpoint-lg) {
+        @media (min-width: 1200px) {
             grid-template-columns: repeat(3, 1fr);
             justify-items: center;
             
-            > :nth-child(-n+3) {
-                width: 380px;
-            }
-        }
-    }
-
-    .services-grid-bottom {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: $spacing-6;
-        margin-bottom: $spacing-12;
-
-        @media (min-width: $breakpoint-md) and (max-width: 1199px) {
-            grid-template-columns: repeat(2, 1fr);
-            gap: $spacing-4;
-            margin-bottom: $spacing-8;
-
             > * {
-                max-width: 350px;
+                max-width: 360px;
             }
         }
 
-        @media (min-width: $breakpoint-md) {
-            grid-template-columns: repeat(2, 1fr);
-            justify-items: center;
-        }
-
-        @media (min-width: $breakpoint-lg) {
-            grid-template-columns: repeat(2, 380px);
-            justify-content: center;
-            justify-items: center;
+        @media (min-width: 1300px) {
+            > * {
+                width: 380px;
+                max-width: none;
+            }
         }
     }
 
@@ -572,6 +522,10 @@ const servicesSchema = {
         margin-right: auto;
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
         color: var(--color-text-primary);
+
+        @media (max-width: 767px) {
+            padding: 2rem !important;
+        }
 
         @media (min-width: $breakpoint-md) and (max-width: 1199px) {
             margin-top: $spacing-8;

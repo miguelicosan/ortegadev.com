@@ -23,6 +23,10 @@ body {
     line-height: $line-height-normal;
     color: var(--color-text-primary);
     background-color: var(--color-bg-primary);
+
+    @media (max-width: 767px) {
+        padding-top: 70px; // Altura aproximada del header fijo
+    }
 }
 
 // Difuminar main cuando el menú está abierto

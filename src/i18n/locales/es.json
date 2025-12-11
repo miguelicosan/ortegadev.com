@@ -153,6 +153,25 @@
                 "cta": "Construir mi backend"
             }
         },
+        "uxui": {
+            "title": "UX/UI & Animaciones",
+            "description": "Diseño de interfaces intuitivas y experiencias memorables. Animaciones CSS, micro-interacciones y prototipos interactivos.",
+            "tech": "Figma, CSS Animations, GSAP, Framer Motion",
+            "details": "Creo experiencias de usuario que enamoran. Desde wireframes hasta animaciones fluidas que mejoran la usabilidad y retención. Cada interacción está pensada para convertir.",
+            "modal": {
+                "subtitle": "Diseño que Enamora y Convierte",
+                "intro": "Las primeras impresiones cuentan. Tus usuarios decidirán en 3 segundos si se quedan o se van.",
+                "benefits": [
+                    "Auditoría UX de tu producto actual con mejoras accionables",
+                    "Diseño de interfaces modernas con Figma y prototipos interactivos",
+                    "Animaciones CSS y JavaScript que mejoran la experiencia",
+                    "Micro-interacciones que guían al usuario sin fricción",
+                    "Diseño responsive que funciona en todos los dispositivos",
+                    "Testing de usabilidad con usuarios reales"
+                ],
+                "cta": "Mejorar mi UX/UI"
+            }
+        },
         "cta": {
             "heading": "¿Listo para llevar tu proyecto al siguiente nivel?",
             "description": "Cuéntame sobre tu idea o desafío técnico. Ofreceré soluciones personalizadas ajustadas a tu presupuesto y timeline.",
