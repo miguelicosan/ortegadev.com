@@ -8,6 +8,37 @@ const t = await getTranslations(lang);
 const title = `${t.blog.title} | ortegadev.com`;
 const description =
     "Articles about web development, AI, Big Data and technology. Tips and experiences from a Full Stack Developer.";
+
+// Blog Schema - Ready for when you publish articles
+const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "ortegadev Blog",
+    "description": description,
+    "url": "https://ortegadev.com/en/blog",
+    "author": {
+        "@type": "Person",
+        "name": "Miguel Ángel Ortega Ibáñez",
+        "url": "https://ortegadev.com"
+    },
+    "inLanguage": "en",
+    "blogPost": [
+        // When you publish articles, add them here:
+        // {
+        //     "@type": "BlogPosting",
+        //     "headline": "Article title",
+        //     "description": "Brief description",
+        //     "url": "https://ortegadev.com/en/blog/article-title",
+        //     "datePublished": "2025-01-15",
+        //     "dateModified": "2025-01-15",
+        //     "author": {
+        //         "@type": "Person",
+        //         "name": "Miguel Ángel Ortega Ibáñez"
+        //     },
+        //     "image": "https://ortegadev.com/images/blog/article.jpg"
+        // }
+    ]
+};
 ---
 
 <BaseLayout title={title} description={description} lang={lang}>
@@ -44,3 +75,6 @@ const description =
         }
     }
 </style>
+
+<script type="application/ld+json" set:html={JSON.stringify(blogSchema)} />
+

@@ -51,6 +51,27 @@ const services = [
         modal: t.services.backend.modal,
     },
 ];
+
+// ItemList Schema for services
+const servicesSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Servicios de Desarrollo Web",
+    "description": description,
+    "itemListElement": services.map((service, index) => ({
+        "@type": "Service",
+        "position": index + 1,
+        "name": service.title,
+        "description": service.description,
+        "provider": {
+            "@type": "Person",
+            "name": "Miguel Ángel Ortega Ibáñez",
+            "url": "https://ortegadev.com"
+        },
+        "areaServed": "ES",
+        "serviceType": "Technology Services"
+    }))
+};
 ---
 
 <BaseLayout title={title} description={description} lang={lang}>
@@ -648,3 +669,6 @@ const services = [
         });
     });
 </script>
+
+<script type="application/ld+json" set:html={JSON.stringify(servicesSchema)} />
+

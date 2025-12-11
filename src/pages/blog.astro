@@ -8,6 +8,37 @@ const t = await getTranslations(lang);
 const title = `${t.blog.title} | ortegadev.com`;
 const description =
     "Artículos sobre desarrollo web, IA, Big Data y tecnología. Consejos y experiencias de un Full Stack Developer.";
+
+// Blog Schema - Preparado para cuando publiques artículos
+const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Blog de ortegadev",
+    "description": description,
+    "url": "https://ortegadev.com/blog",
+    "author": {
+        "@type": "Person",
+        "name": "Miguel Ángel Ortega Ibáñez",
+        "url": "https://ortegadev.com"
+    },
+    "inLanguage": "es",
+    "blogPost": [
+        // Cuando publiques artículos, añádelos aquí:
+        // {
+        //     "@type": "BlogPosting",
+        //     "headline": "Título del artículo",
+        //     "description": "Descripción breve",
+        //     "url": "https://ortegadev.com/blog/titulo-articulo",
+        //     "datePublished": "2025-01-15",
+        //     "dateModified": "2025-01-15",
+        //     "author": {
+        //         "@type": "Person",
+        //         "name": "Miguel Ángel Ortega Ibáñez"
+        //     },
+        //     "image": "https://ortegadev.com/images/blog/articulo.jpg"
+        // }
+    ]
+};
 ---
 
 <BaseLayout title={title} description={description} lang={lang}>
@@ -44,3 +75,6 @@ const description =
         }
     }
 </style>
+
+<script type="application/ld+json" set:html={JSON.stringify(blogSchema)} />
+

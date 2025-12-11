@@ -204,7 +204,23 @@ $color-brand-secondary: #5e5ce6;
 
 The following integrations are prepared but need real credentials/URLs:
 
-### 1. Contact Form Email Service
+### 1. Blog System with Comments (Priority: High)
+
+**Status:** 📋 Requirements documented, pending implementation
+
+A complete blog system with Supabase-powered comment moderation is planned. Full specifications available in:
+
+📄 **[BLOG-REQUIREMENTS.md](./BLOG-REQUIREMENTS.md)**
+
+**Key Features:**
+- SEO-optimized blog with MDX posts
+- Tag filtering and search
+- Supabase comments with manual moderation
+- Cloudflare Turnstile anti-spam
+- Email-based moderation workflow
+- Server-side rendering for SEO
+
+### 2. Contact Form Email Service
 
 File: `src/components/ContactForm.tsx`
 
@@ -213,13 +229,13 @@ Options:
 - **Formspree**: Add form endpoint
 - **EmailJS**: Configure service
 
-### 2. Google Analytics (Optional)
+### 3. Google Analytics (Optional)
 
 Add to `src/layouts/BaseLayout.astro`:
 - Check cookie consent (analytics preference)
 - Load GA script conditionally
 
-### 3. Calendly Integration
+### 4. Calendly Integration
 
 File: `src/pages/contact.astro` (and `/en/contact.astro`)
 
@@ -227,6 +243,24 @@ Replace placeholder with your Calendly URL:
 ```html
 <div data-url="https://calendly.com/YOUR-USERNAME/30min"></div>
 ```
+
+### 5. Client Reviews/Testimonials System
+
+**Phase 1 (Simple - Recommended to start):**
+- Add static testimonials array in project pages
+- Display review cards with rating, text, author
+- Generate schema.org Review markup automatically
+
+**Phase 2 (Advanced - Future):**
+- Create Supabase table `client_reviews` (id, project_id, client_name, rating, review_text, date, approved)
+- Build admin panel to approve/moderate reviews
+- Auto-generate schemas from database
+- Add review submission form on project pages
+
+**Benefits:**
+- Improves SEO with real user reviews
+- Social proof for potential clients
+- Structured data for Google rich snippets
 
 ## 🍪 GDPR & Cookies
 

@@ -148,6 +148,38 @@ const projects = [
     `
   }
 ];
+
+// CollectionPage + ItemList Schema for projects
+const projectsSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Project Portfolio",
+    "description": description,
+    "url": "https://ortegadev.com/en/projects",
+    "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": projects.map((project, index) => ({
+            "@type": "SoftwareApplication",
+            "position": index + 1,
+            "name": project.title,
+            "description": project.description,
+            "url": project.url,
+            "applicationCategory": "WebApplication",
+            "author": {
+                "@type": "Person",
+                "name": "Miguel Ángel Ortega Ibáñez",
+                "url": "https://ortegadev.com"
+            },
+            "image": `https://ortegadev.com${project.image}`,
+            "datePublished": `${project.year}-01-01`,
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "EUR"
+            }
+        }))
+    }
+};
 ---
 
 <BaseLayout title={title} description={description} lang={lang}>
@@ -290,11 +322,8 @@ const projects = [
                 }
             }
         }
-
-            @media (max-width: $breakpoint-sm) {
-                padding: $spacing-4 $spacing-6;
-                font-size: $font-size-base;
-            }
-        }
     }
 </style>
+
+<script type="application/ld+json" set:html={JSON.stringify(projectsSchema)} />
+

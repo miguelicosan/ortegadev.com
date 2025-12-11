@@ -10,6 +10,33 @@ const t = await getTranslations(lang);
 const title = `${t.contact.title} | ortegadev.com`;
 const description =
     "Contact me for your next project. Email, phone, WhatsApp or book an online meeting.";
+
+// ContactPage Schema
+const contactSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact",
+    "description": description,
+    "url": "https://ortegadev.com/en/contact",
+    "mainEntity": {
+        "@type": "Person",
+        "name": "Miguel Ángel Ortega Ibáñez",
+        "email": "hola@ortegadev.com",
+        "telephone": "+34621329386",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Almería",
+            "addressCountry": "ES"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "availableLanguage": ["Spanish", "English"],
+            "email": "hola@ortegadev.com",
+            "telephone": "+34621329386"
+        }
+    }
+};
 ---
 
 <BaseLayout title={title} description={description} lang={lang}>
@@ -327,3 +354,6 @@ const description =
         }
     }
 </style>
+
+<script type="application/ld+json" set:html={JSON.stringify(contactSchema)} />
+

@@ -19,6 +19,8 @@ interface Props {
         description: string;
         highlights: string[];
         staticMobileImage?: boolean;
+        customTitle?: string;
+        customLead?: string;
         features: {
             title: string;
             description: string;
@@ -70,34 +72,76 @@ const breadcrumbSchema = {
     ]
 };
 
-// Generate software application schema
-const appSchema = {
+// Enhanced Software Application Schema + Article (Case Study)
+const schemasGraph = {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": project.title,
-    "description": description,
-    "url": project.liveUrl || `${Astro.site}${currentPath}`,
-    "applicationCategory": "WebApplication",
-    "author": {
-        "@type": "Person",
-        "name": "Miguel Ángel Ortega Ibáñez",
-        "url": "https://ortegadev.com"
-    },
-    "image": `${Astro.site}${project.images.hero}`,
-    "operatingSystem": "Web",
-    "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "EUR"
-    },
-    "datePublished": new Date().toISOString().split('T')[0],
-    "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "5",
-        "bestRating": "5",
-        "worstRating": "1",
-        "ratingCount": "1"
-    }
+    "@graph": [
+        // Software Application
+        {
+            "@type": "SoftwareApplication",
+            "@id": `${Astro.site}${currentPath}#software`,
+            "name": project.title,
+            "description": description,
+            "url": project.liveUrl || `${Astro.site}${currentPath}`,
+            "applicationCategory": "WebApplication",
+            "applicationSubCategory": project.title.includes("ReviCar") 
+                ? "Vehicle Management" 
+                : project.title.includes("Amigo") 
+                    ? "Event Management" 
+                    : "Portfolio",
+            "author": {
+                "@type": "Person",
+                "name": "Miguel Ángel Ortega Ibáñez",
+                "url": "https://ortegadev.com"
+            },
+            "creator": {
+                "@type": "Person",
+                "name": "Miguel Ángel Ortega Ibáñez"
+            },
+            "image": `${Astro.site}${project.images.hero}`,
+            "screenshot": `${Astro.site}${project.images.hero}`,
+            "operatingSystem": "Web, iOS, Android, Cross-platform",
+            "programmingLanguage": project.stack,
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "EUR",
+                "availability": "https://schema.org/InStock"
+            },
+            "datePublished": `${project.date}-01-01`,
+            "inLanguage": ["es", "en"],
+            "keywords": project.stack.join(", ")
+        },
+        // Article / Case Study
+        {
+            "@type": "Article",
+            "@id": `${Astro.site}${currentPath}#article`,
+            "headline": `${lang === 'es' ? 'Caso de Estudio' : 'Case Study'}: ${project.title}`,
+            "description": description,
+            "url": `${Astro.site}${currentPath}`,
+            "author": {
+                "@type": "Person",
+                "name": "Miguel Ángel Ortega Ibáñez",
+                "url": "https://ortegadev.com"
+            },
+            "publisher": {
+                "@type": "Person",
+                "name": "Miguel Ángel Ortega Ibáñez"
+            },
+            "datePublished": `${project.date}-01-01`,
+            "dateModified": new Date().toISOString().split('T')[0],
+            "image": `${Astro.site}${project.images.hero}`,
+            "articleBody": project.description,
+            "about": {
+                "@id": `${Astro.site}${currentPath}#software`
+            },
+            "inLanguage": lang,
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": `${Astro.site}${currentPath}`
+            }
+        }
+    ]
 };
 
 ---
@@ -386,8 +430,8 @@ const appSchema = {
     <!-- JSON-LD Schema for BreadcrumbList -->
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
     
-    <!-- JSON-LD Schema for SoftwareApplication -->
-    <script type="application/ld+json" set:html={JSON.stringify(appSchema)} />
+    <!-- JSON-LD Schema for SoftwareApplication + Article (Case Study) -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemasGraph)} />
 
     <script>
         // Stack expand/collapse handler with click functionality

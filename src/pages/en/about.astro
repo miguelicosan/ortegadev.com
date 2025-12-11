@@ -8,6 +8,59 @@ const t = await getTranslations(lang);
 const title = `${t.about.title} | ortegadev.com`;
 const description =
     "Full Stack Developer with over 10 years of experience in AI, Big Data and process automation. Currently at Minsait, creating innovative solutions.";
+
+// ProfilePage Schema with skills
+const profileSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "name": "About me - Miguel Ángel Ortega",
+    "description": description,
+    "url": "https://ortegadev.com/en/about",
+    "mainEntity": {
+        "@type": "Person",
+        "name": "Miguel Ángel Ortega Ibáñez",
+        "alternateName": "ortegadev",
+        "jobTitle": "Full Stack Developer",
+        "description": "Full Stack Developer specialized in AI, Big Data and process automation",
+        "url": "https://ortegadev.com",
+        "email": "hola@ortegadev.com",
+        "telephone": "+34621329386",
+        "image": "https://ortegadev.com/images/miguel-ortegadev-com-developer.jpeg",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Almería",
+            "addressRegion": "Andalusia",
+            "addressCountry": "ES"
+        },
+        "knowsAbout": [
+            "React", "TypeScript", "JavaScript", "Python", "Node.js",
+            "Astro", "Next.js", "Tailwind CSS", "SCSS",
+            "Supabase", "PostgreSQL", "MongoDB", "MySQL",
+            "Docker", "Git", "GitHub Actions", "CI/CD",
+            "Artificial Intelligence", "Big Data", "Data Visualization",
+            "Full Stack Development", "Web Development", "API Development"
+        ],
+        "hasOccupation": {
+            "@type": "Occupation",
+            "name": "Full Stack Developer",
+            "occupationalCategory": "15-1254.00",
+            "skills": "React, TypeScript, Python, Docker, Supabase, AI, Big Data",
+            "experienceRequirements": "10+ years"
+        },
+        "worksFor": {
+            "@type": "Organization",
+            "name": "Freelance"
+        },
+        "alumniOf": {
+            "@type": "EducationalOrganization",
+            "name": "Universidad de Almería"
+        },
+        "sameAs": [
+            "https://github.com/miguelicosan",
+            "https://linkedin.com/in/ortegadev"
+        ]
+    }
+};
 ---
 
 <BaseLayout title={title} description={description} lang={lang}>
@@ -382,3 +435,6 @@ const description =
         }
     }
 </style>
+
+<script type="application/ld+json" set:html={JSON.stringify(profileSchema)} />
+

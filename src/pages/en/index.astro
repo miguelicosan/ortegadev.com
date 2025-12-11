@@ -8,6 +8,27 @@ import { getTranslations } from "../../i18n/config";
 
 const lang = "en";
 const t = await getTranslations(lang);
+
+// WebSite Schema for homepage
+const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "ortegadev.com",
+    "alternateName": "Miguel Ángel Ortega - Full Stack Developer",
+    "url": "https://ortegadev.com",
+    "description": t.site.description,
+    "author": {
+        "@type": "Person",
+        "name": "Miguel Ángel Ortega Ibáñez",
+        "url": "https://ortegadev.com"
+    },
+    "inLanguage": ["es", "en"],
+    "copyrightYear": 2025,
+    "copyrightHolder": {
+        "@type": "Person",
+        "name": "Miguel Ángel Ortega Ibáñez"
+    }
+};
 ---
 
 <BaseLayout title={t.site.title} description={t.site.description} lang={lang}>
@@ -15,4 +36,6 @@ const t = await getTranslations(lang);
     <About lang={lang} />
     <TechStack lang={lang} />
     <WhatsAppButton lang={lang} />
+    
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
 </BaseLayout>
