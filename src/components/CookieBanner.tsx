@@ -16,12 +16,15 @@ const COOKIE_CONSENT_KEY = 'cookie-consent';
 
 export default function CookieBanner({ lang }: CookieBannerProps) {
     const [showBanner, setShowBanner] = useState(false);
+    const [isClosing, setIsClosing] = useState(false);
     const [showConfig, setShowConfig] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
     const translations = {
         es: {
             message: 'Utilizamos cookies propias y de terceros para mejorar tu experiencia. Puedes aceptarlas, rechazarlas o configurarlas.',
             accept: 'Aceptar todas',
+            acceptShort: 'Aceptar',
             reject: 'Rechazar',
             configure: 'Configurar',
             configTitle: 'Configuración de Cookies',
@@ -37,6 +40,7 @@ export default function CookieBanner({ lang }: CookieBannerProps) {
         en: {
             message: 'We use our own and third-party cookies to improve your experience. You can accept, reject, or configure them.',
             accept: 'Accept all',
+            acceptShort: 'Accept',
             reject: 'Reject',
             configure: 'Configure',
             configTitle: 'Cookie Settings',
@@ -82,10 +86,29 @@ export default function CookieBanner({ lang }: CookieBannerProps) {
 
         window.addEventListener('openCookieSettings', handleOpenSettings);
 
+        const media = window.matchMedia('(max-width: 640px)');
+        const handleMedia = (e: MediaQueryListEvent | MediaQueryList) => setIsMobile(e.matches);
+        handleMedia(media);
+        media.addEventListener('change', handleMedia as EventListener);
+
         return () => {
             window.removeEventListener('openCookieSettings', handleOpenSettings);
+            media.removeEventListener('change', handleMedia as EventListener);
         };
     }, []);
+
+    useEffect(() => {
+        const root = document.documentElement;
+        if (showBanner) {
+            root.classList.add('cookie-banner-open');
+        } else {
+            root.classList.remove('cookie-banner-open');
+        }
+
+        return () => {
+            root.classList.remove('cookie-banner-open');
+        };
+    }, [showBanner]);
 
     const applyPreferences = (prefs: CookiePreferences) => {
         // TODO: Implement actual cookie management based on preferences
@@ -103,7 +126,11 @@ export default function CookieBanner({ lang }: CookieBannerProps) {
         localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(allAccepted));
         setPreferences(allAccepted);
         applyPreferences(allAccepted);
-        setShowBanner(false);
+        setIsClosing(true);
+        setTimeout(() => {
+            setShowBanner(false);
+            setIsClosing(false);
+        }, 300);
     };
 
     const handleReject = () => {
@@ -115,14 +142,22 @@ export default function CookieBanner({ lang }: CookieBannerProps) {
         localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(onlyNecessary));
         setPreferences(onlyNecessary);
         applyPreferences(onlyNecessary);
-        setShowBanner(false);
+        setIsClosing(true);
+        setTimeout(() => {
+            setShowBanner(false);
+            setIsClosing(false);
+        }, 300);
     };
 
     const handleSavePreferences = () => {
         localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(preferences));
         applyPreferences(preferences);
         setShowConfig(false);
-        setShowBanner(false);
+        setIsClosing(true);
+        setTimeout(() => {
+            setShowBanner(false);
+            setIsClosing(false);
+        }, 300);
     };
 
     const togglePreference = (key: keyof CookiePreferences) => {
@@ -136,7 +171,7 @@ export default function CookieBanner({ lang }: CookieBannerProps) {
     return (
         <>
             {showBanner && (
-                <div className="cookie-banner" role="dialog" aria-label="Cookie consent">
+                <div className={`cookie-banner ${isClosing ? 'closing' : ''}`} role="dialog" aria-label="Cookie consent">
                     <div className="cookie-banner-content">
                         <p className="cookie-message">{t.message}</p>
                         <div className="cookie-actions">
@@ -156,7 +191,7 @@ export default function CookieBanner({ lang }: CookieBannerProps) {
                                 className="btn btn-primary btn-sm"
                                 onClick={handleAcceptAll}
                             >
-                                {t.accept}
+                                {isMobile ? t.acceptShort : t.accept}
                             </button>
                         </div>
                     </div>

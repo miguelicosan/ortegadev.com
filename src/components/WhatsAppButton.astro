@@ -58,6 +58,15 @@ const label = lang === "es" ? "WhatsApp" : "WhatsApp chat";
             background-color: darken(#25d366, 5%);
         }
 
+        // Cuando el banner de cookies está visible, levantar el botón
+        :global(.cookie-banner-open) & {
+            bottom: calc($spacing-6 + 120px);
+
+            @media (max-width: $breakpoint-sm) {
+                bottom: calc($spacing-4 + 140px);
+            }
+        }
+
         svg {
             width: 32px;
             height: 32px;

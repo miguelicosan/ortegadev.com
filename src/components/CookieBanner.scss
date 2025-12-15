@@ -13,6 +13,10 @@
     box-shadow: $shadow-xl;
     animation: slideUp 0.3s ease-out;
 
+    &.closing {
+        animation: slideDown 0.3s ease-in forwards;
+    }
+
     @media (prefers-color-scheme: dark) {
         background-color: rgba(29, 29, 31, 0.95);
         border-top-color: rgba(255, 255, 255, 0.1);
@@ -26,6 +30,18 @@
 
     to {
         transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateY(100%);
+        opacity: 0;
     }
 }
 
