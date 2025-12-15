@@ -4,42 +4,42 @@
   <!-- Spanish pages -->
   <url>
     <loc>https://ortegadev.com/</loc>
-    <lastmod>2025-12-11</lastmod>
+    <lastmod>2025-12-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://ortegadev.com/en/" />
   </url>
   <url>
     <loc>https://ortegadev.com/about</loc>
-    <lastmod>2025-12-11</lastmod>
+    <lastmod>2025-12-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://ortegadev.com/en/about" />
   </url>
   <url>
     <loc>https://ortegadev.com/services</loc>
-    <lastmod>2025-12-11</lastmod>
+    <lastmod>2025-12-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://ortegadev.com/en/services" />
   </url>
   <url>
     <loc>https://ortegadev.com/projects</loc>
-    <lastmod>2025-12-11</lastmod>
+    <lastmod>2025-12-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://ortegadev.com/en/projects" />
   </url>
   <url>
     <loc>https://ortegadev.com/blog</loc>
-    <lastmod>2025-12-11</lastmod>
+    <lastmod>2025-12-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://ortegadev.com/en/blog" />
   </url>
   <url>
     <loc>https://ortegadev.com/contact</loc>
-    <lastmod>2025-12-11</lastmod>
+    <lastmod>2025-12-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://ortegadev.com/en/contact" />
@@ -48,21 +48,21 @@
   <!-- Project pages (Spanish) -->
   <url>
     <loc>https://ortegadev.com/projects/revicar</loc>
-    <lastmod>2025-12-11</lastmod>
+    <lastmod>2025-12-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://ortegadev.com/en/projects/revicar" />
   </url>
   <url>
     <loc>https://ortegadev.com/projects/amigo-invisible</loc>
-    <lastmod>2025-12-11</lastmod>
+    <lastmod>2025-12-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://ortegadev.com/en/projects/amigo-invisible" />
   </url>
   <url>
     <loc>https://ortegadev.com/projects/ortegadev</loc>
-    <lastmod>2025-12-11</lastmod>
+    <lastmod>2025-12-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://ortegadev.com/en/projects/ortegadev" />
@@ -71,42 +71,42 @@
   <!-- English pages -->
   <url>
     <loc>https://ortegadev.com/en/</loc>
-    <lastmod>2025-12-11</lastmod>
+    <lastmod>2025-12-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://ortegadev.com/" />
   </url>
   <url>
     <loc>https://ortegadev.com/en/about</loc>
-    <lastmod>2025-12-11</lastmod>
+    <lastmod>2025-12-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://ortegadev.com/about" />
   </url>
   <url>
     <loc>https://ortegadev.com/en/services</loc>
-    <lastmod>2025-12-11</lastmod>
+    <lastmod>2025-12-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://ortegadev.com/services" />
   </url>
   <url>
     <loc>https://ortegadev.com/en/projects</loc>
-    <lastmod>2025-12-11</lastmod>
+    <lastmod>2025-12-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://ortegadev.com/projects" />
   </url>
   <url>
     <loc>https://ortegadev.com/en/blog</loc>
-    <lastmod>2025-12-11</lastmod>
+    <lastmod>2025-12-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://ortegadev.com/blog" />
   </url>
   <url>
     <loc>https://ortegadev.com/en/contact</loc>
-    <lastmod>2025-12-11</lastmod>
+    <lastmod>2025-12-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://ortegadev.com/contact" />
@@ -115,21 +115,21 @@
   <!-- Project pages (English) -->
   <url>
     <loc>https://ortegadev.com/en/projects/revicar</loc>
-    <lastmod>2025-12-11</lastmod>
+    <lastmod>2025-12-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://ortegadev.com/projects/revicar" />
   </url>
   <url>
     <loc>https://ortegadev.com/en/projects/amigo-invisible</loc>
-    <lastmod>2025-12-11</lastmod>
+    <lastmod>2025-12-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://ortegadev.com/projects/amigo-invisible" />
   </url>
   <url>
     <loc>https://ortegadev.com/en/projects/ortegadev</loc>
-    <lastmod>2025-12-11</lastmod>
+    <lastmod>2025-12-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://ortegadev.com/projects/ortegadev" />
