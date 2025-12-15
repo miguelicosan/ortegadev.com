@@ -19,7 +19,7 @@ const { title, description, lang: providedLang, image, canonicalURL, noindex = f
 const lang = providedLang || getLangFromUrl(Astro.url);
 
 const siteURL = new URL(Astro.url.pathname, Astro.site || 'https://ortegadev.com');
-const ogImage = image || `${siteURL.origin}/images/miguel-ortegadev-com-developer.jpeg`;
+const ogImage = image || `${siteURL.origin}/images/miguel-ortegadev-com-developer.webp`;
 const canonical = canonicalURL || siteURL.href;
 
 // Determine alternate language URL

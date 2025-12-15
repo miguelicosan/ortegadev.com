@@ -1,5 +1,6 @@
 ---
 import { getTranslations, type Language } from "../i18n/config";
+import { Image } from "astro:assets";
 
 interface Props {
     lang: Language;
@@ -62,11 +63,14 @@ const ctaButtons = [
             </div>
 
             <div class="hero-image animate-fade-in delay-300">
-                <img
-                    src="/images/miguel-ortegadev-com-developer.jpeg"
+                <Image
+                    src="/images/miguel-ortegadev-com-developer.webp"
                     alt="Miguel Ángel Ortega Ibáñez"
-                    width="500"
-                    height="500"
+                    width={500}
+                    height={500}
+                    format="webp"
+                    quality={85}
+                    loading="eager"
                 />
                 <div class="hero-image-gradient"></div>
             </div>

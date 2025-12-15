@@ -1,7 +1,7 @@
 ---
 title: "ReviCar"
 description: "Plataforma inteligente de gestión vehicular con IA predictiva"
-image: "/images/projects/revicar-screenshot.png"
+image: "/images/projects/revicar-screenshot.webp"
 tags: ["React", "TypeScript", "Supabase", "IA", "Mobile"]
 url: "https://revicarapp.com"
 github: "https://github.com/miguelicosan/car-care-companion-app"

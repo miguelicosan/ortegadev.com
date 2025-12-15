@@ -1,7 +1,7 @@
 ---
 title: "Sorteo Amigo Invisible"
 description: "Organiza sorteos gratuitos y seguros con emparejamiento inteligente"
-image: "/images/projects/amigo-invisible-screenshot.png"
+image: "/images/projects/amigo-invisible-screenshot.webp"
 tags: ["Astro", "Supabase", "TypeScript", "Edge Functions", "SEO"]
 url: "https://amigoinvisible.online"
 github: "https://github.com/miguelicosan/sorteoamigoinvisible.online"

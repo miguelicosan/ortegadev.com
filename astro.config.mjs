@@ -8,6 +8,10 @@ export default defineConfig({
   site: 'https://ortegadev.com',
   integrations: [react()],
   output: 'static',
+  image: {
+    domains: ['ortegadev.com'],
+    remotePatterns: [{ protocol: 'https' }],
+  },
   vite: {
     ssr: {
       external: ['svgo']

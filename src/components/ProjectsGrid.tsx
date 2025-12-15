@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './ProjectsGrid.scss';
+import OptimizedImage from './OptimizedImage';
 
 interface Project {
   id: string;
@@ -43,10 +44,13 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
             {/* Card Front */}
             <div className="card-front">
               <div className="card-image-wrapper">
-                <img
+                <OptimizedImage
                   src={project.image}
                   alt={project.title}
                   className="card-image"
+                  width={600}
+                  height={400}
+                  loading="lazy"
                 />
                 <div className="card-overlay">
                   <span className="view-more">

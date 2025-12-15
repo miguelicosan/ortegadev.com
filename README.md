@@ -6,6 +6,23 @@ Professional Astro-based personal brand website for Miguel Ángel Ortega Ibáñe
 
 ## 📝 Recent Updates (December 2024)
 
+### Performance Optimization: Images to WebP (Dec 15, 2024)
+- **Image Optimization**: Converted all PNG/JPEG images to WebP format
+  - 19 images optimized with 90% average size reduction
+  - Total size reduced from ~15MB to 1.5MB
+  - Sharp processing with quality 80-85 for optimal balance
+- **Astro Image Component**: Implemented native `<Image>` component with automatic optimization
+  - Lazy loading for below-fold images
+  - Eager loading for hero/LCP images
+  - WebP format with fallback support
+  - Explicit dimensions to prevent layout shift
+- **Responsive Mockup Frames**: Fixed aspect ratios for realistic device mockups
+  - Mobile frame: 9/19.5 aspect ratio (max 640px height)
+  - Tablet frame: 3/2 aspect ratio (max 600px height)
+  - Proper `object-fit: cover` to prevent stretching
+- **OG Image Updated**: Social sharing now uses optimized WebP image
+- **Automation**: Created `scripts/convert-images.js` for batch WebP conversion
+
 ### Tablet Optimization & Design System (Dec 11, 2024)
 - **Tablet Breakpoint Extension**: Extended tablet range to 768px-1199px to optimize for iPad Air landscape (1180px)
 - **Typography System**: Unified h1 sizing at 2.25rem across all pages (projects, blog, about, services) for tablet
